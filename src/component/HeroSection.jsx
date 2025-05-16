@@ -15,7 +15,7 @@ export default function HeroSection() {
             <Link to="/contact" className="text-sm font-bold tracking-wide"> Let's Discuss </Link>
           </button>
           <div>
-            <a href={Resume} download className="flex gap-2 py-2 cursor-pointer">Resume <FileDown /></a>
+            <a href={Resume} download className="flex gap-2 py-2 max-w-[110px] cursor-pointer">Resume <FileDown /></a>
           </div>
         </div>
       </div>
