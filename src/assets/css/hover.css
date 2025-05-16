@@ -1,0 +1,27 @@
+.social-icons-hover:hover {
+  border: 1px solid var(--black);
+  scale: 1.1;
+}
+.social-icons-hover {
+  border: 1px solid transparent;
+  border-radius: 50%;
+  padding: 5px;
+  transition: all 0.2s;
+}
+.logo {
+  transition: all 0.2s;
+  border: 1px solid transparent;
+  padding: 5px;
+}
+.logo:hover {
+  transform: scale(1.1);
+  border: 1px solid var(--black);
+}
+.heroDescription h2 span{
+  display: inline-block;
+  transition: all 0.2s;
+}
+.heroDescription h2 span:hover{
+  transform: scale(1.3);
+  color: #ff3b3b;
+}

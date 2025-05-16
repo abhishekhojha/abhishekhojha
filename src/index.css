@@ -1,0 +1,55 @@
+@font-face {
+  font-family: "Playfair-Display";
+  src: url("/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 100 200 300 400 500 600 700 800 900; /* for variable font */
+  font-style: normal;
+  font-display: swap;
+}
+body{
+    font-family: "Playfair-Display", sans-serif;
+}
+body p{
+    font-size: 16px;
+}
+h1,h2,h3,h4,h5,h6{
+    font-weight: 500;
+}
+
+.layout-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 .5rem; /* 16px */
+}
+
+/* Default max width for small screens */
+@media (min-width: 640px) {
+  .layout-container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .layout-container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .layout-container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .layout-container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .layout-container {
+    max-width: 1440px; /* Your custom wide container */
+  }
+}

@@ -1,0 +1,29 @@
+@import "tailwindcss";
+:root{
+  --red:#ff3b3b;
+  --black:#000;
+}
+.mainLayout {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  height: calc(100vh - 92px);
+}
+.heroSection {
+  height: calc(100vh - 92px);
+}
+.layoutWrapper {
+  background-image: url("/bg.png");
+  background-size: cover;
+  background-position: 65%;
+}
+
+
+@media (max-width: 768px) {
+  .mainLayout {
+    grid-template-columns: 40px 1fr;
+    height: calc(100vh - 72px);
+  }
+  .heroSection{
+    height: calc(100vh - 72px);
+  }
+}
