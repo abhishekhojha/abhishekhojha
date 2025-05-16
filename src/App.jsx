@@ -1,11 +1,11 @@
 import "./App.css";
 import "@/assets/css/hover.css";
 
-import Layout from "./component/Layout";
 import { BrowserRouter as Router, Routes, Route } from "react-router";
 import Home from "./pages/Home";
 import { useEffect, useState } from "react";
 import Loader from "./component/Loader";
+
 function App() {
   const [pageLoaded, setPageLoaded] = useState(false);
 
@@ -30,12 +30,12 @@ function App() {
   return (
     <>
       <div className="main">
-        <Loader loading={pageLoaded}/>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Home loading={pageLoaded} />}></Route>
-          </Routes>
-        </Router>
+        <Loader loading={pageLoaded} />
+          <Router>
+            <Routes>
+              <Route path="/" element={<Home loading={pageLoaded} />}></Route>
+            </Routes>
+          </Router>
       </div>
     </>
   );

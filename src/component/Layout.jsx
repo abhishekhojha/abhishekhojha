@@ -22,7 +22,7 @@ export default function Layout({ children }) {
             </ul>
           </div>
           <div className="mainLayout overflow-hidden">
-            <div className="layoutWrapperLeft flex flex-col justify-center items-center gap-16">
+            <div className="layoutWrapperLeft flex flex-col pl-8 md:pl-0 justify-center items-center gap-16">
               <div className="Borderline h-[200px] w-[2px] bg-black"></div>
               <div className="flex flex-col gap-4 items-center">
                 <a
