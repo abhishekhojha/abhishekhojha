@@ -1,0 +1,22 @@
+[
+  {
+    "title": "💻 Full-Stack Web Development",
+    "description": "I build modern, scalable, and efficient web applications using the MERN stack (MongoDB, Express, React, and Node.js). Whether it's developing robust backend APIs or integrating them with dynamic and responsive frontends, I ensure a seamless user experience and clean code architecture."
+  },
+  {
+    "title": "🛒 E-Commerce Development",
+    "description": "From product listings to payment integration, I develop complete e-commerce solutions using platforms like WordPress, Shopify, and custom MERN-based systems. I focus on secure transactions, real-time inventory management, and an intuitive shopping experience tailored to your business needs."
+  },
+  {
+    "title": "📱 Custom Landing Pages",
+    "description": "Need a quick yet impactful online presence? I create fast-loading, mobile-friendly landing pages designed to match your brand identity. Perfect for services, promotions, or event highlights — all optimized for SEO and performance."
+  },
+  {
+    "title": "🔧 Website Optimization & Debugging",
+    "description": "Already have a website but it’s underperforming? I specialize in frontend debugging, layout corrections, and cross-browser compatibility fixes. My goal is to ensure your website looks great and works smoothly on every device and browser."
+  },
+  {
+    "title": "🎨 UI/UX Enhancements",
+    "description": "A good design keeps users engaged. I use modern libraries like Framer Motion and Bootstrap to enhance UI and deliver smooth, interactive, and visually appealing user experiences across all devices."
+  }
+]

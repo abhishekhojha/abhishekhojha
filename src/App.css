@@ -6,24 +6,19 @@
 .mainLayout {
   display: grid;
   grid-template-columns: 60px 1fr;
-  height: calc(100vh - 92px);
+  /* height: calc(100vh - 92px); */
 }
 .heroSection {
-  height: calc(100vh - 92px);
+  height: 100%;
 }
-.layoutWrapper {
-  background-image: url("/bg.png");
+body {
+  background-image: url("/bg.jpg");
   background-size: cover;
-  background-position: 65%;
 }
 
 
 @media (max-width: 768px) {
   .mainLayout {
     grid-template-columns: 40px 1fr;
-    height: calc(100vh - 72px);
-  }
-  .heroSection{
-    height: calc(100vh - 72px);
   }
 }
