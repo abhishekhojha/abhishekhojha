@@ -109,7 +109,7 @@ Whether you're looking to build a robust platform, design a high-converting land
             </div>
           </div>
           <div className="flex mt-6">
-            <div className="w-[300px] md:w-[400px]">
+            <div className="w-full md:w-[400px]">
               <img
                 src={Abhi}
                 alt="Abhishekh Ojha"
