@@ -7,7 +7,7 @@ import Abhi from "@/assets/Abhi.png";
 import { Link } from "react-router";
 const Services = ({ props }) => {
   return (
-    <div className="bg-[#f2f2f2] p-6 rounded-lg shadow-md hover:shadow-2xl cursor-pointer transition-shadow duration-300">
+    <div className="bg-[#f2f2f2] p-6 justify-center flex flex-col rounded-lg shadow-md hover:shadow-2xl cursor-pointer transition-shadow duration-300">
       <h4 className="text-lg sm:text-xl md:text-2xl font-extrabold">
         {props.heading}
       </h4>

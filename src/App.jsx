@@ -30,6 +30,7 @@ function App() {
   return (
     <>
       <div className="main">
+        <div className="background"><img src="./bg.jpg" alt="" /></div>
         <Loader loading={pageLoaded} />
           <Router>
             <Routes>

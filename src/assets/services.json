@@ -1,22 +1,22 @@
 [
   {
     "title": "💻 Full-Stack Web Development",
-    "description": "I build modern, scalable, and efficient web applications using the MERN stack (MongoDB, Express, React, and Node.js). Whether it's developing robust backend APIs or integrating them with dynamic and responsive frontends, I ensure a seamless user experience and clean code architecture."
+    "description": "I build fast, scalable MERN apps with clean APIs and responsive UIs for a smooth user experience."
   },
   {
     "title": "🛒 E-Commerce Development",
-    "description": "From product listings to payment integration, I develop complete e-commerce solutions using platforms like WordPress, Shopify, and custom MERN-based systems. I focus on secure transactions, real-time inventory management, and an intuitive shopping experience tailored to your business needs."
+    "description": "I create e-commerce sites with secure payments, real-time inventory, and a seamless shopping flow."
   },
   {
     "title": "📱 Custom Landing Pages",
-    "description": "Need a quick yet impactful online presence? I create fast-loading, mobile-friendly landing pages designed to match your brand identity. Perfect for services, promotions, or event highlights — all optimized for SEO and performance."
+    "description": "I design fast, mobile-friendly landing pages perfect for promotions, events, or services."
   },
   {
-    "title": "🔧 Website Optimization & Debugging",
-    "description": "Already have a website but it’s underperforming? I specialize in frontend debugging, layout corrections, and cross-browser compatibility fixes. My goal is to ensure your website looks great and works smoothly on every device and browser."
+    "title": "🔧 Website Debugging",
+    "description": "I fix bugs, improve layouts, and ensure smooth performance across all devices and browsers."
   },
   {
     "title": "🎨 UI/UX Enhancements",
-    "description": "A good design keeps users engaged. I use modern libraries like Framer Motion and Bootstrap to enhance UI and deliver smooth, interactive, and visually appealing user experiences across all devices."
+    "description": "I enhance UI with modern tools for clean, interactive, and responsive user experiences."
   }
 ]
