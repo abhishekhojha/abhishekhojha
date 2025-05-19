@@ -6,7 +6,7 @@ export default function HeroSection() {
   return (
     <>
       <div className="heroSection flex items-center">
-        <div className="heroDescription pl-8 pb-20 md:pb-15 md:pl-12 lg:pl-16 xl:pl-20">
+        <div className="heroDescription pl-8 pb-20 lg:pb-15 md:pl-12 lg:pl-16 xl:pl-20">
           <h2 className="uppercase text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
           <span>a</span><span>b</span><span>h</span><span>i</span><span>s</span><span>h</span><span>e</span><span>k</span><span>h</span> <span>o</span><span>j</span><span>h</span><span>a</span>
           </h2>
