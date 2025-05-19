@@ -25,7 +25,7 @@ export default function Home() {
         <HeroSection />
       </Layout>
       <div className="layout-container">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 pb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 pb-20 pt-8">
           <SubHeading
             heading="What I Can Do for You"
             subtext="Whether you're a startup, business, or individual with an idea, I offer end-to-end web development services tailored to your goals. I turn your vision into scalable, secure, and user-friendly digital solutions."
@@ -67,7 +67,7 @@ Whether you're looking to build a robust platform, design a high-converting land
               </div>
 
               {/* <!-- Achievements --> */}
-              <div className="bg-[#f2f2f2] p-6 rounded-lg shadow-md hover:shadow-2xl cursor-pointer transition-shadow duration-300">
+              {/* <div className="bg-[#f2f2f2] p-6 rounded-lg shadow-md hover:shadow-2xl cursor-pointer transition-shadow duration-300">
                 <h3 class="text-xl font-semibold text-gray-700 mb-3">
                   🏆 Achievements
                 </h3>
@@ -76,7 +76,7 @@ Whether you're looking to build a robust platform, design a high-converting land
                   <li>2nd Place – Indoricoders Clash 2.0</li>
                   <li>Hackathon Organizer – Sage University</li>
                 </ul>
-              </div>
+              </div> */}
 
               {/* <!-- Experience Summary --> */}
               <div className="bg-[#f2f2f2] p-6 rounded-lg shadow-md hover:shadow-2xl cursor-pointer transition-shadow duration-300">
@@ -89,7 +89,7 @@ Whether you're looking to build a robust platform, design a high-converting land
                 </p>
               </div>
               {/* <!-- Contact --> */}
-              <div class="bg-[#f2f2f2] p-6 rounded-lg shadow-md hover:shadow-2xl cursor-pointer transition-shadow duration-300">
+              {/* <div class="bg-[#f2f2f2] p-6 rounded-lg shadow-md hover:shadow-2xl cursor-pointer transition-shadow duration-300">
                 <h3 class="text-xl font-semibold text-gray-700 mb-3">
                   💬 Let’s Connect
                 </h3>
@@ -105,7 +105,7 @@ Whether you're looking to build a robust platform, design a high-converting land
                     Contact Me
                   </Link>
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="flex mt-6">

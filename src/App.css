@@ -1,7 +1,7 @@
 @import "tailwindcss";
-:root{
-  --red:#ff3b3b;
-  --black:#000;
+:root {
+  --red: #ff3b3b;
+  --black: #000;
 }
 .mainLayout {
   display: grid;
@@ -16,10 +16,15 @@ body {
   background-size: cover;
 }
 .background {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  object-fit: cover;
+}
+.background img {
+  height: 100%;
+  object-fit: cover;
 }
 
 @media (max-width: 768px) {
