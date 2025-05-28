@@ -20,9 +20,9 @@ export default function Footer() {
               <TransitionLink to="/portfolio" className="cursor-pointer">
                 Portfolio
               </TransitionLink>
-              <TransitionLink to="/portfolio" className="cursor-pointer">
+              {/* <TransitionLink to="/portfolio" className="cursor-pointer">
                 Portfolio
-              </TransitionLink>
+              </TransitionLink> */}
             </nav>
 
             <div class="flex space-x-6">
