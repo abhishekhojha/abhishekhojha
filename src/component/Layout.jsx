@@ -38,16 +38,21 @@ export default function Layout({ children }) {
             </div>
             <ul className="flex justify-end gap-4">
               <li className="text-sm md:text-lg font-semibold">
+                <TransitionLink to="/" className="cursor-pointer">
+                  Home
+                </TransitionLink>
+              </li>
+              <li className="text-sm md:text-lg font-semibold">
                 <TransitionLink to="/portfolio" className="cursor-pointer">
                   Portfolio
                 </TransitionLink>
               </li>
-              <li className="text-sm md:text-lg font-semibold">
+              {/* <li className="text-sm md:text-lg font-semibold">
                 <a href="#about">About</a>
               </li>
               <li className="text-sm md:text-lg font-semibold">
                 <a href="#service">Services</a>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div className="mainLayout overflow-hidden" ref={mainLayout}>
