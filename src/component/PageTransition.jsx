@@ -1,12 +1,14 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { usePageTransition } from '../context/TransitionContext';
-import { useEffect } from 'react';
+import { motion, AnimatePresence } from "framer-motion";
+import { usePageTransition } from "../context/TransitionContext";
+import { useEffect } from "react";
 
 const PageTransition = () => {
   const { isAnimating, onAnimationEnd } = usePageTransition();
 
   useEffect(() => {
-    document.body.style.overflow = isAnimating ? 'hidden' : '';
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    document.body.style.overflow = isAnimating ? "hidden" : "";
   }, [isAnimating]);
 
   return (
@@ -24,8 +26,8 @@ const PageTransition = () => {
             className="absolute inset-0 bg-black"
             initial={{ scaleY: 0 }}
             animate={{ scaleY: 1 }}
-            transition={{ duration: 0.6, ease: 'easeInOut' }}
-            style={{ transformOrigin: 'top' }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+            style={{ transformOrigin: "top" }}
           />
 
           {/* White overlay - reveals from bottom */}
@@ -33,8 +35,8 @@ const PageTransition = () => {
             className="absolute inset-0 bg-white"
             initial={{ scaleY: 1 }}
             animate={{ scaleY: 0 }}
-            transition={{ duration: 0.6, delay: 0.6, ease: 'easeInOut' }}
-            style={{ transformOrigin: 'bottom' }}
+            transition={{ duration: 0.6, delay: 0.6, ease: "easeInOut" }}
+            style={{ transformOrigin: "bottom" }}
             onAnimationComplete={onAnimationEnd}
           />
         </motion.div>
