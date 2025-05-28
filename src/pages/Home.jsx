@@ -5,9 +5,11 @@ import SubHeading from "@/component/ui/SubHeading";
 import ServicesData from "@/assets/services.json";
 import Abhi from "@/assets/Abhi.png";
 import { Link } from "react-router";
+
 const Services = ({ props }) => {
   return (
-    <div className="bg-[#f2f2f2] p-6 justify-center flex flex-col rounded-lg shadow-md hover:shadow-2xl cursor-pointer transition-shadow duration-300">
+    <div className="group bg-[#f2f2f2] border-2 border-gray-100 rounded-2xl p-8 transition-all duration-300 hover:border-black hover:-translate-y-2 hover:shadow-2xl relative overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-900 to-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
       <h4 className="text-lg sm:text-xl md:text-2xl font-extrabold">
         {props.heading}
       </h4>
@@ -54,7 +56,8 @@ Whether you're looking to build a robust platform, design a high-converting land
             />
             <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
               {/* <!-- Key Skills --> */}
-              <div className="bg-[#f2f2f2] p-6 rounded-lg shadow-md hover:shadow-2xl cursor-pointer transition-shadow duration-300">
+              <div className="group bg-[#f2f2f2] border-2 border-gray-100 rounded-2xl p-8 transition-all duration-300 hover:border-black hover:-translate-y-2 hover:shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-900 to-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
                 <h3 class="text-xl font-semibold text-gray-700 mb-3">
                   🛠️ Key Skills
                 </h3>
@@ -65,21 +68,8 @@ Whether you're looking to build a robust platform, design a high-converting land
                   <li>Git, GitHub, Vercel, Hostinger</li>
                 </ul>
               </div>
-
-              {/* <!-- Achievements --> */}
-              {/* <div className="bg-[#f2f2f2] p-6 rounded-lg shadow-md hover:shadow-2xl cursor-pointer transition-shadow duration-300">
-                <h3 class="text-xl font-semibold text-gray-700 mb-3">
-                  🏆 Achievements
-                </h3>
-                <ul class="list-disc pl-5 text-gray-600 space-y-1">
-                  <li>Winner – Mindcoders Hackathon (Creative Category)</li>
-                  <li>2nd Place – Indoricoders Clash 2.0</li>
-                  <li>Hackathon Organizer – Sage University</li>
-                </ul>
-              </div> */}
-
-              {/* <!-- Experience Summary --> */}
-              <div className="bg-[#f2f2f2] p-6 rounded-lg shadow-md hover:shadow-2xl cursor-pointer transition-shadow duration-300">
+              <div className="group bg-[#f2f2f2] border-2 border-gray-100 rounded-2xl p-8 transition-all duration-300 hover:border-black hover:-translate-y-2 hover:shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-900 to-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
                 <h3 class="text-xl font-semibold text-gray-700 mb-3">
                   📈 Experience
                 </h3>
@@ -88,24 +78,6 @@ Whether you're looking to build a robust platform, design a high-converting land
                   education portals, and service-based businesses.
                 </p>
               </div>
-              {/* <!-- Contact --> */}
-              {/* <div class="bg-[#f2f2f2] p-6 rounded-lg shadow-md hover:shadow-2xl cursor-pointer transition-shadow duration-300">
-                <h3 class="text-xl font-semibold text-gray-700 mb-3">
-                  💬 Let’s Connect
-                </h3>
-                <p class="text-gray-600 mb-4">
-                  I’m open to freelance projects, collaborations, or just
-                  talking tech. Feel free to reach out!
-                </p>
-                <button className="bg-black text-white px-4 py-2 rounded-md mt-4 cursor-pointer">
-                  <Link
-                    to="/contact"
-                    className="text-sm font-bold tracking-wide"
-                  >
-                    Contact Me
-                  </Link>
-                </button>
-              </div> */}
             </div>
           </div>
           <div className="flex mt-6">

@@ -1,0 +1,82 @@
+[
+  {
+    "icon": "Shield",
+    "title": "Phishing Detection Chrome Extension",
+    "description": "A Chrome Extension that automatically detects phishing URLs using SecureBERT model with Express & Python backend. Features Google OAuth, real-time alerts, and encrypted URL logging.",
+    "technologies": [
+      "Chrome Extension",
+      "Express.js",
+      "Python",
+      "SecureBERT",
+      "Google OAuth"
+    ],
+    "date": "May 2025",
+    "status": "Latest",
+    "category": "Security"
+  },
+  {
+    "icon": "Calendar",
+    "title": "Sage Euphoria Event Website",
+    "description": "Developed a dynamic university event website using React.js with stunning animations powered by Framer Motion library for enhanced user experience.",
+    "technologies": ["React.js", "Framer Motion", "CSS3", "JavaScript"],
+    "date": "March 2024",
+    "status": "Completed",
+    "category": "Frontend"
+  },
+  {
+    "icon": "ShoppingBag",
+    "title": "Builds Your Mind (EdTech Platform)",
+    "description": "MERN stack educational platform with Razorpay payment integration for course purchases, student management system, and comprehensive learning dashboard.",
+    "technologies": [
+      "MongoDB",
+      "Express.js",
+      "React.js",
+      "Node.js",
+      "Razorpay"
+    ],
+    "date": "2025",
+    "status": "Completed",
+    "category": "Full-Stack"
+  },
+  {
+    "icon": "Globe",
+    "title": "Udaan EdTech Platform",
+    "description": "Another MERN-based educational platform featuring real-time course access, Razorpay integration for smooth transactions, and modern user interface.",
+    "technologies": [
+      "MERN Stack",
+      "Razorpay",
+      "Real-time Updates",
+      "Payment Gateway"
+    ],
+    "date": "2025",
+    "status": "Completed",
+    "category": "Full-Stack"
+  },
+  {
+    "icon": "ShoppingBag",
+    "title": "Broyal.in E-commerce",
+    "description": "Built a complete e-commerce platform on WordPress with inventory management, secure payment system, and optimized user shopping experience.",
+    "technologies": ["WordPress", "PHP", "MySQL", "Payment Integration"],
+    "date": "2022",
+    "status": "Completed",
+    "category": "E-commerce"
+  },
+  {
+    "icon": "HandPlatter",
+    "title": "Mangrole Security Services",
+    "description": "WordPress website showcasing security services with contact forms, SEO optimization, and mobile-responsive design for enhanced user engagement.",
+    "technologies": ["WordPress", "SEO", "Responsive Design", "Contact Forms"],
+    "date": "2024",
+    "status": "Completed",
+    "category": "Security Services"
+  },
+  {
+    "icon": "HandPlatter",
+    "title": "Uttam Facility Management",
+    "description": "WordPress website for facility management services with features like service booking, client testimonials, and a blog section for updates.",
+    "technologies": ["WordPress", "SEO", "Responsive Design", "Contact Forms"],
+    "date": "2024",
+    "status": "Completed",
+    "category": "Security Services"
+  }
+]

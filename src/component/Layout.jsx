@@ -1,7 +1,20 @@
 import { Github, Instagram, Linkedin } from "lucide-react";
 import Logo from "../assets/logo.png";
 import { useRef, useEffect } from "react";
+import { Link, useNavigate } from "react-router";
+import { usePageTransition } from "../context/TransitionContext";
+import TransitionLink from "./TransitionLink";
+
 export default function Layout({ children }) {
+  const navigate = useNavigate();
+  const { triggerTransition } = usePageTransition();
+
+  const handleNavigation = (path) => {
+    triggerTransition(() => {
+      navigate(path);
+    });
+  };
+
   const mainLayout = useRef(null);
   const layoutWrapperTop = useRef(null);
   useEffect(() => {
@@ -14,13 +27,20 @@ export default function Layout({ children }) {
     <div>
       <div className="layoutWrapper">
         <div className="layout-container">
-          <div className="layoutWrapperTop flex justify-between items-center py-4" ref={layoutWrapperTop}>
-            <div className="logo w-[70px] rounded-full">
-              <img src={Logo} className="rounded-full" alt="Abhishekh" />
+          <div
+            className="layoutWrapperTop flex justify-between items-center py-4"
+            ref={layoutWrapperTop}
+          >
+            <div className="logo w-[70px] h-[70px] rounded-full">
+              <TransitionLink to="/" className="cursor-pointer">
+                <img src={Logo} className="rounded-full" alt="Abhishekh" />
+              </TransitionLink>
             </div>
             <ul className="flex justify-end gap-4">
               <li className="text-sm md:text-lg font-semibold">
-                <a href="#portfolio">Portfolio</a>
+                <TransitionLink to="/portfolio" className="cursor-pointer">
+                  Portfolio
+                </TransitionLink>
               </li>
               <li className="text-sm md:text-lg font-semibold">
                 <a href="#about">About</a>

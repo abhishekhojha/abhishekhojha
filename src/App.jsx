@@ -1,43 +1,32 @@
 import "./App.css";
 import "@/assets/css/hover.css";
-
+import { AnimatePresence } from "framer-motion";
 import { BrowserRouter as Router, Routes, Route } from "react-router";
 import Home from "./pages/Home";
-import { useEffect, useState } from "react";
-import Loader from "./component/Loader";
+import Portfolio from "./pages/Portfolio";
+import PageTransition from "./component/PageTransition";
+import { TransitionProvider } from "./context/TransitionContext";
 
 function App() {
-  const [pageLoaded, setPageLoaded] = useState(false);
+  // const [pageLoaded, setPageLoaded] = useState(false);
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-
-    const handleLoad = () => {
-      setTimeout(() => {
-        setPageLoaded(true);
-        document.body.style.overflow = "auto";
-      }, [4000]);
-    };
-
-    if (document.readyState === "complete") {
-      handleLoad();
-    } else {
-      window.addEventListener("load", handleLoad);
-    }
-
-    return () => window.removeEventListener("load", handleLoad);
-  }, []);
   return (
     <>
-      <div className="main">
-        <div className="background"><img src="./bg.jpg" alt="" /></div>
-        <Loader loading={pageLoaded} />
-          <Router>
+      <TransitionProvider>
+        <PageTransition />
+        <AnimatePresence mode="wait" initial={true}>
+          <div className="main">
+            <div className="background">
+              <img src="./bg.jpg" alt="" />
+            </div>
+            {/* <Loader loading={pageLoaded} /> */}
             <Routes>
-              <Route path="/" element={<Home loading={pageLoaded} />}></Route>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/portfolio" element={<Portfolio />}></Route>
             </Routes>
-          </Router>
-      </div>
+          </div>
+        </AnimatePresence>
+      </TransitionProvider>
     </>
   );
 }
