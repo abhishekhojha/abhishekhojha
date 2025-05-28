@@ -13,13 +13,15 @@ export default function LayoutTop() {
           </div>
           <ul className="flex justify-end gap-4">
             <li className="text-sm md:text-lg font-semibold">
-              <TransitionLink to="/" className="cursor-pointer">
+              <TransitionLink to="/" className="cursor-pointer relative group transition-colors duration-300">
                 Home
+                <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-black transition-all duration-300 group-hover:w-full" />
               </TransitionLink>
             </li>
             <li className="text-sm md:text-lg font-semibold">
-              <TransitionLink to="/portfolio" className="cursor-pointer">
+              <TransitionLink to="/portfolio" className="cursor-pointer relative group transition-colors duration-300">
                 Portfolio
+                <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-black transition-all duration-300 group-hover:w-full" />
               </TransitionLink>
             </li>
             {/* <li className="text-sm md:text-lg font-semibold">
