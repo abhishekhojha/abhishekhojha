@@ -1,7 +1,14 @@
-import { Shield, Calendar, ShoppingBag, Globe, HandPlatter } from "lucide-react";
+import {
+  Shield,
+  Calendar,
+  ShoppingBag,
+  Globe,
+  HandPlatter,
+} from "lucide-react";
 import { ExternalLink, Github } from "lucide-react";
 import Layout from "../component/LayoutTop";
 import projectsData from "../data/projects.json";
+import Footer from "../component/Footer";
 
 const iconMap = {
   Shield: <Shield className="w-8 h-8 text-red-600" />,
@@ -114,14 +121,19 @@ export default function PortfolioProjects() {
                 </div>
 
                 <div className="flex space-x-3">
-                  <button className="flex items-center space-x-2 bg-gray-700 cursor-pointer hover:bg-black text-white px-4 py-2 rounded-lg transition-colors duration-300 text-sm font-medium">
-                    <ExternalLink className="w-4 h-4" />
-                    <span>View Project</span>
-                  </button>
-                  <button className="flex items-center space-x-2 border-2 border-gray-600 hover:border-black text-gray-700 hover:text-black cursor-pointer px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium">
+                  {project.Link && (
+                    <button
+                      className="flex items-center space-x-2 bg-gray-700 cursor-pointer hover:bg-black text-white px-4 py-2 rounded-lg transition-colors duration-300 text-sm font-medium"
+                      onClick={() => window.open(project.Link, "_blank")}
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      <span>View Project</span>
+                    </button>
+                  )}
+                  {/* <button className="flex items-center space-x-2 border-2 border-gray-600 hover:border-black text-gray-700 hover:text-black cursor-pointer px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium">
                     <Github className="w-4 h-4" />
                     <span>Code</span>
-                  </button>
+                  </button> */}
                 </div>
               </div>
             ))}
@@ -151,6 +163,7 @@ export default function PortfolioProjects() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

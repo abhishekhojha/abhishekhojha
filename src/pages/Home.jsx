@@ -5,6 +5,7 @@ import SubHeading from "@/component/ui/SubHeading";
 import ServicesData from "@/assets/services.json";
 import Abhi from "@/assets/Abhi.png";
 import { Link } from "react-router";
+import Footer from "../component/Footer";
 
 const Services = ({ props }) => {
   return (
@@ -22,7 +23,7 @@ const Services = ({ props }) => {
 
 export default function Home() {
   return (
-    <div>
+    <>
       <Layout>
         <HeroSection />
       </Layout>
@@ -91,6 +92,7 @@ Whether you're looking to build a robust platform, design a high-converting land
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }

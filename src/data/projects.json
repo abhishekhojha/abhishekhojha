@@ -12,7 +12,8 @@
     ],
     "date": "May 2025",
     "status": "Latest",
-    "category": "Security"
+    "category": "Security",
+    "Link":""
   },
   {
     "icon": "Calendar",
@@ -21,7 +22,8 @@
     "technologies": ["React.js", "Framer Motion", "CSS3", "JavaScript"],
     "date": "March 2024",
     "status": "Completed",
-    "category": "Frontend"
+    "category": "Frontend",
+    "Link":"https://sageeuphoria.vercel.app/"
   },
   {
     "icon": "ShoppingBag",
@@ -36,7 +38,8 @@
     ],
     "date": "2025",
     "status": "Completed",
-    "category": "Full-Stack"
+    "category": "Full-Stack",
+    "Link":"https://buildsyourmind.in/"
   },
   {
     "icon": "Globe",
@@ -50,7 +53,8 @@
     ],
     "date": "2025",
     "status": "Completed",
-    "category": "Full-Stack"
+    "category": "Full-Stack",
+    "Link":"https://udaanvidyapeeth.com/"
   },
   {
     "icon": "ShoppingBag",
@@ -59,7 +63,8 @@
     "technologies": ["WordPress", "PHP", "MySQL", "Payment Integration"],
     "date": "2022",
     "status": "Completed",
-    "category": "E-commerce"
+    "category": "E-commerce",
+    "Link":"https://broyal.in"
   },
   {
     "icon": "HandPlatter",
@@ -68,7 +73,8 @@
     "technologies": ["WordPress", "SEO", "Responsive Design", "Contact Forms"],
     "date": "2024",
     "status": "Completed",
-    "category": "Security Services"
+    "category": "Security Services",
+    "Link":"https://mangrole.in/"
   },
   {
     "icon": "HandPlatter",
@@ -77,6 +83,7 @@
     "technologies": ["WordPress", "SEO", "Responsive Design", "Contact Forms"],
     "date": "2024",
     "status": "Completed",
-    "category": "Security Services"
+    "category": "Security Services",
+    "Link":"https://www.uttamfacility.com/"
   }
 ]
