@@ -13,7 +13,8 @@
     "date": "May 2025",
     "status": "Latest",
     "category": "Security",
-    "Link":""
+    "Link":"",
+    "image": "https://res.cloudinary.com/djjlzwihx/image/upload/v1748454306/WhatsApp_Image_2025-05-11_at_9.51.52_PM_gfccvw.jpg"
   },
   {
     "icon": "Calendar",
@@ -23,7 +24,8 @@
     "date": "March 2024",
     "status": "Completed",
     "category": "Frontend",
-    "Link":"https://sageeuphoria.vercel.app/"
+    "Link":"https://sageeuphoria.vercel.app/",
+    "image":"https://res.cloudinary.com/djjlzwihx/image/upload/v1748454072/Screenshot_From_2025-05-28_22-56-52_y2o3zz.png"
   },
   {
     "icon": "ShoppingBag",
@@ -39,7 +41,8 @@
     "date": "2025",
     "status": "Completed",
     "category": "Full-Stack",
-    "Link":"https://buildsyourmind.in/"
+    "Link":"https://buildsyourmind.in/",
+    "image":"https://res.cloudinary.com/djjlzwihx/image/upload/v1748454071/Screenshot_From_2025-05-28_22-55-33_ezypfz.png"
   },
   {
     "icon": "Globe",
@@ -54,7 +57,8 @@
     "date": "2025",
     "status": "Completed",
     "category": "Full-Stack",
-    "Link":"https://udaanvidyapeeth.com/"
+    "Link":"https://udaanvidyapeeth.com/",
+    "image":"https://res.cloudinary.com/djjlzwihx/image/upload/v1748454071/Screenshot_From_2025-05-28_22-56-24_qtlyuq.png"
   },
   {
     "icon": "ShoppingBag",
@@ -64,7 +68,8 @@
     "date": "2022",
     "status": "Completed",
     "category": "E-commerce",
-    "Link":"https://broyal.in"
+    "Link":"https://broyal.in",
+    "image":"https://res.cloudinary.com/djjlzwihx/image/upload/v1748454074/Screenshot_From_2025-05-28_22-55-46_tq43wq.png"
   },
   {
     "icon": "HandPlatter",
@@ -73,8 +78,9 @@
     "technologies": ["WordPress", "SEO", "Responsive Design", "Contact Forms"],
     "date": "2024",
     "status": "Completed",
-    "category": "Security Services",
-    "Link":"https://mangrole.in/"
+    "category": "Services",
+    "Link":"https://mangrole.in/",
+    "image":"https://res.cloudinary.com/djjlzwihx/image/upload/v1748454124/Screenshot_From_2025-05-28_23-11-47_nujpox.png"
   },
   {
     "icon": "HandPlatter",
@@ -83,7 +89,8 @@
     "technologies": ["WordPress", "SEO", "Responsive Design", "Contact Forms"],
     "date": "2024",
     "status": "Completed",
-    "category": "Security Services",
-    "Link":"https://www.uttamfacility.com/"
+    "category": "Services",
+    "Link":"https://www.uttamfacility.com/",
+    "image":"https://res.cloudinary.com/djjlzwihx/image/upload/v1748454073/Screenshot_From_2025-05-28_22-56-04_pbw8qw.png"
   }
 ]

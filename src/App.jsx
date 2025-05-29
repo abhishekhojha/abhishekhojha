@@ -4,6 +4,7 @@ import { AnimatePresence } from "framer-motion";
 import { BrowserRouter as Router, Routes, Route } from "react-router";
 import Home from "./pages/Home";
 import Portfolio from "./pages/Portfolio";
+import Contact from "./pages/Contact";
 import PageTransition from "./component/PageTransition";
 import { TransitionProvider } from "./context/TransitionContext";
 
@@ -23,6 +24,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />}></Route>
               <Route path="/portfolio" element={<Portfolio />}></Route>
+              <Route path="/contact" element={<Contact />}></Route>
             </Routes>
           </div>
         </AnimatePresence>
