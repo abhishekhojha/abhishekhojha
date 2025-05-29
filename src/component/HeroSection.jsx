@@ -9,6 +9,8 @@ import {
 } from "lucide-react";
 import { Link } from "react-router";
 import Resume from "../assets/Abhishekh_Ojha_Web_Developer.pdf";
+import TransitionLink from "../component/TransitionLink";
+
 export default function HeroSection() {
   return (
     <>
@@ -30,12 +32,14 @@ export default function HeroSection() {
           </h2>
           <p className="lg:text-lg mt-2">Full-Stack Web Developer</p>
 
-          <Link to="/contact" className="text-sm font-bold tracking-wide">
+          <TransitionLink
+            to="/contact"
+            className="text-sm font-bold tracking-wide"
+          >
             <button className="bg-black text-white px-4 py-2 rounded-md mt-4 cursor-pointer">
-              {" "}
-              Let's Discuss{" "}
+              Let's Discuss
             </button>
-          </Link>
+          </TransitionLink>
 
           <div>
             <a

@@ -6,7 +6,6 @@ import ServicesData from "@/assets/services.json";
 import Abhi from "@/assets/Abhi.png";
 import { Link } from "react-router";
 import Footer from "../component/Footer";
-
 const Services = ({ props }) => {
   return (
     <div className="group bg-[#f2f2f2] border-2 border-gray-100 rounded-2xl p-8 transition-all duration-300 hover:border-black hover:-translate-y-2 hover:shadow-2xl relative overflow-hidden">
