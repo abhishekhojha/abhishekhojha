@@ -245,7 +245,7 @@ export default function Contact() {
             </div>
 
             {/* Stats Section */}
-            <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
+            {/* <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
               {[
                 { number: "10+", label: "Projects Completed" },
                 // { number: "25+", label: "Happy Clients" },
@@ -259,7 +259,7 @@ export default function Contact() {
                   <div className="text-gray-600 text-sm mt-1">{stat.label}</div>
                 </div>
               ))}
-            </div>
+            </div> */}
 
             {/* Decorative Elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
