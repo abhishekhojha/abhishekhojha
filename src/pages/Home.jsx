@@ -74,8 +74,11 @@ Whether you're looking to build a robust platform, design a high-converting land
                   📈 Experience
                 </h3>
                 <p class="text-gray-600">
-                  Built and deployed 10+ websites and platforms for startups,
-                  education portals, and service-based businesses.
+                  Experienced Full-Stack Web Developer with hands-on expertise
+                  in MERN, Laravel, and WordPress, delivering scalable apps and
+                  optimized UI/UX. Previously worked at IT GEEKS and DMAP
+                  Infotech, contributing to real-world client projects and
+                  custom platform builds.
                 </p>
               </div>
             </div>
