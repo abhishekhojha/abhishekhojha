@@ -1,0 +1,43 @@
+---
+import "../style/global.css";
+interface Props {
+  title: string;
+}
+import Menu from "./menu.astro";
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Abhishekh Ojha's Portfolio" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <script src="../scripts/lenis.js"></script>
+  </head>
+  <body class="bg-my-bg-light text-my-text-dark font-poppins leading-relaxed">
+    <Menu />
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  .hero-image {
+    height: auto;
+  }
+</style>

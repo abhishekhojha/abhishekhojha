@@ -1,0 +1,65 @@
+---
+import { Code2, CreditCard, BrainCircuit, Trophy } from 'lucide-react';
+---
+<section id="about" class="container mx-auto px-4">
+  <div class="bg-gray-50 rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 shadow-inner">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--brand-dark)] mb-6 md:mb-8">
+        About Me
+      </h2>
+      <p class="text-base sm:text-lg text-gray-700 leading-relaxed mb-10 sm:mb-12 md:mb-16">
+        I'm a Full-Stack Developer who builds fast, scalable web applications, specializing in the MERN stack, WordPress, and Shopify.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 text-left">
+      <div class="flex items-start gap-4">
+        <div class="flex-shrink-0">
+          <Code2 client:load size={28} className="text-[var(--brand-dark)]" />
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-gray-900 mb-1">Versatile Expertise</h3>
+          <p class="text-gray-600">
+            Full-stack proficiency with React, Next.js, Node.js, and databases like MongoDB & MySQL.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-4">
+        <div class="flex-shrink-0">
+          <CreditCard client:load size={28} className="text-[var(--brand-dark)]" />
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-gray-900 mb-1">E-commerce & Payments</h3>
+          <p class="text-gray-600">
+            Skilled in building e-commerce platforms with secure payment integrations like Razorpay.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-4">
+        <div class="flex-shrink-0">
+          <BrainCircuit client:load size={28} className="text-[var(--brand-dark)]" />
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-gray-900 mb-1">Modern Solutions</h3>
+          <p class="text-gray-600">
+            Focused on cutting-edge solutions, with current projects involving AI implementation.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-4">
+        <div class="flex-shrink-0">
+          <Trophy client:load size={28} className="text-[var(--brand-dark)]" />
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-gray-900 mb-1">Community Leadership</h3>
+          <p class="text-gray-600">
+            Award-winning hackathon organizer and competitor with experience leading developer communities.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

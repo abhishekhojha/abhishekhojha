@@ -1,0 +1,24 @@
+---
+import CentralImage from './CentralImage.astro';
+import LeftInfoBlock from './LeftInfoBlock.astro';
+import ContactCard from './ContactCard.astro';
+---
+<section class="container text-left lg:h-screen flex flex-col items-center justify-between lg:overflow-hidden pt-30 pb-16 lg:py-0 lg:pt-16 px-2">
+  <h1 class="text-4xl md:text-6xl font-semibold text-[var(--brand-dark))] text-center py-8">
+    Hello, I am <br />Abhishek Ojha
+  </h1>
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center w-full">
+    <div class="lg:col-span-1 order-3 lg:order-1">
+      <LeftInfoBlock />
+    </div>
+
+    <div class="lg:col-span-1 order-1 lg:order-2 flex flex-col items-center">
+      <CentralImage />
+    </div>
+
+    <div class="lg:col-span-1 order-2 lg:order-3 flex justify-end">
+      <ContactCard />
+    </div>
+
+  </div>
+</section>
