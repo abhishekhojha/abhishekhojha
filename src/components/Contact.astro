@@ -1,73 +1,124 @@
 ---
-import { Mail, Linkedin, ArrowUpRight, MapPin, Code2 } from 'lucide-react';
+import { Mail, Linkedin, ArrowUpRight, MapPin, Code2 } from "lucide-react";
 ---
-<section id="contact" class="bg-slate-50 py-16 lg:py-24 overflow-hidden">
+
+<section
+  id="contact"
+  class="py-16 lg:py-24 overflow-hidden border-t border-gray-100"
+>
   <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-      
       {/* LEFT SIDE: Digital Business Card */}
-      <div class="hidden lg:flex justify-center items-center relative h-[400px]">
-        <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#444 1px, transparent 1px); background-size: 24px 24px;"></div>
-        
-        <div class="relative bg-white w-72 rounded-2xl shadow-xl shadow-slate-200/60 overflow-hidden border border-slate-100 transform rotate-[-3deg] hover:rotate-0 transition-transform duration-500">
-            
-            <div class="h-24 bg-gradient-to-r from-blue-500 to-indigo-600"></div>
-            
-            <div class="flex justify-center -mt-12 mb-4">
-                <div class="p-1.5 bg-white rounded-full">
-                    <img 
-                        src="/abhishekh.png" 
-                        alt="Abhishek Ojha" 
-                        class="w-24 h-24 rounded-full object-cover border border-slate-100 bg-slate-100"
-                    />
-                </div>
-            </div>
+      <div
+        class="hidden lg:flex justify-center items-center relative h-[400px]"
+      >
+        <div
+          class="absolute inset-0 opacity-[0.03]"
+          style="background-image: radial-gradient(#444 1px, transparent 1px); background-size: 24px 24px;"
+        >
+        </div>
 
-            <div class="text-center px-6 pb-8">
-                <h3 class="text-xl font-bold text-gray-800">Abhishek Ojha</h3>
-                <p class="text-sm text-blue-600 font-medium mb-4">Web Developer</p>
-                
-                <div class="space-y-2">
-                    <div class="flex items-center gap-2 text-gray-500 text-sm justify-center bg-slate-50 py-2 rounded-lg">
-                        <MapPin size={14} />
-                        <span>Available for work</span>
-                    </div>
-                     <div class="flex items-center gap-2 text-gray-500 text-sm justify-center bg-slate-50 py-2 rounded-lg">
-                        <Code2 size={14} />
-                        <span>Based in India</span>
-                    </div>
-                </div>
+        <div
+          class="relative bg-white w-72 rounded-2xl shadow-sm hover:shadow-lg overflow-hidden border border-gray-200 transform rotate-[-3deg] hover:rotate-0 transition-all duration-500"
+        >
+          <div
+            class="h-24 bg-gray-900 group-hover:bg-[var(--brand-dark)] transition-colors duration-500"
+          >
+          </div>
+
+          <div class="flex justify-center -mt-12 mb-4 relative z-10">
+            <div class="p-1.5 bg-white rounded-full">
+              <img
+                src="/abhishekh.png"
+                alt="Abhishekh Ojha - Connect with me"
+                class="w-24 h-24 rounded-full object-cover border border-gray-100 bg-gray-50"
+              />
             </div>
+          </div>
+
+          <div class="text-center px-6 pb-8">
+            <h3 class="text-xl font-bold text-gray-900">Abhishek Ojha</h3>
+            <p class="text-sm text-[var(--brand-dark)] font-medium mb-4">
+              Web Developer
+            </p>
+
+            <div class="space-y-2">
+              <div
+                class="flex items-center gap-2 text-gray-500 text-sm justify-center bg-gray-50 border border-gray-100 py-2 rounded-lg"
+              >
+                <MapPin size={14} />
+                <span>Available for work</span>
+              </div>
+              <div
+                class="flex items-center gap-2 text-gray-500 text-sm justify-center bg-gray-50 border border-gray-100 py-2 rounded-lg"
+              >
+                <Code2 size={14} />
+                <span>Based in India</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       {/* END LEFT SIDE */}
 
-
       <div class="text-center lg:text-left">
-        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-800 mb-6">
+        <h2
+          class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight mb-6"
+        >
           Let's Connect
         </h2>
-        <p class="text-lg text-gray-600 max-w-lg mx-auto lg:mx-0 mb-8">
-          I'm always excited to discuss new projects and opportunities. Whether you have a question or just want to say hi, feel free to reach out.
+        <p
+          class="text-lg text-gray-500 max-w-lg mx-auto lg:mx-0 mb-10 leading-relaxed font-light"
+        >
+          I'm always excited to discuss new projects and opportunities. Whether
+          you have a question or just want to say hi, feel free to reach out.
         </p>
         <div class="flex flex-col pb-6 lg:pb-0 gap-4 max-w-md mx-auto lg:mx-0">
-          <a href="mailto:abhishekhojha45@gmail.com" class="contact-card group flex items-center gap-3 p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 hover:-translate-y-1 text-gray-700 font-medium">
-            <Mail client:load size={24} className="group-hover:text-blue-600 transition-colors" />
-            <span>qabhishekh@gmail.com</span>
-            <ArrowUpRight client:load size={24} className="ml-auto opacity-70" />
+          <a
+            href="mailto:abhishekhojha45@gmail.com"
+            class="contact-card group flex items-center gap-4 p-5 bg-white rounded-2xl border border-gray-200 hover:border-gray-900 hover:shadow-sm transition-all duration-300 hover:-translate-y-1 text-gray-600 font-medium"
+          >
+            <Mail
+              client:load
+              size={24}
+              className="group-hover:text-[var(--brand-dark)] transition-colors"
+            />
+            <span class="group-hover:text-gray-900 transition-colors"
+              >qabhishekh@gmail.com</span
+            >
+            <ArrowUpRight
+              client:load
+              size={20}
+              className="ml-auto opacity-40 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"
+            />
           </a>
-          <a href="https://www.linkedin.com/in/abhishekh-ojha-10802b215/" target="_blank" class="contact-card group flex items-center gap-3 p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 hover:-translate-y-1 text-gray-700 font-medium">
-            <Linkedin client:load size={24} className="group-hover:text-blue-700 transition-colors" />
-            <span>LinkedIn Profile</span>
-            <ArrowUpRight client:load size={24} className="ml-auto opacity-70" />
+          <a
+            href="https://www.linkedin.com/in/abhishekh-ojha-10802b215/"
+            target="_blank"
+            class="contact-card group flex items-center gap-4 p-5 bg-white rounded-2xl border border-gray-200 hover:border-gray-900 hover:shadow-sm transition-all duration-300 hover:-translate-y-1 text-gray-600 font-medium"
+          >
+            <Linkedin
+              client:load
+              size={24}
+              className="group-hover:text-[var(--brand-dark)] transition-colors"
+            />
+            <span class="group-hover:text-gray-900 transition-colors"
+              >LinkedIn Profile</span
+            >
+            <ArrowUpRight
+              client:load
+              size={20}
+              className="ml-auto opacity-40 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"
+            />
           </a>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<footer class="text-center py-6 bg-slate-50 border-t border-slate-200/50">
-  <p class="text-gray-500 text-sm">&copy; {new Date().getFullYear()} Abhishek Ojha. All Rights Reserved.</p>
+<footer class="text-center py-8 border-t border-gray-200">
+  <p class="text-gray-400 text-sm font-medium">
+    &copy; {new Date().getFullYear()} Abhishek Ojha. All Rights Reserved.
+  </p>
 </footer>
