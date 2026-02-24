@@ -13,48 +13,62 @@ const { title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     {/* Basic SEO */}
     <title>{title}</title>
-    <meta name="description" content="Portfolio of Abhishekh Ojha (Abhishek Ojha) - Software Engineer building scalable, responsive web applications and AI Automation Expert." />
-    <meta name="keywords" content="Abhishek Ojha, Abhishekh Ojha, Software Engineer, Full-Stack Developer, AI Engineer, AI Automation Expert, Web Developer, MERN Stack, Next.js, Indore, India" />
+    <meta
+      name="description"
+      content="Portfolio of Abhishekh Ojha (Abhishek Ojha) - Software Engineer building scalable, responsive web applications and AI Automation Expert."
+    />
+    <meta
+      name="keywords"
+      content="Abhishek Ojha, Abhishekh Ojha, Software Engineer, Full-Stack Developer, AI Engineer, AI Automation Expert, Web Developer, MERN Stack, Next.js, Indore, India"
+    />
     <meta name="author" content="Abhishek Ojha" />
-    <link rel="canonical" href="https://abhishekhojha.com/" /> {/* Adjust URL as needed */}
+    <link rel="canonical" href="https://abhishekhojha.com/" />
+    {/* Adjust URL as needed */}
 
     {/* Open Graph / Facebook */}
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://abhishekhojha.com/" />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content="Portfolio of Abhishekh Ojha - Software Engineer & AI Automation Expert building scalable web applications." />
+    <meta
+      property="og:description"
+      content="Portfolio of Abhishekh Ojha - Software Engineer & AI Automation Expert building scalable web applications."
+    />
     <meta property="og:image" content="/abhishekh.png" />
 
     {/* Twitter */}
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://abhishekhojha.com/" />
     <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content="Portfolio of Abhishekh Ojha - Software Engineer & AI Automation Expert building scalable web applications." />
+    <meta
+      property="twitter:description"
+      content="Portfolio of Abhishekh Ojha - Software Engineer & AI Automation Expert building scalable web applications."
+    />
     <meta property="twitter:image" content="/abhishekh.png" />
 
     {/* Structured Data (JSON-LD) for SEO */}
-    <script type="application/ld+json">
-      {JSON.stringify({
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Person",
-        "name": "Abhishekh Ojha",
-        "alternateName": "Abhishek Ojha",
-        "url": "https://abhishekhojha.com/",
-        "image": "https://abhishekhojha.com/abhishekh.png",
-        "jobTitle": "Software Engineer & AI Engineer",
-        "worksFor": {
+        name: "Abhishekh Ojha",
+        alternateName: "Abhishek Ojha",
+        url: "https://abhishekhojha.com/",
+        image: "https://abhishekhojha.com/abhishekh.png",
+        jobTitle: "Software Engineer & AI Engineer",
+        worksFor: {
           "@type": "Organization",
-          "name": "Westack.ai"
+          name: "Westack.ai",
         },
-        "sameAs": [
+        sameAs: [
           "https://www.linkedin.com/in/abhishekh-ojha-10802b215/",
-          "https://github.com/qabhishekh"
-        ]
+          "https://github.com/qabhishekh",
+        ],
       })}
-    </script>
+    />
 
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.ico" />
@@ -66,7 +80,9 @@ const { title } = Astro.props;
     />
     <script src="../scripts/lenis.js"></script>
   </head>
-  <body class="bg-my-bg-light text-my-text-dark font-poppins leading-relaxed overflow-x-hidden">
+  <body
+    class="bg-my-bg-light text-my-text-dark font-poppins leading-relaxed overflow-x-hidden"
+  >
     <Menu />
     <slot />
   </body>
