@@ -27,7 +27,7 @@ const skills = [
 
 export default function SkillGrid() {
   return (
-    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 md:gap-6 mx-auto">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-4 md:gap-6 mx-auto">
       {skills.map(({ icon: Icon, name }) => (
         <div key={name} className="group relative flex flex-col justify-center items-center p-6 border border-gray-100 rounded-2xl bg-white hover:border-[var(--brand-dark)] hover:shadow-sm transition-all duration-300 gap-3 hover:-translate-y-1">
           <Icon size={32} className="text-gray-400 group-hover:text-[var(--brand-dark)] transition-colors duration-300" />
