@@ -53,3 +53,10 @@ html {
 .contact-card {
   @apply flex items-center gap-4 bg-white p-4 rounded-xl shadow-md font-medium text-gray-700 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5;
 }
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
