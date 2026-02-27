@@ -3,7 +3,13 @@
   <url>
     <loc>https://abhishekhojha.com/</loc>
     <lastmod>2026-02-25</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://abhishekhojha.com/projects</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

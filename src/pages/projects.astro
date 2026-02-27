@@ -1,0 +1,101 @@
+---
+import { ArrowUpRight, Github } from "lucide-react";
+import { projectsData } from "../data/projects";
+import Layout from "../layouts/Layout.astro";
+import Contact from "../components/Contact.astro";
+---
+
+<Layout
+    title="Projects | Abhishekh Ojha"
+    description="Explore the complete portfolio of Abhishekh Ojha. A showcase of projects in web development, AI automation, full-stack architectures, and responsive design."
+    keywords="Projects, Portfolio, Abhishekh Ojha, Web Development, React, Next.js, AI Automation, MERN Stack, Software Engineering"
+    url="https://abhishekhojha.com/projects"
+>
+    <main class="pt-32 pb-16 md:pt-40 md:pb-24">
+        <section class="container mx-auto px-4">
+            <div
+                class="mb-16 md:mb-24 flex flex-col justify-center items-center mx-auto"
+            >
+                <h1
+                    class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight text-center"
+                >
+                    All Projects
+                </h1>
+                <p
+                    class="text-lg md:text-xl text-gray-500 mt-6 max-w-2xl text-center"
+                >
+                    A complete archive of my work, exploring different domains,
+                    technologies, and creative solutions over time.
+                </p>
+            </div>
+
+            <div class="container mx-auto flex flex-col">
+                {
+                    projectsData.map((project, index) => (
+                        <div class="group border-t border-gray-200 py-10 md:py-14 transition-colors hover:border-gray-900 relative">
+                            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
+                                <div class="md:col-span-5 flex flex-col justify-between h-full">
+                                    <div>
+                                        <h3 class="text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-[var(--brand-dark)] transition-colors duration-300">
+                                            {project.title}
+                                        </h3>
+                                    </div>
+
+                                    <div class="flex flex-wrap gap-2 mt-6 md:mt-12">
+                                        {project.skills.map((skill) => (
+                                            <span class="px-3 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full uppercase tracking-wider group-hover:bg-gray-200 transition-colors">
+                                                {skill}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div class="md:col-span-7 flex flex-col h-full justify-between">
+                                    <p class="text-lg md:text-xl text-gray-600 leading-relaxed font-light">
+                                        {project.description}
+                                    </p>
+
+                                    <div class="flex flex-wrap items-center gap-6 mt-8">
+                                        {project.demoUrl && (
+                                            <a
+                                                href={project.demoUrl}
+                                                class="inline-flex items-center gap-2 font-semibold text-gray-900 hover:text-[var(--brand-dark)] border-b border-transparent hover:border-[var(--brand-dark)] pb-1 transition-all"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                View Live Site{" "}
+                                                <ArrowUpRight
+                                                    client:load
+                                                    size={18}
+                                                    className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+                                                />
+                                            </a>
+                                        )}
+                                        {project.githubUrl && (
+                                            <a
+                                                href={project.githubUrl}
+                                                class="inline-flex items-center gap-2 font-medium text-gray-500 hover:text-gray-900 transition-colors"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                <Github
+                                                    client:load
+                                                    size={18}
+                                                    className="hidden md:inline"
+                                                />{" "}
+                                                Source Code
+                                            </a>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                }
+                <!-- Close final border -->
+                <div class="border-t border-gray-200"></div>
+            </div>
+        </section>
+        <Contact />
+    </main>
+</Layout>

@@ -15,6 +15,19 @@ export const projectsData: Project[] = [
     demoUrl: "https://wewonacademy.com",
   },
   {
+    title: "Ministry of Steel",
+    description:
+      "Official Government of India portal. Contributed to usability, accessibility features, organizational navigation, and compliance with government web standards.",
+    skills: ["Govt Portal", "Accessibility"],
+    demoUrl: "https://steel.gov.in",
+  },
+  {
+    title: "AI Lead Capture",
+    description:
+      "A workflow automation project utilizing N8N to seamlessly capture web leads and execute automatic follow-up sequences across email, SMS, and messaging platforms.",
+    skills: ["N8N", "CRM Integrations"],
+  },
+  {
     title: "Sage Euphoria",
     description:
       "A modern single-page application featuring dynamic client-side routing and real-time interactivity. Deployed on Vercel for optimal performance and scalability.",
@@ -43,13 +56,6 @@ export const projectsData: Project[] = [
     demoUrl: "https://broyal.in",
   },
   {
-    title: "Ministry of Steel",
-    description:
-      "Official Government of India portal. Contributed to usability, accessibility features, organizational navigation, and compliance with government web standards.",
-    skills: ["Govt Portal", "Accessibility"],
-    demoUrl: "https://steel.gov.in",
-  },
-  {
     title: "Uttam Facility",
     description:
       "Corporate site for a professional facility management business. Developed a responsive services showcasing layout with integrated lead forms and local SEO.",
@@ -62,12 +68,6 @@ export const projectsData: Project[] = [
       "A professional business website showcasing services and organizational details. Designed for optimal user engagement, clear communication, and modern aesthetics.",
     skills: ["Business Site", "Web Design"],
     demoUrl: "https://mangrole.in",
-  },
-  {
-    title: "AI Lead Capture",
-    description:
-      "A workflow automation project utilizing N8N to seamlessly capture web leads and execute automatic follow-up sequences across email, SMS, and messaging platforms.",
-    skills: ["N8N", "CRM Integrations"],
   },
   {
     title: "AI Social Media Tool",
