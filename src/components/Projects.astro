@@ -5,6 +5,7 @@ import { projectsData } from "../data/projects";
 
 <section id="projects" class="container mx-auto px-4 py-16 md:py-24">
   <div class="mb-16 md:mb-24 flex flex-col justify-center items-center mx-auto">
+    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-gray-400 mb-4">Work</p>
     <h2
       class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight"
     >
@@ -16,70 +17,77 @@ import { projectsData } from "../data/projects";
     </p>
   </div>
 
-  <div class="container mx-auto flex flex-col">
+  <div class="flex flex-col">
     {
       projectsData.slice(0, 4).map((project, index) => (
-        <div class="group border-t border-gray-200 py-10 md:py-14 transition-colors hover:border-gray-900 relative">
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
-            <div class="md:col-span-5 flex flex-col justify-between h-full">
+        <a
+          href={project.demoUrl || project.githubUrl || undefined}
+          target={project.demoUrl || project.githubUrl ? "_blank" : undefined}
+          rel={project.demoUrl || project.githubUrl ? "noopener noreferrer" : undefined}
+          class:list={[
+            "group block border-t border-gray-200 py-8 md:py-10 transition-all duration-300",
+            (project.demoUrl || project.githubUrl) && "cursor-pointer",
+          ]}
+        >
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center">
+            {/* Number + Title */}
+            <div class="md:col-span-5 flex items-start gap-4 md:gap-6">
+              <span class="text-sm font-medium text-gray-300 tabular-nums mt-1.5 select-none shrink-0">
+                {String(index + 1).padStart(2, "0")}
+              </span>
               <div>
-                <h3 class="text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-[var(--brand-dark)] transition-colors duration-300">
+                <h3 class="text-xl md:text-2xl font-bold text-gray-900 group-hover:text-[var(--brand-dark)] transition-colors duration-300 leading-snug">
                   {project.title}
                 </h3>
-              </div>
-
-              <div class="flex flex-wrap gap-2 mt-6 md:mt-12">
-                {project.skills.map((skill) => (
-                  <span class="px-3 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full uppercase tracking-wider group-hover:bg-gray-200 transition-colors">
-                    {skill}
-                  </span>
-                ))}
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  {project.skills.map((skill) => (
+                    <span class="px-2.5 py-0.5 bg-gray-100 text-gray-500 text-[11px] font-medium rounded-full uppercase tracking-wider group-hover:bg-gray-900 group-hover:text-white transition-colors duration-300">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
 
-            <div class="md:col-span-7 flex flex-col h-full justify-between">
-              <p class="text-lg md:text-xl text-gray-600 leading-relaxed font-light">
+            {/* Description */}
+            <div class="md:col-span-5 pl-9 md:pl-0">
+              <p class="text-base text-gray-500 leading-relaxed line-clamp-3">
                 {project.description}
               </p>
+            </div>
 
-              <div class="flex flex-wrap items-center gap-6 mt-8">
-                {project.demoUrl && (
-                  <a
-                    href={project.demoUrl}
-                    class="inline-flex items-center gap-2 font-semibold text-gray-900 hover:text-[var(--brand-dark)] border-b border-transparent hover:border-[var(--brand-dark)] pb-1 transition-all"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View Live Site{" "}
-                    <ArrowUpRight
-                      client:load
-                      size={18}
-                      className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
-                    />
-                  </a>
-                )}
-                {/* {project.githubUrl && (
-                  <a
-                    href={project.githubUrl}
-                    class="inline-flex items-center gap-2 font-medium text-gray-500 hover:text-gray-900 transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github
-                      client:load
-                      size={18}
-                      className="hidden md:inline"
-                    />{" "}
-                    Source Code
-                  </a>
-                )} */}
-              </div>
+            {/* Links */}
+            <div class="md:col-span-2 pl-9 md:pl-0 flex items-center justify-start md:justify-end gap-3">
+              {project.demoUrl && (
+                <span
+                  class="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-400 group-hover:text-gray-900 transition-colors duration-300"
+                >
+                  <span class="hidden sm:inline">Visit</span>
+                  <ArrowUpRight
+                    client:load
+                    size={16}
+                    className="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
+                  />
+                </span>
+              )}
+              {project.githubUrl && (
+                <span
+                  class="inline-flex items-center text-gray-300 group-hover:text-gray-900 transition-colors duration-300"
+                >
+                  <Github
+                    client:load
+                    size={16}
+                  />
+                </span>
+              )}
+              {!project.demoUrl && !project.githubUrl && (
+                <span class="text-xs text-gray-300 italic">Internal</span>
+              )}
             </div>
           </div>
-        </div>
+        </a>
       ))
     }
-    <!-- Close final border -->
     <div class="border-t border-gray-200 mb-12"></div>
 
     <div class="flex justify-center mt-4">

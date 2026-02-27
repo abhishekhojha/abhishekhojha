@@ -1,170 +1,105 @@
 ---
 import { Briefcase, CheckCircle2 } from "lucide-react";
+
+const experiences = [
+  {
+    index: 1,
+    role: "Full-Stack Developer",
+    company: "Westack.ai, Indore",
+    period: "July 2025 — Present",
+    current: true,
+    points: [
+      "Developing and maintaining full-stack web applications in a professional environment.",
+      "Contributing to innovative projects that require advanced AI implementation.",
+    ],
+  },
+  {
+    index: 2,
+    role: "Freelance Full-Stack Developer",
+    company: "Independent",
+    period: "Jan 2024 — June 2025",
+    current: false,
+    points: [
+      "Delivered end-to-end web solutions for a diverse client base, including ed-tech platforms, e-commerce sites, and service-based businesses.",
+      "Engineered MERN stack applications with secure payment gateways like Razorpay.",
+    ],
+  },
+  {
+    index: 3,
+    role: "Web Developer",
+    company: "IT GEEKS",
+    period: "Aug 2022 — July 2023",
+    current: false,
+    points: [
+      "Developed applications using Node.js, React.js, PHP, Laravel, and Shopify.",
+      "Led codebase optimization efforts to improve performance and scalability for multiple client websites.",
+    ],
+  },
+];
 ---
 
 <section id="experience" class="bg-gray-50 py-16 md:py-24">
-  <div class="container mx-auto flex flex-col items-center">
-    <div class="text-center mb-16 md:mb-24 w-full">
-      <h2
-        class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight"
-      >
-        My Professional Journey
-      </h2>
+  <div class="container mx-auto px-4 sm:px-6">
+    {/* Header */}
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20 items-end mb-14 sm:mb-20 md:mb-24">
+      <div>
+        <div class="flex items-center gap-3 mb-5 sm:mb-8">
+          <div class="w-6 sm:w-8 h-px bg-gray-900"></div>
+          <p class="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] text-gray-400">Experience</p>
+        </div>
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-[1.05]">
+          Professional Journey
+        </h2>
+      </div>
     </div>
 
-    <div class="w-full flex flex-col mx-auto">
-      {/* Experience Item 1 */}
-      <div
-        class="group border-t border-gray-200 py-10 md:py-14 transition-colors hover:border-gray-900 relative px-4"
-      >
-        <div
-          class="absolute inset-0 bg-gray-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
-        >
-        </div>
-        <div class="relative grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
-          <div class="md:col-span-4 flex flex-col">
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">
-              Full-Stack Developer
-            </h3>
-            <p class="font-medium text-[var(--brand-dark)] mb-4">
-              Westack.ai, Indore
-            </p>
-            <p
-              class="text-xs font-semibold tracking-wider text-gray-400 uppercase"
-            >
-              JULY 2025 - PRESENT
-            </p>
-          </div>
+    {/* Timeline */}
+    <div class="flex flex-col">
+      {experiences.map((exp) => (
+        <div class="group border-t border-gray-200 py-8 sm:py-10 md:py-14 transition-all duration-300">
+          <div class="flex flex-col sm:grid sm:grid-cols-12 gap-5 sm:gap-6 md:gap-10 sm:items-start">
+            {/* Left: Number + Role info */}
+            <div class="sm:col-span-4 flex items-start gap-3 sm:gap-5">
+              <span class="text-xs sm:text-sm font-medium text-gray-300 tabular-nums mt-1 sm:mt-1.5 select-none shrink-0">
+                {String(exp.index).padStart(2, "0")}
+              </span>
+              <div class="min-w-0">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 group-hover:text-[var(--brand-dark)] transition-colors duration-300 leading-snug">
+                    {exp.role}
+                  </h3>
+                  {exp.current && (
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 bg-green-50 text-green-600 text-[10px] sm:text-[11px] font-semibold rounded-full uppercase tracking-wider border border-green-100">
+                      <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                      Current
+                    </span>
+                  )}
+                </div>
+                <p class="text-sm font-medium text-gray-500 mt-1">{exp.company}</p>
+                <p class="text-xs font-medium tracking-wider text-gray-400 uppercase mt-2">{exp.period}</p>
+              </div>
+            </div>
 
-          <div class="md:col-span-8 flex flex-col h-full justify-center">
-            <ul class="space-y-4">
-              <li class="flex items-start gap-4">
-                <CheckCircle2
-                  client:load
-                  size={20}
-                  className="text-gray-300 flex-shrink-0 mt-0.5 group-hover:text-[var(--brand-dark)] transition-colors"
-                />
-                <span class="text-lg text-gray-500 leading-relaxed font-light">
-                  Developing and maintaining full-stack web applications in a
-                  professional environment.
-                </span>
-              </li>
-              <li class="flex items-start gap-4">
-                <CheckCircle2
-                  client:load
-                  size={20}
-                  className="text-gray-300 flex-shrink-0 mt-0.5 group-hover:text-[var(--brand-dark)] transition-colors"
-                />
-                <span class="text-lg text-gray-500 leading-relaxed font-light">
-                  Contributing to innovative projects that require advanced AI
-                  implementation.
-                </span>
-              </li>
-            </ul>
+            {/* Right: Bullet points */}
+            <div class="sm:col-span-8 pl-7 sm:pl-0">
+              <ul class="space-y-3 sm:space-y-4">
+                {exp.points.map((point) => (
+                  <li class="flex items-start gap-3 sm:gap-4">
+                    <CheckCircle2
+                      client:load
+                      size={18}
+                      className="text-gray-300 flex-shrink-0 mt-0.5 group-hover:text-[var(--brand-dark)] transition-colors duration-300"
+                    />
+                    <span class="text-sm sm:text-base text-gray-500 leading-relaxed">
+                      {point}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* Experience Item 2 */}
-      <div
-        class="group border-t border-gray-200 py-10 md:py-14 transition-colors hover:border-gray-900 relative px-4"
-      >
-        <div
-          class="absolute inset-0 bg-gray-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
-        >
-        </div>
-        <div class="relative grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
-          <div class="md:col-span-4 flex flex-col">
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">
-              Freelance <br class="hidden md:block" />Full-Stack Modeler
-            </h3>
-            <p class="font-medium text-[var(--brand-dark)] mb-4">Independent</p>
-            <p
-              class="text-xs font-semibold tracking-wider text-gray-400 uppercase"
-            >
-              JAN 2024 - JUNE 2025
-            </p>
-          </div>
-
-          <div class="md:col-span-8 flex flex-col h-full justify-center">
-            <ul class="space-y-4">
-              <li class="flex items-start gap-4">
-                <CheckCircle2
-                  client:load
-                  size={20}
-                  className="text-gray-300 flex-shrink-0 mt-0.5 group-hover:text-[var(--brand-dark)] transition-colors"
-                />
-                <span class="text-lg text-gray-500 leading-relaxed font-light">
-                  Delivered end-to-end web solutions for a diverse client base,
-                  including ed-tech platforms, e-commerce sites, and
-                  service-based businesses.
-                </span>
-              </li>
-              <li class="flex items-start gap-4">
-                <CheckCircle2
-                  client:load
-                  size={20}
-                  className="text-gray-300 flex-shrink-0 mt-0.5 group-hover:text-[var(--brand-dark)] transition-colors"
-                />
-                <span class="text-lg text-gray-500 leading-relaxed font-light">
-                  Engineered MERN stack applications with secure payment
-                  gateways like Razorpay.
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      {/* Experience Item 3 */}
-      <div
-        class="group border-t border-gray-200 py-10 md:py-14 transition-colors hover:border-gray-900 relative px-4"
-      >
-        <div
-          class="absolute inset-0 bg-gray-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
-        >
-        </div>
-        <div class="relative grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
-          <div class="md:col-span-4 flex flex-col">
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Web Developer</h3>
-            <p class="font-medium text-[var(--brand-dark)] mb-4">IT GEEKS</p>
-            <p
-              class="text-xs font-semibold tracking-wider text-gray-400 uppercase"
-            >
-              AUG 2022 - JULY 2023
-            </p>
-          </div>
-
-          <div class="md:col-span-8 flex flex-col h-full justify-center">
-            <ul class="space-y-4">
-              <li class="flex items-start gap-4">
-                <CheckCircle2
-                  client:load
-                  size={20}
-                  className="text-gray-300 flex-shrink-0 mt-0.5 group-hover:text-[var(--brand-dark)] transition-colors"
-                />
-                <span class="text-lg text-gray-500 leading-relaxed font-light">
-                  Developed applications using Node.js, React.js, PHP, Laravel,
-                  and Shopify.
-                </span>
-              </li>
-              <li class="flex items-start gap-4">
-                <CheckCircle2
-                  client:load
-                  size={20}
-                  className="text-gray-300 flex-shrink-0 mt-0.5 group-hover:text-[var(--brand-dark)] transition-colors"
-                />
-                <span class="text-lg text-gray-500 leading-relaxed font-light">
-                  Led codebase optimization efforts to improve performance and
-                  scalability for multiple client websites.
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      {/* Ensure final border closes */}
+      ))}
       <div class="border-t border-gray-200"></div>
     </div>
   </div>
