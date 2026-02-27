@@ -2,16 +2,24 @@
 import SkillGrid from "./SkillGrid.jsx";
 ---
 
-<section id="skills" class="pb-16 md:pb-24">
-  <div class="container mx-auto px-4">
-    <div
-      class="mb-16 md:mb-24 flex flex-col justify-center items-center mx-auto"
-    >
-      <h2
-        class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight"
-      >
-        Technologies I Use
-      </h2>
+<section id="skills" class="py-16 md:py-24">
+  <div class="container mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20 items-end mb-14 sm:mb-20 md:mb-24">
+      <div>
+        <div class="flex items-center gap-3 mb-5 sm:mb-8">
+          <div class="w-6 sm:w-8 h-px bg-gray-900"></div>
+          <p class="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] text-gray-400">Stack</p>
+        </div>
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-[1.05]">
+          Technologies I Use
+        </h2>
+      </div>
+      <div class="lg:pb-1">
+        <p class="text-base sm:text-lg text-gray-500 leading-relaxed max-w-md">
+          A versatile toolkit spanning front-end, back-end, databases, and
+          deployment — chosen for real-world reliability.
+        </p>
+      </div>
     </div>
 
     <SkillGrid />

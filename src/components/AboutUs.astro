@@ -1,13 +1,61 @@
+---
+import { Zap, Bot, Trophy, Globe } from "lucide-react";
+---
+
 <section
   id="about"
-  class="container mx-auto px-4 py-16 border-t border-gray-100"
+  class="container mx-auto px-4 sm:px-6 py-16 md:py-24 border-t border-gray-100"
 >
-  <div class="max-w-5xl mx-auto flex flex-col justify-center items-center">
-    <p
-      class="text-lg md:text-xl text-gray-500 max-w-2xl text-center leading-relaxed"
-    >
-      I'm a Software Engineer | Building Scalable & Responsive Web Applications
-      | AI Engineer | AI Automation Expert.
-    </p>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+    {/* Left: headline */}
+    <div>
+      <div class="flex items-center gap-3 mb-5 sm:mb-8">
+        <div class="w-6 sm:w-8 h-px bg-gray-900"></div>
+        <p class="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] text-gray-400">About</p>
+      </div>
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-[1.05]">
+        Building things<br />
+        <span class="text-gray-300">that matter.</span>
+      </h2>
+    </div>
+
+    {/* Right: description + quick facts */}
+    <div class="flex flex-col gap-6">
+      <p class="text-base sm:text-lg text-gray-500 leading-relaxed">
+        I'm a Software Engineer focused on building scalable, responsive web
+        applications and AI-driven automation workflows. I care about clean code,
+        thoughtful UI, and shipping products that solve real problems.
+      </p>
+      <div class="grid grid-cols-2 gap-3">
+        <div class="flex items-start gap-3 bg-gray-50 rounded-xl p-4">
+          <Zap client:load size={18} className="text-gray-400 mt-0.5 shrink-0" />
+          <div>
+            <p class="text-sm font-semibold text-gray-900">Full-Stack</p>
+            <p class="text-xs text-gray-400 mt-0.5">MERN, Next.js, PHP</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 bg-gray-50 rounded-xl p-4">
+          <Bot client:load size={18} className="text-gray-400 mt-0.5 shrink-0" />
+          <div>
+            <p class="text-sm font-semibold text-gray-900">AI Automation</p>
+            <p class="text-xs text-gray-400 mt-0.5">N8N, Gemini, LLMs</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 bg-gray-50 rounded-xl p-4">
+          <Trophy client:load size={18} className="text-gray-400 mt-0.5 shrink-0" />
+          <div>
+            <p class="text-sm font-semibold text-gray-900">3+ Years</p>
+            <p class="text-xs text-gray-400 mt-0.5">Professional experience</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 bg-gray-50 rounded-xl p-4">
+          <Globe client:load size={18} className="text-gray-400 mt-0.5 shrink-0" />
+          <div>
+            <p class="text-sm font-semibold text-gray-900">Open to Work</p>
+            <p class="text-xs text-gray-400 mt-0.5">Remote & on-site, India</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
