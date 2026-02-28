@@ -2,9 +2,9 @@
 import Layout from '../../layouts/Layout.astro';
 import { renderToHtml } from '../../lib/tiptap';
 import type { BlogPost } from '../../lib/types';
-import Testimonials from '../testimonials.astro';
-import ContactCard from '../../components/ContactCard.astro';
 import Contact from '../../components/Contact.astro';
+
+export const prerender = false;
 
 const { slug } = Astro.params;
 
@@ -29,7 +29,6 @@ const allCategories = [post.category, ...(post.extraCategories ?? [])].filter(Bo
 >
   <main class="pt-24 sm:pt-28 md:pt-36">
 
-    {/* ── Hero cover ─────────────────────────────────────────────── */}
     {post.coverImage && (
       <div class="w-full max-h-[520px] overflow-hidden mb-0">
         <img
@@ -43,7 +42,6 @@ const allCategories = [post.category, ...(post.extraCategories ?? [])].filter(Bo
 
     <div class="container mx-auto px-4 sm:px-6 max-w-3xl">
 
-      {/* ── Back link ──────────────────────────────────────────────── */}
       <a
         href="/blog"
         class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition-colors duration-200 mt-4 mb-8"
@@ -52,10 +50,7 @@ const allCategories = [post.category, ...(post.extraCategories ?? [])].filter(Bo
         All articles
       </a>
 
-      {/* ── Article header ─────────────────────────────────────────── */}
       <header class="mb-12">
-
-        {/* Categories */}
         <div class="flex flex-wrap gap-1.5 mb-6">
           {allCategories.map((cat: string) => (
             <a
@@ -72,19 +67,15 @@ const allCategories = [post.category, ...(post.extraCategories ?? [])].filter(Bo
           ))}
         </div>
 
-        {/* Title */}
         <h1 class="text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-gray-900 dark:text-gray-50 tracking-tight leading-[1.1] mb-5">
           {post.title}
         </h1>
 
-        {/* Description */}
         <p class="text-lg sm:text-xl text-gray-500 dark:text-gray-400 leading-relaxed mb-8 font-normal">
           {post.description}
         </p>
 
-        {/* Meta row */}
         <div class="flex items-center gap-4 pb-10 border-b border-gray-200 dark:border-gray-800">
-          {/* Author avatar placeholder */}
           <div class="w-9 h-9 rounded-full bg-gray-900 dark:bg-white flex items-center justify-center flex-shrink-0">
             <span class="text-white dark:text-gray-900 text-xs font-bold">AO</span>
           </div>
@@ -103,10 +94,8 @@ const allCategories = [post.category, ...(post.extraCategories ?? [])].filter(Bo
         </div>
       </header>
 
-      {/* ── Body ───────────────────────────────────────────────────── */}
       <div class="blog-content" set:html={contentHtml} />
 
-      {/* ── Footer nav ─────────────────────────────────────────────── */}
       <div class="mt-20 pb-8 pt-8 border-t border-gray-200 dark:border-gray-800 flex items-center justify-between">
         <a
           href="/blog"
@@ -115,10 +104,7 @@ const allCategories = [post.category, ...(post.extraCategories ?? [])].filter(Bo
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
           All articles
         </a>
-
-        {/* Share buttons */}
         <div class="flex items-center gap-2">
-          {/* Copy link */}
           <button
             id="copy-link"
             aria-label="Copy link"
@@ -127,8 +113,6 @@ const allCategories = [post.category, ...(post.extraCategories ?? [])].filter(Bo
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
           </button>
-
-          {/* Share on X / Twitter */}
           <a
             href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`https://abhishekhojha.com/blog/${slug}`)}`}
             target="_blank"
@@ -139,8 +123,6 @@ const allCategories = [post.category, ...(post.extraCategories ?? [])].filter(Bo
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           </a>
-
-          {/* Share on LinkedIn */}
           <a
             href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://abhishekhojha.com/blog/${slug}`)}`}
             target="_blank"
@@ -172,23 +154,15 @@ const allCategories = [post.category, ...(post.extraCategories ?? [])].filter(Bo
 </script>
 
 <style is:global>
-  /* ── Blog body typography ──────────────────────────────────────── */
   .blog-content {
     color: #374151;
     font-size: 1.0625rem;
     line-height: 1.85;
     font-family: 'Poppins', sans-serif;
   }
-
   .dark .blog-content { color: #d1d5db; }
-
-  /* Headings */
-  .blog-content h1,
-  .blog-content h2,
-  .blog-content h3,
-  .blog-content h4,
-  .blog-content h5,
-  .blog-content h6 {
+  .blog-content h1, .blog-content h2, .blog-content h3,
+  .blog-content h4, .blog-content h5, .blog-content h6 {
     font-weight: 700;
     letter-spacing: -0.025em;
     line-height: 1.2;
@@ -196,40 +170,19 @@ const allCategories = [post.category, ...(post.extraCategories ?? [])].filter(Bo
     margin-top: 2.5rem;
     margin-bottom: 0.875rem;
   }
-  .dark .blog-content h1,
-  .dark .blog-content h2,
-  .dark .blog-content h3,
-  .dark .blog-content h4,
-  .dark .blog-content h5,
-  .dark .blog-content h6 { color: #f9fafb; }
-
+  .dark .blog-content h1, .dark .blog-content h2, .dark .blog-content h3,
+  .dark .blog-content h4, .dark .blog-content h5, .dark .blog-content h6 { color: #f9fafb; }
   .blog-content h1 { font-size: 2rem; }
   .blog-content h2 { font-size: 1.5rem; margin-top: 3rem; }
   .blog-content h3 { font-size: 1.25rem; margin-top: 2.25rem; }
   .blog-content h4 { font-size: 1.1rem; }
-
-  /* Paragraph */
-  .blog-content p {
-    margin-bottom: 1.5rem;
-  }
-
-  /* Links */
-  .blog-content a {
-    color: #111827;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-color: #9ca3af;
-    transition: text-decoration-color 0.2s;
-  }
+  .blog-content p { margin-bottom: 1.5rem; }
+  .blog-content a { color: #111827; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #9ca3af; transition: text-decoration-color 0.2s; }
   .dark .blog-content a { color: #f3f4f6; text-decoration-color: #4b5563; }
   .blog-content a:hover { text-decoration-color: currentColor; }
-
-  /* Strong / Em */
   .blog-content strong { color: #111827; font-weight: 700; }
   .dark .blog-content strong { color: #f9fafb; }
   .blog-content em { font-style: italic; }
-
-  /* Inline code */
   .blog-content code {
     background: #f3f4f6;
     color: #1f2937;
@@ -239,13 +192,7 @@ const allCategories = [post.category, ...(post.extraCategories ?? [])].filter(Bo
     border-radius: 0.3rem;
     border: 1px solid #e5e7eb;
   }
-  .dark .blog-content code {
-    background: #1f2937;
-    color: #e5e7eb;
-    border-color: #374151;
-  }
-
-  /* Code block */
+  .dark .blog-content code { background: #1f2937; color: #e5e7eb; border-color: #374151; }
   .blog-content pre {
     background: #0f172a;
     color: #e2e8f0;
@@ -257,20 +204,8 @@ const allCategories = [post.category, ...(post.extraCategories ?? [])].filter(Bo
     font-size: 0.875rem;
     line-height: 1.7;
   }
-  .dark .blog-content pre {
-    background: #0a0a0a;
-    border-color: #1a1a1a;
-  }
-  .blog-content pre code {
-    background: transparent;
-    color: inherit;
-    padding: 0;
-    border: none;
-    font-size: inherit;
-    border-radius: 0;
-  }
-
-  /* Blockquote */
+  .dark .blog-content pre { background: #0a0a0a; border-color: #1a1a1a; }
+  .blog-content pre code { background: transparent; color: inherit; padding: 0; border: none; font-size: inherit; border-radius: 0; }
   .blog-content blockquote {
     border-left: 3px solid #e5e7eb;
     padding: 0.5rem 0 0.5rem 1.5rem;
@@ -278,94 +213,21 @@ const allCategories = [post.category, ...(post.extraCategories ?? [])].filter(Bo
     color: #6b7280;
     font-style: italic;
   }
-  .dark .blog-content blockquote {
-    border-left-color: #374151;
-    color: #9ca3af;
-  }
-
-  /* Lists */
-  .blog-content ul {
-    list-style: disc;
-    padding-left: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  .blog-content ol {
-    list-style: decimal;
-    padding-left: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  .blog-content li {
-    margin-bottom: 0.4rem;
-    color: #4b5563;
-  }
+  .dark .blog-content blockquote { border-left-color: #374151; color: #9ca3af; }
+  .blog-content ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; }
+  .blog-content ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1.5rem; }
+  .blog-content li { margin-bottom: 0.4rem; color: #4b5563; }
   .dark .blog-content li { color: #d1d5db; }
-
-  /* Task list */
-  .blog-content ul.task-list { list-style: none; padding-left: 0; }
-  .blog-content li.task-item {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-  }
-  .blog-content li.task-item input[type="checkbox"] {
-    width: 0.9rem;
-    height: 0.9rem;
-    flex-shrink: 0;
-    accent-color: #111827;
-    margin-top: 0.2rem;
-  }
-
-  /* Images */
-  .blog-content img {
-    width: 100%;
-    height: auto;
-    border-radius: 0.875rem;
-    margin: 2rem 0;
-    border: 1px solid #e5e7eb;
-  }
+  .blog-content img { width: 100%; height: auto; border-radius: 0.875rem; margin: 2rem 0; border: 1px solid #e5e7eb; }
   .dark .blog-content img { border-color: #1f2937; }
-
-  /* HR */
-  .blog-content hr {
-    border: none;
-    border-top: 1px solid #e5e7eb;
-    margin: 3rem 0;
-  }
+  .blog-content hr { border: none; border-top: 1px solid #e5e7eb; margin: 3rem 0; }
   .dark .blog-content hr { border-top-color: #1f2937; }
-
-  /* Table */
-  .blog-content table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 2rem 0;
-    font-size: 0.9rem;
-  }
-  .blog-content th {
-    background: #f9fafb;
-    font-weight: 600;
-    text-align: left;
-    padding: 0.625rem 1rem;
-    border-bottom: 2px solid #e5e7eb;
-    color: #111827;
-  }
-  .dark .blog-content th {
-    background: #111827;
-    border-bottom-color: #374151;
-    color: #f9fafb;
-  }
-  .blog-content td {
-    padding: 0.625rem 1rem;
-    border-bottom: 1px solid #f3f4f6;
-    vertical-align: top;
-  }
+  .blog-content table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.9rem; }
+  .blog-content th { background: #f9fafb; font-weight: 600; text-align: left; padding: 0.625rem 1rem; border-bottom: 2px solid #e5e7eb; color: #111827; }
+  .dark .blog-content th { background: #111827; border-bottom-color: #374151; color: #f9fafb; }
+  .blog-content td { padding: 0.625rem 1rem; border-bottom: 1px solid #f3f4f6; vertical-align: top; }
   .dark .blog-content td { border-bottom-color: #1f2937; }
   .blog-content tr:last-child td { border-bottom: none; }
-
-  /* Mark / highlight */
-  .blog-content mark {
-    background: #fef9c3;
-    padding: 0.05em 0.25em;
-    border-radius: 0.2rem;
-  }
+  .blog-content mark { background: #fef9c3; padding: 0.05em 0.25em; border-radius: 0.2rem; }
   .dark .blog-content mark { background: #713f12; color: #fef3c7; }
 </style>

@@ -3,18 +3,18 @@ import Layout from '../../layouts/Layout.astro';
 import Contact from '../../components/Contact.astro';
 import type { BlogPost } from '../../lib/types';
 
-// SSR — no prerender, posts come from MongoDB
-const baseUrl = Astro.url.origin;
+export const prerender = false;
+
 const activeCategory = Astro.url.searchParams.get('category') ?? '';
 const activeTag = Astro.url.searchParams.get('tag') ?? '';
 
-const postsUrl = new URL('/api/posts', baseUrl);
+const postsUrl = new URL('/api/posts', Astro.url.origin);
 if (activeCategory) postsUrl.searchParams.set('category', activeCategory);
 if (activeTag) postsUrl.searchParams.set('tag', activeTag);
 
 const [postsRes, catsRes] = await Promise.all([
   fetch(postsUrl.toString()),
-  fetch(new URL('/api/categories', baseUrl).toString()),
+  fetch(new URL('/api/categories', Astro.url.origin).toString()),
 ]);
 
 const posts: BlogPost[] = postsRes.ok ? await postsRes.json() : [];

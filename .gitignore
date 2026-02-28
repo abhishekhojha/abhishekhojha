@@ -32,6 +32,6 @@ pnpm-debug.log*
 # Wrangler / Cloudflare
 .wrangler/
 .dev.vars
-
+.vercel
 # TypeScript
 *.tsbuildinfo

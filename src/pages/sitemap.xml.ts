@@ -1,7 +1,5 @@
 import type { APIRoute } from "astro";
 
-export const prerender = false;
-
 const SITE = "https://abhishekhojha.com";
 
 const staticRoutes = [
@@ -30,8 +28,8 @@ ${items}
 </urlset>`;
 }
 
-export const GET: APIRoute = async ({ locals }) => {
-  const beUrl = ((locals as any).runtime?.env?.BE_URL ?? import.meta.env.BE_URL ?? "") as string;
+export const GET: APIRoute = async () => {
+  const beUrl = import.meta.env.BE_URL ?? "";
 
   const urls: { loc: string; lastmod?: string; changefreq?: string; priority?: string }[] =
     staticRoutes.map(({ url, priority, changefreq }) => ({
@@ -45,7 +43,6 @@ export const GET: APIRoute = async ({ locals }) => {
       const res = await fetch(`${beUrl}/posts?limit=100`);
       if (res.ok) {
         const posts: { slug: string; updatedAt?: string; pubDate?: string }[] = await res.json();
-
         for (const post of posts) {
           const date = post.updatedAt ?? post.pubDate;
           urls.push({
