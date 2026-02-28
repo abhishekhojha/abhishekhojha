@@ -1,11 +1,12 @@
 ---
 import "../style/global.css";
+import { ClientRouter } from "astro:transitions";
 interface Props {
   title: string;
   description?: string;
   keywords?: string;
   url?: string;
-  image?: string;
+  image?: string | null;
 }
 import Menu from "./menu.astro";
 
@@ -23,6 +24,15 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script is:inline>
+      (function () {
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'dark' || (!saved && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
 
     {/* Basic SEO */}
     <title>{title}</title>
@@ -36,14 +46,14 @@ const {
     <meta property="og:url" content={url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content={image ? (image.startsWith('http') ? image : `https://abhishekhojha.com${image}`) : 'https://abhishekhojha.com/abhishekh.png'} />
 
     {/* Twitter */}
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={url} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={image} />
+    <meta property="twitter:image" content={image ? (image.startsWith('http') ? image : `https://abhishekhojha.com${image}`) : 'https://abhishekhojha.com/abhishekh.png'} />
 
     {/* Structured Data (JSON-LD) for SEO */}
     <script
@@ -67,6 +77,7 @@ const {
       })}
     />
 
+    <ClientRouter />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -75,10 +86,15 @@ const {
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <script src="../scripts/lenis.js"></script>
+    <script>
+      import "../scripts/lenis.js";
+    </script>
+    <script>
+      import "../scripts/observer.ts";
+    </script>
   </head>
   <body
-    class="bg-my-bg-light text-my-text-dark font-poppins leading-relaxed overflow-x-hidden"
+    class="bg-[#f6f6f6] dark:bg-[#0f0f0f] text-[#212121] dark:text-gray-100 font-[Poppins,sans-serif] leading-relaxed overflow-x-hidden transition-colors duration-300 pb-16 sm:pb-0"
   >
     <Menu />
     <slot />

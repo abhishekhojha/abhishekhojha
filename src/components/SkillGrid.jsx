@@ -29,9 +29,9 @@ export default function SkillGrid() {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-4 md:gap-6 mx-auto">
       {skills.map(({ icon: Icon, name }) => (
-        <div key={name} className="group relative flex flex-col justify-center items-center p-6 border border-gray-100 rounded-2xl bg-white hover:border-[var(--brand-dark)] hover:shadow-sm transition-all duration-300 gap-3 hover:-translate-y-1">
-          <Icon size={32} className="text-gray-400 group-hover:text-[var(--brand-dark)] transition-colors duration-300" />
-          <span className="text-xs font-semibold text-gray-500 group-hover:text-gray-900 transition-colors duration-300">
+        <div key={name} className="group relative flex flex-col justify-center items-center p-6 border border-gray-100 dark:border-gray-700 rounded-2xl bg-white dark:bg-gray-800/50 hover:border-[var(--brand-dark)] dark:hover:border-gray-400 hover:shadow-sm transition-all duration-300 gap-3 hover:-translate-y-1">
+          <Icon size={32} className="text-gray-400 dark:text-gray-500 group-hover:text-[var(--brand-dark)] dark:group-hover:text-gray-200 transition-colors duration-300" />
+          <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors duration-300">
             {name}
           </span>
         </div>

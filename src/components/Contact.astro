@@ -1,16 +1,16 @@
 ---
-import { Mail, Linkedin, ArrowUpRight, MapPin, Code2 } from "lucide-react";
 import { Image } from 'astro:assets';
 ---
 
 <section
   id="contact"
-  class="py-16 md:py-24 overflow-hidden border-t border-gray-100"
+  class="py-16 md:py-24 overflow-hidden border-t border-gray-100 dark:border-gray-800"
 >
   <div class="container mx-auto px-4 sm:px-6">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
       {/* LEFT SIDE: Digital Business Card */}
       <div
+        data-animate="slide-in-left"
         class="flex order-2 lg:order-1 justify-center items-center relative h-[400px]"
       >
         <div
@@ -20,7 +20,7 @@ import { Image } from 'astro:assets';
         </div>
 
         <div
-          class="relative bg-white w-72 rounded-2xl shadow-sm hover:shadow-lg overflow-hidden border border-gray-200 transform rotate-[-3deg] hover:rotate-0 transition-all duration-500"
+          class="relative bg-white dark:bg-gray-900 w-72 rounded-2xl shadow-sm dark:shadow-[0_4px_24px_rgba(0,0,0,0.5)] hover:shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700 transform rotate-[-3deg] hover:rotate-0 transition-all duration-500"
         >
           <div
             class="h-24 bg-gray-900 group-hover:bg-[var(--brand-dark)] transition-colors duration-500"
@@ -28,7 +28,7 @@ import { Image } from 'astro:assets';
           </div>
 
           <div class="flex justify-center -mt-12 mb-4 relative z-10">
-            <div class="p-1.5 bg-white rounded-full">
+            <div class="p-1.5 bg-white dark:bg-gray-900 rounded-full">
               <Image
                 src="/abhishekh.png"
                 alt="Abhishekh Ojha - Connect with me"
@@ -40,22 +40,22 @@ import { Image } from 'astro:assets';
           </div>
 
           <div class="text-center px-6 pb-8">
-            <h3 class="text-xl font-bold text-gray-900">Abhishekh Ojha</h3>
-            <p class="text-sm text-[var(--brand-dark)] font-medium mb-4">
-              Web Developer
+            <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">Abhishekh Ojha</h3>
+            <p class="text-sm text-[var(--brand-dark)] dark:text-gray-300 font-medium mb-4">
+              Software Engineer & AI Engineer
             </p>
 
             <div class="space-y-2">
               <div
-                class="flex items-center gap-2 text-gray-500 text-sm justify-center bg-gray-50 border border-gray-100 py-2 rounded-lg"
+                class="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm justify-center bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 py-2 rounded-lg"
               >
-                <MapPin size={14} />
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
                 <span>Available for work</span>
               </div>
               <div
-                class="flex items-center gap-2 text-gray-500 text-sm justify-center bg-gray-50 border border-gray-100 py-2 rounded-lg"
+                class="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm justify-center bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 py-2 rounded-lg"
               >
-                <Code2 size={14} />
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
                 <span>Based in India</span>
               </div>
             </div>
@@ -64,68 +64,172 @@ import { Image } from 'astro:assets';
       </div>
       {/* END LEFT SIDE */}
 
-      <div class="text-center lg:text-left order-1 lg:order-2">
+      <div data-animate="slide-in-right" class="text-center lg:text-left order-1 lg:order-2">
         <div class="flex items-center gap-3 mb-5 sm:mb-8 justify-center lg:justify-start">
-          <div class="w-6 sm:w-8 h-px bg-gray-900"></div>
-          <p class="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] text-gray-400">Contact</p>
+          <div class="w-6 sm:w-8 h-px bg-gray-900 dark:bg-gray-400"></div>
+          <p class="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500">Contact</p>
         </div>
         <h2
-          class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-[1.05] mb-6"
+          class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-gray-100 tracking-tight leading-[1.05] mb-6"
         >
           Let's Connect
         </h2>
         <p
-          class="text-lg text-gray-500 max-w-lg mx-auto lg:mx-0 mb-10 leading-relaxed font-light"
+          class="text-lg text-gray-500 dark:text-gray-400 max-w-lg mx-auto lg:mx-0 mb-10 leading-relaxed font-light"
         >
           I'm always excited to discuss new projects and opportunities. Whether
           you have a question or just want to say hi, feel free to reach out.
         </p>
         <div class="flex flex-col pb-6 lg:pb-0 gap-4 max-w-md mx-auto lg:mx-0">
           <a
-            href="mailto:abhishekhojha45@gmail.com"
-            class="contact-card group flex items-center gap-4 p-5 bg-white rounded-2xl border border-gray-200 hover:border-gray-900 hover:shadow-sm transition-all duration-300 hover:-translate-y-1 text-gray-600 font-medium"
+            href="mailto:qabhishekh@gmail.com"
+            class="contact-card group flex items-center gap-4 p-5 bg-white dark:bg-gray-900/50 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-gray-400 hover:shadow-sm transition-all duration-300 hover:-translate-y-1 text-gray-600 dark:text-gray-400 font-medium"
           >
-            <Mail
-              client:load
-              size={24}
-              className="group-hover:text-[var(--brand-dark)] transition-colors"
-            />
-            <span class="group-hover:text-gray-900 transition-colors"
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:text-[var(--brand-dark)] transition-colors"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <span class="group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors"
               >qabhishekh@gmail.com</span
             >
-            <ArrowUpRight
-              client:load
-              size={20}
-              className="ml-auto opacity-40 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"
-            />
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-40 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
           </a>
           <a
             href="https://www.linkedin.com/in/abhishekh-ojha-10802b215/"
             target="_blank"
-            class="contact-card group flex items-center gap-4 p-5 bg-white rounded-2xl border border-gray-200 hover:border-gray-900 hover:shadow-sm transition-all duration-300 hover:-translate-y-1 text-gray-600 font-medium"
+            rel="noopener noreferrer"
+            class="contact-card group flex items-center gap-4 p-5 bg-white dark:bg-gray-900/50 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-gray-400 hover:shadow-sm transition-all duration-300 hover:-translate-y-1 text-gray-600 dark:text-gray-400 font-medium"
           >
-            <Linkedin
-              client:load
-              size={24}
-              className="group-hover:text-[var(--brand-dark)] transition-colors"
-            />
-            <span class="group-hover:text-gray-900 transition-colors"
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:text-[var(--brand-dark)] transition-colors"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            <span class="group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors"
               >LinkedIn Profile</span
             >
-            <ArrowUpRight
-              client:load
-              size={20}
-              className="ml-auto opacity-40 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"
-            />
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-40 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
           </a>
         </div>
       </div>
     </div>
+
+    {/* Contact Form */}
+    <div class="mt-16 sm:mt-20 pt-10 border-t border-gray-100 dark:border-gray-800 max-w-2xl mx-auto">
+      <p class="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 mb-6">
+        Or send a message directly
+      </p>
+      <form id="contact-form" novalidate>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+          <div>
+            <label for="cf-name" class="block text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5">Name</label>
+            <input
+              id="cf-name"
+              name="name"
+              type="text"
+              required
+              autocomplete="name"
+              placeholder="Jane Smith"
+              class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900/50 text-gray-900 dark:text-gray-100 placeholder-gray-300 dark:placeholder-gray-600 text-sm focus:outline-none focus:border-gray-900 dark:focus:border-gray-400 transition-colors"
+            />
+          </div>
+          <div>
+            <label for="cf-email" class="block text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5">Email</label>
+            <input
+              id="cf-email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              placeholder="jane@example.com"
+              class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900/50 text-gray-900 dark:text-gray-100 placeholder-gray-300 dark:placeholder-gray-600 text-sm focus:outline-none focus:border-gray-900 dark:focus:border-gray-400 transition-colors"
+            />
+          </div>
+        </div>
+        <div class="mb-4">
+          <label for="cf-message" class="block text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5">Message</label>
+          <textarea
+            id="cf-message"
+            name="message"
+            required
+            rows="5"
+            placeholder="Tell me about your project…"
+            class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900/50 text-gray-900 dark:text-gray-100 placeholder-gray-300 dark:placeholder-gray-600 text-sm focus:outline-none focus:border-gray-900 dark:focus:border-gray-400 transition-colors resize-none"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          id="cf-submit"
+          class="group inline-flex items-center gap-2 px-7 py-3 font-semibold text-sm text-white bg-gray-900 dark:bg-white dark:text-gray-900 rounded-full hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:translate-y-0 disabled:shadow-none"
+        >
+          <span id="cf-btn-label">Send Message</span>
+          <svg id="cf-btn-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+          <svg id="cf-btn-spinner" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden animate-spin"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+        </button>
+      </form>
+
+      {/* Toast */}
+      <div
+        id="cf-toast"
+        role="status"
+        aria-live="polite"
+        class="hidden mt-4 px-5 py-3 rounded-xl text-sm font-medium border"
+      ></div>
+    </div>
   </div>
 </section>
 
-<footer class="text-center py-8 border-t border-gray-200">
-  <p class="text-gray-400 text-sm font-medium">
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  const submitBtn = document.getElementById("cf-submit") as HTMLButtonElement | null;
+  const btnLabel = document.getElementById("cf-btn-label");
+  const btnArrow = document.getElementById("cf-btn-arrow");
+  const btnSpinner = document.getElementById("cf-btn-spinner");
+  const toast = document.getElementById("cf-toast");
+
+  function showToast(message: string, isError = false) {
+    if (!toast) return;
+    toast.textContent = message;
+    toast.className = [
+      "mt-4 px-5 py-3 rounded-xl text-sm font-medium border",
+      isError
+        ? "bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border-red-200 dark:border-red-800"
+        : "bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 border-green-200 dark:border-green-800",
+    ].join(" ");
+    setTimeout(() => { if (toast) toast.className = "hidden mt-4 px-5 py-3 rounded-xl text-sm font-medium border"; }, 5000);
+  }
+
+  function setLoading(loading: boolean) {
+    if (!submitBtn || !btnLabel || !btnArrow || !btnSpinner) return;
+    submitBtn.disabled = loading;
+    btnLabel.textContent = loading ? "Sending…" : "Send Message";
+    btnArrow.classList.toggle("hidden", loading);
+    btnSpinner.classList.toggle("hidden", !loading);
+  }
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!form) return;
+
+    const data = Object.fromEntries(new FormData(form));
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json() as { success?: boolean; error?: string };
+      if (res.ok && json.success) {
+        showToast("Message sent! I'll get back to you soon.");
+        form.reset();
+      } else {
+        showToast(json.error ?? "Something went wrong. Please try again.", true);
+      }
+    } catch {
+      showToast("Network error. Please check your connection.", true);
+    } finally {
+      setLoading(false);
+    }
+  });
+</script>
+
+<footer class="text-center py-8 border-t border-gray-200 dark:border-gray-800">
+  <p class="text-gray-400 dark:text-gray-500 text-sm font-medium">
     &copy; {new Date().getFullYear()} Abhishekh Ojha. All Rights Reserved.
   </p>
 </footer>
