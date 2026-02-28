@@ -1,5 +1,4 @@
 import type { APIRoute } from "astro";
-import { getPostsCollection } from "../lib/db";
 
 export const prerender = false;
 
@@ -32,7 +31,7 @@ ${items}
 }
 
 export const GET: APIRoute = async ({ locals }) => {
-  const uri = (locals.runtime?.env?.MONGODB_URI ?? import.meta.env.MONGODB_URI) as string;
+  const beUrl = ((locals as any).runtime?.env?.BE_URL ?? import.meta.env.BE_URL ?? "") as string;
 
   const urls: { loc: string; lastmod?: string; changefreq?: string; priority?: string }[] =
     staticRoutes.map(({ url, priority, changefreq }) => ({
@@ -41,24 +40,24 @@ export const GET: APIRoute = async ({ locals }) => {
       priority,
     }));
 
-  if (uri) {
+  if (beUrl) {
     try {
-      const posts = getPostsCollection(uri);
-      const publishedPosts = await posts
-        .find({ draft: false }, { projection: { slug: 1, updatedAt: 1, pubDate: 1 } })
-        .toArray();
+      const res = await fetch(`${beUrl}/posts?limit=100`);
+      if (res.ok) {
+        const posts: { slug: string; updatedAt?: string; pubDate?: string }[] = await res.json();
 
-      for (const post of publishedPosts) {
-        const date = post.updatedAt ?? post.pubDate;
-        urls.push({
-          loc: `${SITE}/blog/${post.slug}`,
-          lastmod: date ? new Date(date).toISOString().split("T")[0] : undefined,
-          changefreq: "monthly",
-          priority: "0.7",
-        });
+        for (const post of posts) {
+          const date = post.updatedAt ?? post.pubDate;
+          urls.push({
+            loc: `${SITE}/blog/${post.slug}`,
+            lastmod: date ? new Date(date).toISOString().split("T")[0] : undefined,
+            changefreq: "monthly",
+            priority: "0.7",
+          });
+        }
       }
     } catch {
-      // If DB is unavailable, still return static routes
+      // If BE is unavailable, still return static routes
     }
   }
 
@@ -69,3 +68,4 @@ export const GET: APIRoute = async ({ locals }) => {
     },
   });
 };
+

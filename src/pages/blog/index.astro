@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Contact from '../../components/Contact.astro';
-import type { BlogPost } from '../../lib/db';
+import type { BlogPost } from '../../lib/types';
 
 // SSR — no prerender, posts come from MongoDB
 const baseUrl = Astro.url.origin;

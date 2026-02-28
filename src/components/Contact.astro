@@ -82,12 +82,12 @@ import { Image } from 'astro:assets';
         </p>
         <div class="flex flex-col pb-6 lg:pb-0 gap-4 max-w-md mx-auto lg:mx-0">
           <a
-            href="mailto:qabhishekh@gmail.com"
+            href="mailto:abhishekhojha45@gmail.com"
             class="contact-card group flex items-center gap-4 p-5 bg-white dark:bg-gray-900/50 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-gray-400 hover:shadow-sm transition-all duration-300 hover:-translate-y-1 text-gray-600 dark:text-gray-400 font-medium"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:text-[var(--brand-dark)] transition-colors"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
             <span class="group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors"
-              >qabhishekh@gmail.com</span
+              >abhishekhojha45@gmail.com</span
             >
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-40 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
           </a>
@@ -173,59 +173,68 @@ import { Image } from 'astro:assets';
 </section>
 
 <script>
-  const form = document.getElementById("contact-form") as HTMLFormElement | null;
-  const submitBtn = document.getElementById("cf-submit") as HTMLButtonElement | null;
-  const btnLabel = document.getElementById("cf-btn-label");
-  const btnArrow = document.getElementById("cf-btn-arrow");
-  const btnSpinner = document.getElementById("cf-btn-spinner");
-  const toast = document.getElementById("cf-toast");
+  function initContactForm() {
+    const form = document.getElementById("contact-form") as HTMLFormElement | null;
+    if (!form || form.dataset.bound === "1") return;
+    form.dataset.bound = "1";
 
-  function showToast(message: string, isError = false) {
-    if (!toast) return;
-    toast.textContent = message;
-    toast.className = [
-      "mt-4 px-5 py-3 rounded-xl text-sm font-medium border",
-      isError
-        ? "bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border-red-200 dark:border-red-800"
-        : "bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 border-green-200 dark:border-green-800",
-    ].join(" ");
-    setTimeout(() => { if (toast) toast.className = "hidden mt-4 px-5 py-3 rounded-xl text-sm font-medium border"; }, 5000);
-  }
+    const submitBtn = document.getElementById("cf-submit") as HTMLButtonElement | null;
+    const btnLabel = document.getElementById("cf-btn-label");
+    const btnArrow = document.getElementById("cf-btn-arrow");
+    const btnSpinner = document.getElementById("cf-btn-spinner");
+    const toast = document.getElementById("cf-toast");
 
-  function setLoading(loading: boolean) {
-    if (!submitBtn || !btnLabel || !btnArrow || !btnSpinner) return;
-    submitBtn.disabled = loading;
-    btnLabel.textContent = loading ? "Sending…" : "Send Message";
-    btnArrow.classList.toggle("hidden", loading);
-    btnSpinner.classList.toggle("hidden", !loading);
-  }
-
-  form?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    if (!form) return;
-
-    const data = Object.fromEntries(new FormData(form));
-    setLoading(true);
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      const json = await res.json() as { success?: boolean; error?: string };
-      if (res.ok && json.success) {
-        showToast("Message sent! I'll get back to you soon.");
-        form.reset();
-      } else {
-        showToast(json.error ?? "Something went wrong. Please try again.", true);
-      }
-    } catch {
-      showToast("Network error. Please check your connection.", true);
-    } finally {
-      setLoading(false);
+    function showToast(message: string, isError = false) {
+      if (!toast) return;
+      toast.textContent = message;
+      toast.className = [
+        "mt-4 px-5 py-3 rounded-xl text-sm font-medium border",
+        isError
+          ? "bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border-red-200 dark:border-red-800"
+          : "bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 border-green-200 dark:border-green-800",
+      ].join(" ");
+      setTimeout(() => {
+        if (toast) toast.className = "hidden mt-4 px-5 py-3 rounded-xl text-sm font-medium border";
+      }, 5000);
     }
-  });
+
+    function setLoading(loading: boolean) {
+      if (!submitBtn || !btnLabel || !btnArrow || !btnSpinner) return;
+      submitBtn.disabled = loading;
+      btnLabel.textContent = loading ? "Sending…" : "Send Message";
+      btnArrow.classList.toggle("hidden", loading);
+      btnSpinner.classList.toggle("hidden", !loading);
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const data = Object.fromEntries(new FormData(form));
+      setLoading(true);
+
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+        const json = await res.json() as { success?: boolean; error?: string };
+        if (res.ok && json.success) {
+          showToast("Message sent! I'll get back to you soon.");
+          form.reset();
+        } else {
+          showToast(json.error ?? "Something went wrong. Please try again.", true);
+        }
+      } catch {
+        showToast("Network error. Please check your connection.", true);
+      } finally {
+        setLoading(false);
+      }
+    });
+  }
+
+  // Run on initial load and after every View Transition swap
+  document.addEventListener("astro:page-load", initContactForm);
 </script>
 
 <footer class="text-center py-8 border-t border-gray-200 dark:border-gray-800">

@@ -1,11 +1,9 @@
 import type { APIRoute } from "astro";
-import { getCategoriesCollection, slugify, type Category } from "../../../lib/db";
-import { CreateCategorySchema, formatZodError } from "../../../lib/schemas";
 
 export const prerender = false;
 
-function isAuthorized(request: Request, secret: string): boolean {
-  return request.headers.get("x-api-key") === secret;
+function getBeUrl(locals: App.Locals): string {
+  return ((locals as any).runtime?.env?.BE_URL ?? import.meta.env.BE_URL ?? "") as string;
 }
 
 function json(data: unknown, status = 200): Response {
@@ -15,64 +13,27 @@ function json(data: unknown, status = 200): Response {
   });
 }
 
-// ---------------------------------------------------------------------------
-// GET /api/categories  — list all categories
-// ---------------------------------------------------------------------------
+// GET /api/categories
 export const GET: APIRoute = async ({ locals }) => {
-  const uri = (locals.runtime?.env?.MONGODB_URI ?? import.meta.env.MONGODB_URI) as string;
-  if (!uri) return json({ error: "MONGODB_URI not set." }, 500);
+  const beUrl = getBeUrl(locals);
+  if (!beUrl) return json({ error: "BE_URL not configured." }, 500);
 
-  try {
-    const categories = getCategoriesCollection(uri);
-    const docs = await categories.find({}).sort({ name: 1 }).toArray();
-    return json(docs);
-  } catch (err) {
-    console.error("[GET /api/categories]", err);
-    return json({ error: "Failed to fetch categories." }, 500);
-  }
+  const res = await fetch(`${beUrl}/categories`);
+  return new Response(res.body, { status: res.status, headers: { "Content-Type": "application/json" } });
 };
 
-// ---------------------------------------------------------------------------
-// POST /api/categories  — create a new category (auth required)
-// ---------------------------------------------------------------------------
+// POST /api/categories
 export const POST: APIRoute = async ({ request, locals }) => {
-  const secret = (locals.runtime?.env?.API_SECRET ?? import.meta.env.API_SECRET) as string;
-  if (!isAuthorized(request, secret)) return json({ error: "Unauthorized." }, 401);
+  const beUrl = getBeUrl(locals);
+  if (!beUrl) return json({ error: "BE_URL not configured." }, 500);
 
-  const uri = (locals.runtime?.env?.MONGODB_URI ?? import.meta.env.MONGODB_URI) as string;
-  if (!uri) return json({ error: "MONGODB_URI not set." }, 500);
-
-  let rawBody: unknown;
-  try {
-    rawBody = await request.json();
-  } catch {
-    return json({ error: "Invalid JSON body." }, 400);
-  }
-
-  const parsed = CreateCategorySchema.safeParse(rawBody);
-  if (!parsed.success) {
-    return json({ errors: formatZodError(parsed.error) }, 422);
-  }
-
-  const data = parsed.data;
-  const slug = data.slug?.trim() ? slugify(data.slug) : slugify(data.name);
-
-  try {
-    const categories = getCategoriesCollection(uri);
-    const existing = await categories.findOne({ slug });
-    if (existing) return json({ error: `Slug "${slug}" already exists.` }, 409);
-
-    const doc: Category = {
-      slug,
-      name:        data.name,
-      description: data.description,
-      createdAt:   new Date(),
-    };
-
-    const result = await categories.insertOne(doc);
-    return json({ success: true, id: result.insertedId, slug }, 201);
-  } catch (err) {
-    console.error("[POST /api/categories]", err);
-    return json({ error: "Failed to create category." }, 500);
-  }
+  const apiKey = request.headers.get("x-api-key") ?? "";
+  const res = await fetch(`${beUrl}/categories`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "x-api-key": apiKey },
+    body: request.body,
+    // @ts-ignore
+    duplex: "half",
+  });
+  return new Response(res.body, { status: res.status, headers: { "Content-Type": "application/json" } });
 };

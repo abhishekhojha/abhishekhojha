@@ -166,5 +166,5 @@ function renderNode(node: TipTapNode): string {
 
 /** Converts a TipTap JSON document into an HTML string. */
 export function renderToHtml(doc: TipTapDoc): string {
-  return doc.content.map(renderNode).join("\n");
+  return (doc?.content ?? []).map(renderNode).join("\n");
 }
