@@ -1,6 +1,10 @@
 name = "abhishekhojha-portfolio"
+main = "./dist/_worker.js"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./dist"
 
 [vars]
 # Override in Cloudflare dashboard → Settings → Environment Variables
