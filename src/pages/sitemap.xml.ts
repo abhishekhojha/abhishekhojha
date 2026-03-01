@@ -1,10 +1,11 @@
 import type { APIRoute } from "astro";
+import apiClient from "../lib/axios";
 
 const SITE = "https://abhishekhojha.com";
 
 const staticRoutes = [
   { url: "/", priority: "1.0", changefreq: "weekly" },
-  { url: "/blog", priority: "0.9", changefreq: "daily" },
+  { url: "/learnings", priority: "0.9", changefreq: "daily" },
   { url: "/projects", priority: "0.8", changefreq: "monthly" },
   { url: "/uses", priority: "0.6", changefreq: "monthly" },
 ];
@@ -40,13 +41,13 @@ export const GET: APIRoute = async () => {
 
   if (beUrl) {
     try {
-      const res = await fetch(`${beUrl}/posts?limit=100`);
-      if (res.ok) {
-        const posts: { slug: string; updatedAt?: string; pubDate?: string }[] = await res.json();
+      const res = await apiClient.get(`${beUrl}/posts?limit=100`, { validateStatus: () => true });
+      if (res.status === 200) {
+        const posts: { slug: string; updatedAt?: string; pubDate?: string }[] = res.data;
         for (const post of posts) {
           const date = post.updatedAt ?? post.pubDate;
           urls.push({
-            loc: `${SITE}/blog/${post.slug}`,
+            loc: `${SITE}/learnings/${post.slug}`,
             lastmod: date ? new Date(date).toISOString().split("T")[0] : undefined,
             changefreq: "monthly",
             priority: "0.7",

@@ -1,4 +1,5 @@
 import type { APIRoute } from "astro";
+import apiClient from "../../lib/axios";
 
 export const prerender = false;
 
@@ -11,14 +12,13 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
-  const res = await fetch(`${beUrl}/contact`, {
-    method: "POST",
+  const bodyData = await request.text().catch(() => "");
+  const res = await apiClient.post(`${beUrl}/contact`, bodyData, {
     headers: { "Content-Type": "application/json" },
-    body: request.body,
-    duplex: "half",
-  } as RequestInit);
+    validateStatus: () => true
+  });
 
-  return new Response(res.body, {
+  return new Response(JSON.stringify(res.data), {
     status: res.status,
     headers: { "Content-Type": "application/json" },
   });

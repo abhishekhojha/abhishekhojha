@@ -26,11 +26,30 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script is:inline>
       (function () {
-        const saved = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (saved === 'dark' || (!saved && prefersDark)) {
-          document.documentElement.classList.add('dark');
+        function getThemePreference() {
+          if (
+            typeof localStorage !== "undefined" &&
+            localStorage.getItem("theme")
+          ) {
+            return localStorage.getItem("theme");
+          }
+          return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
         }
+
+        function setTheme(theme) {
+          if (theme === "dark") {
+            document.documentElement.classList.add("dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+          }
+        }
+
+        setTheme(getThemePreference());
+        document.addEventListener("astro:after-swap", () =>
+          setTheme(getThemePreference()),
+        );
       })();
     </script>
 
@@ -46,14 +65,28 @@ const {
     <meta property="og:url" content={url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image ? (image.startsWith('http') ? image : `https://abhishekhojha.com${image}`) : 'https://abhishekhojha.com/abhishekh.png'} />
+    <meta
+      property="og:image"
+      content={image
+        ? image.startsWith("http")
+          ? image
+          : `https://abhishekhojha.com${image}`
+        : "https://abhishekhojha.com/abhishekh.png"}
+    />
 
     {/* Twitter */}
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={url} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={image ? (image.startsWith('http') ? image : `https://abhishekhojha.com${image}`) : 'https://abhishekhojha.com/abhishekh.png'} />
+    <meta
+      property="twitter:image"
+      content={image
+        ? image.startsWith("http")
+          ? image
+          : `https://abhishekhojha.com${image}`
+        : "https://abhishekhojha.com/abhishekh.png"}
+    />
 
     {/* Structured Data (JSON-LD) for SEO */}
     <script
@@ -91,19 +124,25 @@ const {
         width: 0%;
         background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
         border-radius: 0 2px 2px 0;
-        transition: width 0.2s ease, opacity 0.4s ease;
+        transition:
+          width 0.2s ease,
+          opacity 0.4s ease;
         opacity: 0;
         pointer-events: none;
       }
       #page-loader.loading {
         opacity: 1;
         width: 85%;
-        transition: width 10s cubic-bezier(0.1, 0.05, 0, 1), opacity 0.2s ease;
+        transition:
+          width 10s cubic-bezier(0.1, 0.05, 0, 1),
+          opacity 0.2s ease;
       }
       #page-loader.done {
         width: 100%;
         opacity: 0;
-        transition: width 0.15s ease, opacity 0.4s ease 0.15s;
+        transition:
+          width 0.15s ease,
+          opacity 0.4s ease 0.15s;
       }
     </style>
     <script is:inline>
@@ -113,7 +152,7 @@ const {
 
         function getBar() {
           if (!bar) {
-            bar = document.getElementById('page-loader');
+            bar = document.getElementById("page-loader");
           }
           return bar;
         }
@@ -122,24 +161,26 @@ const {
           const el = getBar();
           if (!el) return;
           clearTimeout(doneTimer);
-          el.classList.remove('done');
-          el.classList.add('loading');
+          el.classList.remove("done");
+          el.classList.add("loading");
         }
 
         function finish() {
           const el = getBar();
           if (!el) return;
-          el.classList.remove('loading');
-          el.classList.add('done');
+          el.classList.remove("loading");
+          el.classList.add("done");
           doneTimer = setTimeout(() => {
-            el.classList.remove('done');
-            el.style.width = '0%';
+            el.classList.remove("done");
+            el.style.width = "0%";
           }, 600);
         }
 
-        document.addEventListener('astro:before-preparation', start);
-        document.addEventListener('astro:after-swap', function () { bar = null; });
-        document.addEventListener('astro:page-load', finish);
+        document.addEventListener("astro:before-preparation", start);
+        document.addEventListener("astro:after-swap", function () {
+          bar = null;
+        });
+        document.addEventListener("astro:page-load", finish);
       })();
     </script>
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.ico" />
