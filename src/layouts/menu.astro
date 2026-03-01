@@ -1,5 +1,6 @@
 ---
 // src/layouts/menu.astro
+import { Github, Moon, Sun, Download } from "lucide-react";
 const currentPath = Astro.url.pathname;
 ---
 
@@ -53,62 +54,21 @@ const currentPath = Astro.url.pathname;
     }
     <div class="pointer-events-auto hidden sm:flex items-center gap-2">
       <a
-        href="https://github.com/qabhishekh"
+        href="https://github.com/abhishekhojha"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="GitHub profile"
         class="inline-flex items-center justify-center w-9 h-9 rounded-full text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white bg-white/70 dark:bg-gray-900/70 border border-white/40 dark:border-gray-700/40 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="15"
-          height="15"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          ><path
-            d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
-          ></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg
-        >
+        <Github className="w-[15px] h-[15px]" strokeWidth={2} />
       </a>
       <button
         id="theme-toggle"
         aria-label="Toggle dark mode"
         class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/70 dark:bg-gray-900/70 border border-white/40 dark:border-gray-700/40 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all duration-300"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="15"
-          height="15"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="hidden dark:block"
-          ><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path
-            d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path
-            d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path
-            d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path
-            d="m19.07 4.93-1.41 1.41"></path></svg
-        >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="15"
-          height="15"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="block dark:hidden"
-          ><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg
-        >
+        <Sun className="hidden dark:block w-[15px] h-[15px]" strokeWidth={2} />
+        <Moon className="block dark:hidden w-[15px] h-[15px]" strokeWidth={2} />
       </button>
       <a
         href="/ABHISHEKH_OJHA.pdf"
@@ -131,26 +91,13 @@ const currentPath = Astro.url.pathname;
   >
     {/* GitHub */}
     <a
-      href="https://github.com/qabhishekh"
+      href="https://github.com/abhishekhojha"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="GitHub profile"
       class="inline-flex items-center justify-center w-9 h-9 rounded-full text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        ><path
-          d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
-        ></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg
-      >
+      <Github className="w-[18px] h-[18px]" strokeWidth={2} />
     </a>
 
     {/* Theme toggle */}
@@ -159,36 +106,8 @@ const currentPath = Astro.url.pathname;
       aria-label="Toggle dark mode"
       class="inline-flex items-center justify-center w-9 h-9 rounded-full text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="hidden dark:block"
-        ><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path
-          d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path
-          d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path
-          d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path
-          d="m19.07 4.93-1.41 1.41"></path></svg
-      >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="block dark:hidden"
-        ><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg
-      >
+      <Sun className="hidden dark:block w-[18px] h-[18px]" strokeWidth={2} />
+      <Moon className="block dark:hidden w-[18px] h-[18px]" strokeWidth={2} />
     </button>
 
     {/* Resume download */}
@@ -198,23 +117,7 @@ const currentPath = Astro.url.pathname;
       aria-label="Download Resume"
       class="inline-flex items-center justify-center w-9 h-9 rounded-full text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        ><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline
-          points="7 10 12 15 17 10"></polyline><line
-          x1="12"
-          y1="15"
-          x2="12"
-          y2="3"></line></svg
-      >
+      <Download className="w-[18px] h-[18px]" strokeWidth={2} />
     </a>
   </div>
 </div>
