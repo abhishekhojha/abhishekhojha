@@ -148,7 +148,9 @@ const {
     <script is:inline>
       (function () {
         let bar = null;
+        let overlay = null;
         let doneTimer = null;
+        let showOverlayTimer = null;
 
         function getBar() {
           if (!bar) {
@@ -157,28 +159,60 @@ const {
           return bar;
         }
 
+        function getOverlay() {
+          if (!overlay) {
+            overlay = document.getElementById("global-loader-overlay");
+          }
+          return overlay;
+        }
+
         function start() {
           const el = getBar();
-          if (!el) return;
-          clearTimeout(doneTimer);
-          el.classList.remove("done");
-          el.classList.add("loading");
+          if (el) {
+            clearTimeout(doneTimer);
+            el.classList.remove("done");
+            el.classList.add("loading");
+          }
+
+          const ov = getOverlay();
+          if (ov) {
+            clearTimeout(showOverlayTimer);
+            showOverlayTimer = setTimeout(() => {
+              ov.classList.remove("hidden");
+              ov.classList.add("flex");
+              setTimeout(() => {
+                ov.classList.remove("opacity-0");
+              }, 10);
+            }, 100);
+          }
         }
 
         function finish() {
           const el = getBar();
-          if (!el) return;
-          el.classList.remove("loading");
-          el.classList.add("done");
-          doneTimer = setTimeout(() => {
-            el.classList.remove("done");
-            el.style.width = "0%";
-          }, 600);
+          if (el) {
+            el.classList.remove("loading");
+            el.classList.add("done");
+            doneTimer = setTimeout(() => {
+              el.classList.remove("done");
+              el.style.width = "0%";
+            }, 600);
+          }
+
+          const ov = getOverlay();
+          if (ov) {
+            clearTimeout(showOverlayTimer);
+            ov.classList.add("opacity-0");
+            setTimeout(() => {
+              ov.classList.remove("flex");
+              ov.classList.add("hidden");
+            }, 300);
+          }
         }
 
         document.addEventListener("astro:before-preparation", start);
         document.addEventListener("astro:after-swap", function () {
           bar = null;
+          overlay = null;
         });
         document.addEventListener("astro:page-load", finish);
       })();
@@ -201,6 +235,23 @@ const {
     class="bg-[#f6f6f6] dark:bg-[#0f0f0f] text-[#212121] dark:text-gray-100 font-[Poppins,sans-serif] leading-relaxed overflow-x-hidden transition-colors duration-300 pb-16 sm:pb-0"
   >
     <div id="page-loader"></div>
+    <div
+      id="global-loader-overlay"
+      class="fixed inset-0 z-[10000] hidden items-center justify-center bg-white/60 dark:bg-[#0f0f0f]/60 backdrop-blur-sm transition-opacity duration-300 opacity-0 px-4"
+    >
+      <div class="flex flex-col items-center justify-center">
+        <div class="relative w-12 h-12 sm:w-16 sm:h-16">
+          <div
+            class="absolute inset-0 rounded-full border-4 border-gray-200 dark:border-gray-800"
+          >
+          </div>
+          <div
+            class="absolute inset-0 rounded-full border-4 border-gray-900 dark:border-white border-t-transparent animate-spin"
+          >
+          </div>
+        </div>
+      </div>
+    </div>
     <Menu />
     <slot />
   </body>
