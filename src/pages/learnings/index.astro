@@ -1,0 +1,215 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Contact from "../../components/Contact.astro";
+import type { BlogPost } from "../../lib/types";
+
+export const prerender = false;
+
+const activeCategory = Astro.url.searchParams.get("category") ?? "";
+const activeTag = Astro.url.searchParams.get("tag") ?? "";
+
+import apiClient from "../../lib/axios";
+
+const postsUrl = new URL("/api/posts", Astro.url.origin);
+if (activeCategory) postsUrl.searchParams.set("category", activeCategory);
+if (activeTag) postsUrl.searchParams.set("tag", activeTag);
+
+const [postsRes, catsRes] = await Promise.all([
+  apiClient.get(postsUrl.toString(), { validateStatus: () => true }),
+  apiClient.get(new URL("/api/categories", Astro.url.origin).toString(), {
+    validateStatus: () => true,
+  }),
+]);
+
+const posts: BlogPost[] = postsRes.status === 200 ? postsRes.data : [];
+const categories: { slug: string; name: string }[] =
+  catsRes.status === 200 ? catsRes.data : [];
+
+function formatDate(date: string | Date) {
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+function getCategoryName(catIdOrSlug: string) {
+  const found = categories.find(
+    (c: any) => c._id === catIdOrSlug || c.slug === catIdOrSlug,
+  );
+  return found ? found.name : catIdOrSlug.replace(/-/g, " ");
+}
+---
+
+<Layout
+  title="Learnings | Abhishekh Ojha"
+  description="Articles on full-stack development, AI automation, and engineering best practices by Abhishekh Ojha."
+  url="https://abhishekhojha.com/learnings"
+>
+  <main class="pt-24 sm:pt-28 md:pt-36">
+    <section class="container mx-auto px-4 sm:px-6">
+      {/* Hero Header */}
+      <div class="mb-14 sm:mb-20 md:mb-28">
+        <div
+          class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center"
+        >
+          {/* Left: Title block */}
+          <div>
+            <div class="flex items-center gap-3 mb-5 sm:mb-8">
+              <div class="w-6 sm:w-8 h-px bg-gray-900 dark:bg-gray-400"></div>
+              <p
+                class="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500"
+              >
+                Writing
+              </p>
+            </div>
+            <h1
+              class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-gray-100 tracking-tight leading-[1.05]"
+            >
+              Learnings
+            </h1>
+          </div>
+
+          {/* Right: Description + stats */}
+          <div class="flex flex-col gap-6 sm:gap-8 lg:pb-1">
+            <p
+              class="text-base sm:text-lg text-gray-500 dark:text-gray-400 leading-relaxed"
+            >
+              Thoughts on full-stack engineering, AI automation, and building
+              things that matter — written with clarity and depth.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Category filter pills */}
+      {
+        categories.length > 0 && (
+          <div class="flex flex-wrap gap-2 mb-10">
+            <a
+              href="/learnings"
+              class={`px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border transition-all duration-200 ${
+                !activeCategory
+                  ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900 border-gray-900 dark:border-white"
+                  : "bg-transparent text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-gray-400"
+              }`}
+            >
+              All
+            </a>
+            {categories.map((cat) => (
+              <a
+                href={`/learnings?category=${cat.slug}`}
+                class={`px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border transition-all duration-200 ${
+                  activeCategory === cat.slug
+                    ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900 border-gray-900 dark:border-white"
+                    : "bg-transparent text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-gray-400"
+                }`}
+              >
+                {cat.name}
+              </a>
+            ))}
+          </div>
+        )
+      }
+
+      {/* Post list */}
+      <div class="flex flex-col">
+        {
+          posts.length === 0 ? (
+            <p class="py-20 text-center text-gray-400 dark:text-gray-500 text-sm">
+              No posts yet. Check back soon.
+            </p>
+          ) : (
+            posts.map((post) => (
+              <a
+                href={`/learnings/${post.slug}`}
+                class="group border-t border-gray-200 dark:border-gray-700/50 py-8 md:py-10 transition-all duration-300 block"
+              >
+                <div class="flex flex-col sm:grid sm:grid-cols-12 gap-4 sm:gap-8 sm:items-start">
+                  {post.coverImage ? (
+                    <div class="sm:col-span-3">
+                      <div class="aspect-[16/9] rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800">
+                        <img
+                          src={post.coverImage}
+                          alt={post.title}
+                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <div class="sm:col-span-3">
+                      <p class="text-xs font-medium uppercase tracking-wider text-gray-400 dark:text-gray-500">
+                        {formatDate(post.pubDate)}
+                      </p>
+                      <div class="flex flex-wrap gap-1.5 mt-3">
+                        {(post.tags ?? []).map((tag: string) => (
+                          <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 text-[11px] font-medium rounded-full uppercase tracking-wider">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div class="sm:col-span-9">
+                    {post.coverImage && (
+                      <p class="text-xs font-medium uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-2">
+                        {formatDate(post.pubDate)}
+                      </p>
+                    )}
+                    {post.category && (
+                      <span class="inline-block mb-2 px-2.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 text-[11px] font-semibold rounded-full uppercase tracking-wider">
+                        {getCategoryName(post.category)}
+                      </span>
+                    )}
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-[var(--brand-dark)] dark:group-hover:text-gray-300 transition-colors duration-300 leading-snug mb-3">
+                      {post.title}
+                    </h2>
+                    <p class="text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-2">
+                      {post.description}
+                    </p>
+                    <div class="flex items-center gap-3 mt-4">
+                      <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-400 dark:text-gray-500 group-hover:text-gray-900 dark:group-hover:text-gray-200 transition-colors duration-300">
+                        Read article
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
+                        >
+                          <>
+                            <path d="M7 7h10v10" />
+                            <path d="M7 17 17 7" />
+                          </>
+                        </svg>
+                      </span>
+                      {post.readingTime && (
+                        <>
+                          <span class="text-xs text-gray-300 dark:text-gray-600">
+                            ·
+                          </span>
+                          <span class="text-xs text-gray-400 dark:text-gray-500">
+                            {post.readingTime}
+                          </span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </a>
+            ))
+          )
+        }
+        <div class="border-t border-gray-200 dark:border-gray-700/50"></div>
+      </div>
+    </section>
+    <Contact />
+  </main>
+</Layout>

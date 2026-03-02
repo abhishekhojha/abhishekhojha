@@ -1,11 +1,12 @@
 ---
 import "../style/global.css";
+import { ClientRouter } from "astro:transitions";
 interface Props {
   title: string;
   description?: string;
   keywords?: string;
   url?: string;
-  image?: string;
+  image?: string | null;
 }
 import Menu from "./menu.astro";
 
@@ -23,6 +24,34 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script is:inline>
+      (function () {
+        function getThemePreference() {
+          if (
+            typeof localStorage !== "undefined" &&
+            localStorage.getItem("theme")
+          ) {
+            return localStorage.getItem("theme");
+          }
+          return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+
+        function setTheme(theme) {
+          if (theme === "dark") {
+            document.documentElement.classList.add("dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+          }
+        }
+
+        setTheme(getThemePreference());
+        document.addEventListener("astro:after-swap", () =>
+          setTheme(getThemePreference()),
+        );
+      })();
+    </script>
 
     {/* Basic SEO */}
     <title>{title}</title>
@@ -36,14 +65,28 @@ const {
     <meta property="og:url" content={url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
+    <meta
+      property="og:image"
+      content={image
+        ? image.startsWith("http")
+          ? image
+          : `https://abhishekhojha.com${image}`
+        : "https://abhishekhojha.com/abhishekh.png"}
+    />
 
     {/* Twitter */}
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={url} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={image} />
+    <meta
+      property="twitter:image"
+      content={image
+        ? image.startsWith("http")
+          ? image
+          : `https://abhishekhojha.com${image}`
+        : "https://abhishekhojha.com/abhishekh.png"}
+    />
 
     {/* Structured Data (JSON-LD) for SEO */}
     <script
@@ -62,12 +105,84 @@ const {
         },
         sameAs: [
           "https://www.linkedin.com/in/abhishekh-ojha-10802b215/",
-          "https://github.com/qabhishekh",
+          "https://github.com/abhishekhojha",
         ],
       })}
     />
 
+    <ClientRouter />
     <meta name="generator" content={Astro.generator} />
+
+    {/* Top-bar page loader */}
+    <style>
+      #page-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        height: 4px;
+        width: 0%;
+        background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
+        border-radius: 0 2px 2px 0;
+        transition:
+          width 0.2s ease,
+          opacity 0.4s ease;
+        opacity: 0;
+        pointer-events: none;
+      }
+      #page-loader.loading {
+        opacity: 1;
+        width: 85%;
+        transition:
+          width 10s cubic-bezier(0.1, 0.05, 0, 1),
+          opacity 0.2s ease;
+      }
+      #page-loader.done {
+        width: 100%;
+        opacity: 0;
+        transition:
+          width 0.15s ease,
+          opacity 0.4s ease 0.15s;
+      }
+    </style>
+    <script is:inline>
+      (function () {
+        let bar = null;
+        let doneTimer = null;
+
+        function getBar() {
+          if (!bar) {
+            bar = document.getElementById("page-loader");
+          }
+          return bar;
+        }
+
+        function start() {
+          const el = getBar();
+          if (!el) return;
+          clearTimeout(doneTimer);
+          el.classList.remove("done");
+          el.classList.add("loading");
+        }
+
+        function finish() {
+          const el = getBar();
+          if (!el) return;
+          el.classList.remove("loading");
+          el.classList.add("done");
+          doneTimer = setTimeout(() => {
+            el.classList.remove("done");
+            el.style.width = "0%";
+          }, 600);
+        }
+
+        document.addEventListener("astro:before-preparation", start);
+        document.addEventListener("astro:after-swap", function () {
+          bar = null;
+        });
+        document.addEventListener("astro:page-load", finish);
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -75,11 +190,17 @@ const {
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <script src="../scripts/lenis.js"></script>
+    <script>
+      import "../scripts/lenis.js";
+    </script>
+    <script>
+      import "../scripts/observer.ts";
+    </script>
   </head>
   <body
-    class="bg-my-bg-light text-my-text-dark font-poppins leading-relaxed overflow-x-hidden"
+    class="bg-[#f6f6f6] dark:bg-[#0f0f0f] text-[#212121] dark:text-gray-100 font-[Poppins,sans-serif] leading-relaxed overflow-x-hidden transition-colors duration-300 pb-16 sm:pb-0"
   >
+    <div id="page-loader"></div>
     <Menu />
     <slot />
   </body>

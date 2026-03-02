@@ -1,10 +1,8 @@
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
+@plugin "@tailwindcss/typography";
 
-@font-face {
-  font-family: "ClashGrotesk";
-  src: url("/fonts/ClashGrotesk-Variable.ttf") format("truetype");
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --brand-dark: #212121;
@@ -14,7 +12,7 @@
 }
 
 body {
-  font-family: ClashGrotesk, sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .container {
@@ -64,31 +62,25 @@ html {
   scroll-behavior: smooth;
 }
 
-.timeline-item {
-  @apply relative pl-14 md:pl-0 md:grid md:grid-cols-2 md:gap-8;
+/* ── Scroll-triggered animations ─────────────────────────────────── */
+[data-animate] {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+[data-animate="fade-up"]        { transform: translateY(28px); }
+[data-animate="fade-in"]        { transform: translateY(0); }
+[data-animate="slide-in-left"]  { transform: translateX(-28px); }
+[data-animate="slide-in-right"] { transform: translateX(28px); }
+
+[data-animate].is-visible {
+  opacity: 1;
+  transform: translate(0, 0);
 }
 
-/* On desktop, position every second item on the right and adjust its text alignment */
-.timeline-item:nth-child(odd) .timeline-card {
-  @apply md:col-start-2;
-}
-
-.timeline-icon {
-  @apply absolute left-5 md:left-1/2 -translate-x-1/2 bg-[var(--brand-dark)] w-10 h-10 rounded-full flex items-center justify-center;
-}
-
-.timeline-card {
-  @apply w-full bg-white p-6 rounded-xl shadow-md;
-}
-
-.skill-pill {
-  @apply bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full;
-}
-
-.form-input {
-  @apply w-full bg-gray-50 border-gray-300 rounded-lg px-4 py-3 text-base text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-[var(--brand-dark)] focus:border-transparent transition-shadow;
-}
 
 .contact-card {
   @apply flex items-center gap-4 bg-white p-4 rounded-xl shadow-md font-medium text-gray-700 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5;
+}
+button{
+  cursor: pointer;
 }

@@ -1,58 +1,22 @@
 ---
-import { Briefcase, CheckCircle2 } from "lucide-react";
-
-const experiences = [
-  {
-    index: 1,
-    role: "Full-Stack Developer",
-    company: "Westack.ai, Indore",
-    period: "July 2025 — Present",
-    current: true,
-    points: [
-      "Developing and maintaining full-stack web applications in a professional environment.",
-      "Contributing to innovative projects that require advanced AI implementation.",
-    ],
-  },
-  {
-    index: 2,
-    role: "Freelance Full-Stack Developer",
-    company: "Independent",
-    period: "Jan 2024 — June 2025",
-    current: false,
-    points: [
-      "Delivered end-to-end web solutions for a diverse client base, including ed-tech platforms, e-commerce sites, and service-based businesses.",
-      "Engineered MERN stack applications with secure payment gateways like Razorpay.",
-    ],
-  },
-  {
-    index: 3,
-    role: "Web Developer",
-    company: "IT GEEKS",
-    period: "Aug 2022 — July 2023",
-    current: false,
-    points: [
-      "Developed applications using Node.js, React.js, PHP, Laravel, and Shopify.",
-      "Led codebase optimization efforts to improve performance and scalability for multiple client websites.",
-    ],
-  },
-];
+import { experienceData } from "../data/experience";
 ---
 
-<section id="experience" class="bg-gray-50 py-16 md:py-24">
+<section id="experience" class="bg-gray-50 dark:bg-[#141414] py-16 md:py-24">
   <div class="container mx-auto px-4 sm:px-6">
     {/* Header */}
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20 items-end mb-14 sm:mb-20 md:mb-24">
+    <div data-animate="fade-up" class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20 items-end mb-14 sm:mb-20 md:mb-24">
       <div>
         <div class="flex items-center gap-3 mb-5 sm:mb-8">
           <div class="w-6 sm:w-8 h-px bg-gray-900"></div>
-          <p class="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] text-gray-400">Experience</p>
+          <p class="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500">Experience</p>
         </div>
-        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-[1.05]">
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-gray-100 tracking-tight leading-[1.05]">
           Professional Journey
         </h2>
       </div>
       <div class="lg:pb-1">
-        <p class="text-base sm:text-lg text-gray-500 leading-relaxed max-w-md">
+        <p class="text-base sm:text-lg text-gray-500 dark:text-gray-400 leading-relaxed max-w-md">
           A timeline of roles where I've built products, solved real problems,
           and grown as an engineer across startups and freelance work.
         </p>
@@ -61,8 +25,8 @@ const experiences = [
 
     {/* Timeline */}
     <div class="flex flex-col">
-      {experiences.map((exp) => (
-        <div class="group border-t border-gray-200 py-8 sm:py-10 md:py-14 transition-all duration-300">
+      {experienceData.map((exp) => (
+        <div class="group border-t border-gray-200 dark:border-gray-700/50 py-8 sm:py-10 md:py-14 transition-all duration-300">
           <div class="flex flex-col sm:grid sm:grid-cols-12 gap-5 sm:gap-6 md:gap-10 sm:items-start">
             {/* Left: Number + Role info */}
             <div class="sm:col-span-4 flex items-start gap-3 sm:gap-5">
@@ -71,7 +35,7 @@ const experiences = [
               </span>
               <div class="min-w-0">
                 <div class="flex items-center gap-2 flex-wrap">
-                  <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 group-hover:text-[var(--brand-dark)] transition-colors duration-300 leading-snug">
+                  <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-[var(--brand-dark)] dark:group-hover:text-gray-300 transition-colors duration-300 leading-snug">
                     {exp.role}
                   </h3>
                   {exp.current && (
@@ -81,8 +45,8 @@ const experiences = [
                     </span>
                   )}
                 </div>
-                <p class="text-sm font-medium text-gray-500 mt-1">{exp.company}</p>
-                <p class="text-xs font-medium tracking-wider text-gray-400 uppercase mt-2">{exp.period}</p>
+                <p class="text-sm font-medium text-gray-500 dark:text-gray-400 mt-1">{exp.company}</p>
+                <p class="text-xs font-medium tracking-wider text-gray-400 dark:text-gray-500 uppercase mt-2">{exp.period}</p>
               </div>
             </div>
 
@@ -91,12 +55,8 @@ const experiences = [
               <ul class="space-y-3 sm:space-y-4">
                 {exp.points.map((point) => (
                   <li class="flex items-start gap-3 sm:gap-4">
-                    <CheckCircle2
-                      client:load
-                      size={18}
-                      className="text-gray-300 flex-shrink-0 mt-0.5 group-hover:text-[var(--brand-dark)] transition-colors duration-300"
-                    />
-                    <span class="text-sm sm:text-base text-gray-500 leading-relaxed">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-300 dark:text-gray-600 flex-shrink-0 mt-0.5 group-hover:text-[var(--brand-dark)] dark:group-hover:text-gray-400 transition-colors duration-300"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                    <span class="text-sm sm:text-base text-gray-500 dark:text-gray-400 leading-relaxed">
                       {point}
                     </span>
                   </li>
@@ -106,7 +66,7 @@ const experiences = [
           </div>
         </div>
       ))}
-      <div class="border-t border-gray-200"></div>
+      <div class="border-t border-gray-200 dark:border-gray-700/50"></div>
     </div>
   </div>
 </section>
