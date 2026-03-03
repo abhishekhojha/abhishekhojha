@@ -151,6 +151,8 @@ const {
         let overlay = null;
         let doneTimer = null;
         let showOverlayTimer = null;
+        let safetyTimer = null;
+        let isLoading = false;
 
         function getBar() {
           if (!bar) {
@@ -167,6 +169,7 @@ const {
         }
 
         function start() {
+          isLoading = true;
           const el = getBar();
           if (el) {
             clearTimeout(doneTimer);
@@ -185,9 +188,16 @@ const {
               }, 10);
             }, 100);
           }
+
+          // Safety: auto-cancel loader after 10s if finish() never fires
+          clearTimeout(safetyTimer);
+          safetyTimer = setTimeout(finish, 10000);
         }
 
         function finish() {
+          isLoading = false;
+          clearTimeout(safetyTimer);
+
           const el = getBar();
           if (el) {
             el.classList.remove("loading");
@@ -208,6 +218,13 @@ const {
             }, 300);
           }
         }
+
+        // Cancel loader when user returns to the tab (e.g. from mail client or Cloudflare alert)
+        document.addEventListener("visibilitychange", function () {
+          if (!document.hidden && isLoading) {
+            finish();
+          }
+        });
 
         document.addEventListener("astro:before-preparation", start);
         document.addEventListener("astro:after-swap", function () {
