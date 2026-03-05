@@ -1,27 +1,18 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { renderToHtml } from "../../lib/tiptap";
-import type { BlogPost } from "../../lib/types";
 import Contact from "../../components/Contact.astro";
+import { fetchPost, fetchCategories } from "../../lib/api";
 
 export const prerender = false;
 
-import apiClient from "../../lib/axios";
-
 const { slug } = Astro.params;
 
-const [res, catsRes] = await Promise.all([
-  apiClient.get(new URL(`/api/posts/${slug}`, Astro.url.origin).toString(), {
-    validateStatus: () => true,
-  }),
-  apiClient.get(new URL("/api/categories", Astro.url.origin).toString(), {
-    validateStatus: () => true,
-  }),
+const [post, categories] = await Promise.all([
+  fetchPost(slug!),
+  fetchCategories(),
 ]);
-if (res.status !== 200) return Astro.redirect("/404");
-
-const post: BlogPost = res.data;
-const categories = catsRes.status === 200 ? catsRes.data : [];
+if (!post) return Astro.redirect("/404");
 
 const contentHtml = post.content ? renderToHtml(post.content) : "";
 
