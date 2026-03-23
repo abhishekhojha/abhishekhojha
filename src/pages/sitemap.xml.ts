@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import apiClient from "../lib/axios";
 
-const SITE = "https://abhishekhojha.com";
+const SITE = "https://www.abhishekhojha.com";
 
 const staticRoutes = [
   { url: "/", priority: "1.0", changefreq: "weekly" },

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://abhishekhojha.com/sitemap.xml
+Sitemap: https://www.abhishekhojha.com/sitemap.xml
