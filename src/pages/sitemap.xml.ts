@@ -62,7 +62,7 @@ export const GET: APIRoute = async () => {
   return new Response(toXml(urls), {
     headers: {
       "Content-Type": "application/xml; charset=utf-8",
-      "Cache-Control": "public, max-age=3600",
+      "Cache-Control": "public, max-age=0",
     },
   });
 };
