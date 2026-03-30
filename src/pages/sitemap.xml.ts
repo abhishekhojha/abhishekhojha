@@ -1,13 +1,12 @@
 import type { APIRoute } from "astro";
 import apiClient from "../lib/axios";
 
-const SITE = "https://abhishekhojha.com";
+const SITE = "https://www.abhishekhojha.com";
 
 const staticRoutes = [
   { url: "/", priority: "1.0", changefreq: "weekly" },
   { url: "/learnings", priority: "0.9", changefreq: "daily" },
   { url: "/projects", priority: "0.8", changefreq: "monthly" },
-  { url: "/uses", priority: "0.6", changefreq: "monthly" },
 ];
 
 function toXml(urls: { loc: string; lastmod?: string; changefreq?: string; priority?: string }[]) {
@@ -62,7 +61,7 @@ export const GET: APIRoute = async () => {
   return new Response(toXml(urls), {
     headers: {
       "Content-Type": "application/xml; charset=utf-8",
-      "Cache-Control": "public, max-age=3600",
+      "Cache-Control": "public, max-age=0",
     },
   });
 };
