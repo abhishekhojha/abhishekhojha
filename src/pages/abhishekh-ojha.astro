@@ -8,36 +8,102 @@ export const prerender = true;
   description="Learn more about Abhishekh Ojha (also known as Abhishek Ojha), a Full Stack Developer and AI Engineer building scalable web applications."
   url="https://www.abhishekhojha.com/abhishekh-ojha"
 >
-  <main class="container mx-auto px-4 py-24 min-h-screen text-gray-800 dark:text-gray-200">
+  <main
+    class="container mx-auto px-4 pt-24 sm:pt-28 md:pt-36 py-24 min-h-screen text-gray-800 dark:text-gray-200"
+  >
     <div class="max-w-3xl mx-auto space-y-6">
-      <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">
+      <h1
+        class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight"
+      >
         Abhishekh Ojha
       </h1>
-      
+
       <p class="text-lg leading-relaxed">
-        Hello! I am <strong>Abhishekh Ojha</strong> (often spelled as <strong>Abhishek Ojha</strong>), a passionate Full Stack Developer and AI Automation Expert based in India. I specialize in building highly scalable, responsive web applications and integrating advanced AI capabilities into modern digital solutions.
+        Hello! I am <strong>Abhishekh Ojha</strong> (often spelled as <strong
+          >Abhishek Ojha</strong
+        >), a passionate Full Stack Developer and AI Automation Expert based in
+        India. I specialize in building highly scalable, responsive web
+        applications and integrating advanced AI capabilities into modern
+        digital solutions.
       </p>
 
       <p class="text-lg leading-relaxed">
-        With extensive experience in the MERN stack and Next.js ecosystem, I focus on delivering seamless user experiences and robust backend architectures. My journey in software engineering has allowed me to work on diverse projects, from high-performance e-commerce platforms to sophisticated AI-driven tools that streamline business operations.
+        With extensive experience in the MERN stack and Next.js ecosystem, I
+        focus on delivering seamless user experiences and robust backend
+        architectures. My journey in software engineering has allowed me to work
+        on diverse projects, from high-performance e-commerce platforms to
+        sophisticated AI-driven tools that streamline business operations.
       </p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4 text-gray-900 dark:text-gray-100">
         My Expertise
       </h2>
-      <ul class="list-disc list-inside space-y-2 text-lg">
-        <li><strong>Frontend Development:</strong> React, Next.js, Astro, Tailwind CSS</li>
-        <li><strong>Backend Development:</strong> Node.js, Express, MongoDB, PostgreSQL</li>
-        <li><strong>AI & Automation:</strong> LLM Integrations, LangChain, Custom AI Workflows</li>
-        <li><strong>DevOps & Deployment:</strong> Docker, AWS, Vercel, CI/CD Pipelines</li>
+      <ul
+        class="list-disc list-inside space-y-2 text-lg text-gray-700 dark:text-gray-300"
+      >
+        <li>
+          <strong>Frontend Development:</strong> HTML5, CSS3, JavaScript, React.js,
+          Next.js
+        </li>
+        <li>
+          <strong>Backend Development:</strong> Node.js, Express.js, PHP, Laravel,
+          Python
+        </li>
+        <li><strong>Databases:</strong> MongoDB, MySQL</li>
+        <li><strong>CMS & E-commerce:</strong> WordPress, Shopify</li>
+        <li><strong>Version Control & Deployment:</strong> Git, Vercel</li>
       </ul>
 
+      <h2
+        class="text-2xl font-bold mt-10 mb-3 text-gray-900 dark:text-gray-100"
+      >
+        Technologies I Use
+      </h2>
+      <p class="text-lg leading-relaxed mb-5 text-gray-600 dark:text-gray-400">
+        A versatile toolkit spanning front-end, back-end, databases, and
+        deployment — chosen for real-world reliability.
+      </p>
+      <div class="flex flex-wrap gap-2.5 mb-8">
+        {
+          [
+            "HTML5",
+            "CSS3",
+            "JavaScript",
+            "React.js",
+            "Next.js",
+            "Node.js",
+            "Express.js",
+            "PHP",
+            "Laravel",
+            "Python",
+            "MongoDB",
+            "MySQL",
+            "WordPress",
+            "Shopify",
+            "Git",
+            "Vercel",
+          ].map((tech) => (
+            <span class="px-3.5 py-1.5 bg-gray-50 dark:bg-gray-800/80 text-gray-800 dark:text-gray-200 text-sm font-medium rounded-lg border border-gray-200 dark:border-gray-700/80 shadow-sm hover:-translate-y-0.5 transition-transform duration-200">
+              {tech}
+            </span>
+          ))
+        }
+      </div>
+
       <p class="text-lg leading-relaxed mt-6">
-        As <strong>Abhishek Ojha</strong>, I constantly strive to stay at the forefront of technology, embracing new frameworks and methodologies to solve complex problems efficiently. Whether it's architecting a new application from scratch or optimizing an existing system for better performance and SEO, I bring dedication and a detail-oriented approach to every project.
+        As <strong>Abhishek Ojha</strong>, I constantly strive to stay at the
+        forefront of technology, embracing new frameworks and methodologies to
+        solve complex problems efficiently. Whether it's architecting a new
+        application from scratch or optimizing an existing system for better
+        performance and SEO, I bring dedication and a detail-oriented approach
+        to every project.
       </p>
 
       <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
-        <a href="/" class="text-[var(--brand-dark)] dark:text-[var(--brand-light)] font-semibold hover:underline">
+        <a
+          href="/"
+          class="text-[var(--brand-dark)] dark:text-[var(--brand-light)] font-semibold hover:underline"
+        >
           &larr; Back to Homepage
         </a>
       </div>
