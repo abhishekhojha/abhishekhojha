@@ -7,6 +7,7 @@ const staticRoutes = [
   { url: "/", priority: "1.0", changefreq: "weekly" },
   { url: "/learnings", priority: "0.9", changefreq: "daily" },
   { url: "/projects", priority: "0.8", changefreq: "monthly" },
+  { url: "/abhishekh-ojha", priority: "0.9", changefreq: "monthly" },
 ];
 
 function toXml(urls: { loc: string; lastmod?: string; changefreq?: string; priority?: string }[]) {

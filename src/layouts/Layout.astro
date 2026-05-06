@@ -9,12 +9,13 @@ interface Props {
   image?: string | null;
 }
 import Menu from "./menu.astro";
+import SEO from "../components/SEO.astro";
 
 const {
   title,
   description = "Portfolio of Abhishekh Ojha (Abhishek Ojha) - Software Engineer building scalable, responsive web applications and AI Automation Expert.",
   keywords = "Abhishek Ojha, Abhishekh Ojha, Software Engineer, Full-Stack Developer, AI Engineer, AI Automation Expert, Web Developer, MERN Stack, Next.js, Indore, India",
-  url = "https://abhishekhojha.com/",
+  url = "https://www.abhishekhojha.com/",
   image = "/abhishekh.png",
 } = Astro.props;
 ---
@@ -53,62 +54,7 @@ const {
       })();
     </script>
 
-    {/* Basic SEO */}
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta name="keywords" content={keywords} />
-    <meta name="author" content="Abhishek Ojha" />
-    <link rel="canonical" href={url} />
-
-    {/* Open Graph / Facebook */}
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={url} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta
-      property="og:image"
-      content={image
-        ? image.startsWith("http")
-          ? image
-          : `https://abhishekhojha.com${image}`
-        : "https://abhishekhojha.com/abhishekh.png"}
-    />
-
-    {/* Twitter */}
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={url} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta
-      property="twitter:image"
-      content={image
-        ? image.startsWith("http")
-          ? image
-          : `https://abhishekhojha.com${image}`
-        : "https://abhishekhojha.com/abhishekh.png"}
-    />
-
-    {/* Structured Data (JSON-LD) for SEO */}
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Person",
-        name: "Abhishekh Ojha",
-        alternateName: "Abhishek Ojha",
-        url: "https://abhishekhojha.com/",
-        image: "https://abhishekhojha.com/abhishekh.png",
-        jobTitle: "Software Engineer & AI Engineer",
-        worksFor: {
-          "@type": "Organization",
-          name: "Westack.ai",
-        },
-        sameAs: [
-          "https://www.linkedin.com/in/abhishekh-ojha-10802b215/",
-          "https://github.com/abhishekhojha",
-        ],
-      })}
-    />
+    <SEO title={title} description={description} keywords={keywords} url={url} image={image} />
 
     <ClientRouter />
     <meta name="generator" content={Astro.generator} />
