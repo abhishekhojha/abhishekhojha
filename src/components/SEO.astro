@@ -1,0 +1,66 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  keywords?: string;
+  url?: string;
+  image?: string | null;
+}
+
+const {
+  title,
+  description = "Portfolio of Abhishekh Ojha (Abhishek Ojha) - Software Engineer building scalable, responsive web applications and AI Automation Expert.",
+  keywords = "Abhishek Ojha, Abhishekh Ojha, Software Engineer, Full-Stack Developer, AI Engineer, AI Automation Expert, Web Developer, MERN Stack, Next.js, Indore, India",
+  url = "https://www.abhishekhojha.com/",
+  image = "/abhishekh.png",
+} = Astro.props;
+
+const fullImageUrl = image
+  ? image.startsWith("http")
+    ? image
+    : `https://www.abhishekhojha.com${image}`
+  : "https://www.abhishekhojha.com/abhishekh.png";
+---
+
+{/* Basic SEO */}
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta name="author" content="Abhishekh Ojha" />
+<link rel="canonical" href={url} />
+
+{/* Open Graph / Facebook */}
+<meta property="og:type" content="website" />
+<meta property="og:url" content={url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={fullImageUrl} />
+
+{/* Twitter */}
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={fullImageUrl} />
+
+{/* Structured Data (JSON-LD) for SEO */}
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Abhishekh Ojha",
+    alternateName: "Abhishek Ojha",
+    url: "https://www.abhishekhojha.com",
+    image: "https://www.abhishekhojha.com/abhishekh.png",
+    jobTitle: "Software Engineer & AI Engineer",
+    worksFor: {
+      "@type": "Organization",
+      name: "Westack.ai",
+    },
+    sameAs: [
+      "https://www.linkedin.com/in/abhishekh-ojha-10802b215/",
+      "https://github.com/abhishekhojha",
+    ]
+  })}
+/>

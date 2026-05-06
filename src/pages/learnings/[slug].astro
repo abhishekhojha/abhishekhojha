@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import { renderToHtml } from "../../lib/tiptap";
 import Contact from "../../components/Contact.astro";
 import { fetchPost, fetchCategories } from "../../lib/api";
+import { Image } from "astro:assets";
 
 export const prerender = false;
 
@@ -63,11 +64,13 @@ const allCategories = rawCategories.map((cat) => {
       {
         post.coverImage && (
           <div class="w-full overflow-hidden mb-4">
-            <img
+            <Image
               src={post.coverImage}
               alt={post.title}
+              width={1200}
+              height={675}
               class="w-full aspect-[16/9] object-cover rounded-2xl"
-              loading="eager"
+              loading="lazy"
             />
           </div>
         )

@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Contact from "../../components/Contact.astro";
 import { fetchPosts, fetchCategories } from "../../lib/api";
+import { Image } from "astro:assets";
 
 export const prerender = false;
 
@@ -120,9 +121,11 @@ function getCategoryName(catIdOrSlug: string) {
                   {post.coverImage ? (
                     <div class="sm:col-span-3">
                       <div class="aspect-[16/9] rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800">
-                        <img
+                        <Image
                           src={post.coverImage}
                           alt={post.title}
+                          width={800}
+                          height={450}
                           class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           loading="lazy"
                         />
