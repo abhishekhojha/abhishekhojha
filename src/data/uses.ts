@@ -33,7 +33,7 @@ export const usesData: UsesCategory[] = [
     category: "Frontend",
     icon: "🎨",
     items: [
-      { name: "React / Next.js", description: "Go-to framework for building full-stack web applications.", url: "https://nextjs.org" },
+      { name: "React / Next.js", description: "Go-to framework for building full stack web applications.", url: "https://nextjs.org" },
       { name: "Astro", description: "Static site framework powering this portfolio.", url: "https://astro.build" },
       { name: "Tailwind CSS", description: "Utility-first CSS for rapid, consistent UI development.", url: "https://tailwindcss.com" },
       { name: "Figma", description: "UI design, wireframing, and component prototyping.", url: "https://figma.com" },
@@ -53,7 +53,7 @@ export const usesData: UsesCategory[] = [
     category: "AI & Automation",
     icon: "🤖",
     items: [
-      { name: "N8N", description: "Open-source workflow automation for building no-code AI pipelines.", url: "https://n8n.io" },
+      { name: "n8n", description: "Open-source workflow automation for building no-code AI pipelines.", url: "https://n8n.io" },
       { name: "Google Gemini API", description: "Used for building AI content generation and analysis tools.", url: "https://ai.google.dev" },
       { name: "OpenAI API", description: "LLM integrations for chat, summarization, and automation.", url: "https://openai.com" },
     ],

@@ -29,23 +29,23 @@ export const projectsData: Project[] = [
     slug: "ai-lead-capture",
     title: "AI Lead Capture",
     description:
-      "A workflow automation project utilizing N8N to seamlessly capture web leads and execute automatic follow-up sequences across email, SMS, and messaging platforms.",
-    skills: ["N8N", "Webhooks", "CRM", "Automation"],
+      "A workflow automation project utilizing n8n to seamlessly capture web leads and execute automatic follow-up sequences across email, SMS, and messaging platforms.",
+    skills: ["n8n", "Webhooks", "CRM", "Automation"],
   },
   {
     slug: "sage-euphoria",
     title: "Sage Euphoria",
     description:
       "A modern single-page application featuring dynamic client-side routing and real-time interactivity. Deployed on Vercel for optimal performance and scalability.",
-    skills: ["React", "Next.js", "Vercel"],
+    skills: ["React.js", "Next.js", "Vercel"],
     demoUrl: "https://sageeuphoria.vercel.app",
   },
   {
     slug: "roomieq",
     title: "RoomieQ",
     description:
-      "A full-stack portal for roommate and property discovery, featuring advanced search filters, location-based results, and integrated backend systems for user profiles.",
-    skills: ["MERN", "Express.js", "MongoDB", "React"],
+      "A full stack portal for roommate and property discovery, featuring advanced search filters, location-based results, and integrated backend systems for user profiles.",
+    skills: ["MERN", "Express.js", "MongoDB", "React.js"],
     demoUrl: "https://roomieqindia.com",
   },
   {
@@ -53,7 +53,7 @@ export const projectsData: Project[] = [
     title: "Builds Your Mind",
     description:
       "An edtech platform offering skill development courses, practice tests, and blogs. Features a responsive layout with course sections and clear engagement CTAs.",
-    skills: ["MERN", "Razorpay", "Node.js", "React"],
+    skills: ["MERN", "Razorpay", "Node.js", "React.js"],
     imageUrl: "/projects/builds.png",
     demoUrl: "https://buildsyourmind.in",
   },
@@ -79,7 +79,7 @@ export const projectsData: Project[] = [
     title: "Mangrole.in",
     description:
       "A professional business website showcasing services and organizational details. Designed for optimal user engagement, clear communication, and modern aesthetics.",
-    skills: ["React", "Node.js", "Tailwind CSS"],
+    skills: ["React.js", "Node.js", "Tailwind CSS"],
     demoUrl: "https://mangrole.in",
   },
   {
@@ -87,7 +87,7 @@ export const projectsData: Project[] = [
     title: "AI Social Media Tool",
     description:
       "Built an AI-powered post content generator utilizing Google's Gemini model. Implements dynamic templates to rapidly generate platform-ready posts.",
-    skills: ["Gemini AI", "Node.js", "React", "Automation"],
+    skills: ["Gemini AI", "Node.js", "React.js", "Automation"],
   },
   {
     slug: "ai-listing-generator",

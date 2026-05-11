@@ -15,7 +15,7 @@ export const experienceData: Experience[] = [
     period: "July 2025 — Present",
     current: true,
     points: [
-      "Developing and maintaining full-stack web applications in a professional environment.",
+      "Developing and maintaining full stack web applications in a professional environment.",
       "Contributing to innovative projects that require advanced AI implementation.",
     ],
   },
