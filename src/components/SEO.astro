@@ -5,6 +5,10 @@ interface Props {
   keywords?: string;
   url?: string;
   image?: string | null;
+  type?: "website" | "article";
+  publishedTime?: string;
+  updatedTime?: string;
+  tags?: string[];
 }
 
 const {
@@ -13,7 +17,15 @@ const {
   keywords = "Abhishekh Ojha, Software Engineer, Full Stack Developer, AI Engineer, AI Automation Expert, Web Developer, MERN Stack, Next.js, Indore, India",
   url = "https://www.abhishekhojha.com/",
   image = "/abhishekh.png",
+  type = "website",
+  publishedTime,
+  updatedTime,
+  tags = [],
 } = Astro.props;
+
+// Use tags as keywords if they exist
+const finalKeywords =
+  tags && tags.length > 0 ? [...tags, "Abhishekh Ojha"].join(", ") : keywords;
 
 const fullImageUrl = image
   ? image.startsWith("http")
@@ -25,16 +37,28 @@ const fullImageUrl = image
 {/* Basic SEO */}
 <title>{title}</title>
 <meta name="description" content={description} />
-<meta name="keywords" content={keywords} />
+<meta name="keywords" content={finalKeywords} />
 <meta name="author" content="Abhishekh Ojha" />
 <link rel="canonical" href={url} />
 
 {/* Open Graph / Facebook */}
-<meta property="og:type" content="website" />
+<meta property="og:type" content={type} />
 <meta property="og:url" content={url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={fullImageUrl} />
+
+{
+  type === "article" && publishedTime && (
+    <meta property="article:published_time" content={publishedTime} />
+  )
+}
+{
+  type === "article" && updatedTime && (
+    <meta property="article:modified_time" content={updatedTime} />
+  )
+}
+{type === "article" && tags.map((tag) => <meta property="article:tag" content={tag} />)}
 
 {/* Twitter */}
 <meta property="twitter:card" content="summary_large_image" />
@@ -48,18 +72,33 @@ const fullImageUrl = image
   type="application/ld+json"
   set:html={JSON.stringify({
     "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Abhishekh Ojha",
-    url: "https://www.abhishekhojha.com",
-    image: "https://www.abhishekhojha.com/abhishekh.png",
-    jobTitle: "Software Engineer & AI Engineer",
-    worksFor: {
-      "@type": "Organization",
-      name: "Westack.ai",
-    },
-    sameAs: [
-      "https://www.linkedin.com/in/abhishekh-ojha-10802b215/",
-      "https://github.com/abhishekhojha",
-    ]
+    "@type": type === "article" ? "BlogPosting" : "Person",
+    ...(type === "article"
+      ? {
+          headline: title,
+          description: description,
+          image: fullImageUrl,
+          datePublished: publishedTime,
+          dateModified: updatedTime,
+          author: {
+            "@type": "Person",
+            name: "Abhishekh Ojha",
+            url: "https://www.abhishekhojha.com",
+          },
+        }
+      : {
+          name: "Abhishekh Ojha",
+          url: "https://www.abhishekhojha.com",
+          image: "https://www.abhishekhojha.com/abhishekh.png",
+          jobTitle: "Software Engineer & AI Engineer",
+          worksFor: {
+            "@type": "Organization",
+            name: "Westack.ai",
+          },
+          sameAs: [
+            "https://www.linkedin.com/in/abhishekh-ojha-10802b215/",
+            "https://github.com/abhishekhojha",
+          ],
+        }),
   })}
 />

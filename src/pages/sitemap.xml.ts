@@ -41,7 +41,7 @@ export const GET: APIRoute = async () => {
 
   if (beUrl) {
     try {
-      const res = await apiClient.get(`${beUrl}/posts?limit=100`, { validateStatus: () => true });
+      const res = await apiClient.get(`${beUrl}/posts?limit=500`, { validateStatus: () => true });
       if (res.status === 200) {
         const posts: { slug: string; updatedAt?: string; pubDate?: string }[] = res.data;
         for (const post of posts) {

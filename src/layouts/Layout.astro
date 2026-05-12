@@ -7,6 +7,10 @@ interface Props {
   keywords?: string;
   url?: string;
   image?: string | null;
+  type?: "website" | "article";
+  publishedTime?: string;
+  updatedTime?: string;
+  tags?: string[];
 }
 import Menu from "./menu.astro";
 import SEO from "../components/SEO.astro";
@@ -17,6 +21,10 @@ const {
   keywords = "Abhishekh Ojha, Software Engineer, Full Stack Developer, AI Engineer, AI Automation Expert, Web Developer, MERN Stack, Next.js, Indore, India",
   url = "https://www.abhishekhojha.com/",
   image = "/abhishekh.png",
+  type,
+  publishedTime,
+  updatedTime,
+  tags,
 } = Astro.props;
 ---
 
@@ -54,7 +62,17 @@ const {
       })();
     </script>
 
-    <SEO title={title} description={description} keywords={keywords} url={url} image={image} />
+    <SEO
+      title={title}
+      description={description}
+      keywords={keywords}
+      url={url}
+      image={image}
+      type={type}
+      publishedTime={publishedTime}
+      updatedTime={updatedTime}
+      tags={tags}
+    />
 
     <ClientRouter />
     <meta name="generator" content={Astro.generator} />
@@ -180,7 +198,11 @@ const {
         document.addEventListener("astro:page-load", finish);
       })();
     </script>
-    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
