@@ -74,7 +74,6 @@ I build scalable web applications and AI-powered automation workflows that solve
 | [**Ministry of Steel**](https://steel.gov.in) | Official Government of India portal — contributed to UX & accessibility | WordPress, PHP, SEO |
 | [**AI Listing Generator**](https://product-listing-generator-seven.vercel.app) | Automated e-commerce listing tool powered by Gemini AI | Next.js, Gemini AI, TypeScript |
 | [**RoomieQ**](https://roomieqindia.com) | Full-stack roommate & property discovery platform | MERN, Express.js, MongoDB |
-| [**Builds Your Mind**](https://buildsyourmind.in) | EdTech platform with courses, tests & Razorpay payments | MERN, Razorpay, Node.js |
 | [**AI Lead Capture**](#) | N8N workflow automation for lead capture & follow-ups | N8N, Webhooks, CRM |
 
 > 🔗 See all projects at [abhishekhojha.com/projects](https://abhishekhojha.com/projects)

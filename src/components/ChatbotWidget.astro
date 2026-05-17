@@ -1,0 +1,976 @@
+---
+// ChatbotWidget.astro
+// A premium, interactive FAQ chatbot widget matching Abhishekh Ojha's minimalist portfolio theme.
+---
+
+<!-- Chatbot Root Container with transition:persist to keep the widget state across Astro transitions -->
+<div
+  id="ai-chatbot-root"
+  class="fixed bottom-6 right-6 z-[999] font-[Poppins,sans-serif]"
+  transition:persist
+>
+  <!-- 1. POP-UP WELCOME TIP (Minimalist, dismissal stored in localStorage) -->
+  <div
+    id="chatbot-welcome-tip"
+    class="absolute bottom-20 right-2 w-72 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-xl dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-4 transition-all duration-500 transform translate-y-4 opacity-0 pointer-events-none flex gap-3 items-start select-none"
+  >
+    <div
+      class="w-8 h-8 rounded-full bg-[#212121] dark:bg-white dark:text-[#212121] flex items-center justify-center text-white text-sm shrink-0 shadow-md font-bold"
+    >
+      👋
+    </div>
+    <div class="flex-1">
+      <div class="flex justify-between items-start">
+        <h4 class="text-xs font-bold text-gray-900 dark:text-gray-100">
+          Abhishekh's AI
+        </h4>
+        <button
+          id="close-welcome-tip"
+          class="text-gray-400 hover:text-gray-650 dark:hover:text-gray-200 transition-colors"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><line x1="18" y1="6" x2="6" y2="18"></line><line
+              x1="6"
+              y1="6"
+              x2="18"
+              y2="18"></line></svg
+          >
+        </button>
+      </div>
+      <p
+        class="text-[11px] text-gray-500 dark:text-gray-400 mt-1 leading-relaxed"
+      >
+        Hi! Have any questions about my work, skills, or projects? Let's chat!
+      </p>
+    </div>
+    <!-- Tip Triangle Pointer -->
+    <div
+      class="absolute bottom-[-6px] right-6 w-3 h-3 bg-white dark:bg-gray-900 border-r border-b border-gray-200 dark:border-gray-800 transform rotate-45"
+    >
+    </div>
+  </div>
+
+  <!-- 2. FLOATING TRIGGER BUTTON (FAB) -->
+  <button
+    id="chatbot-toggle-btn"
+    class="relative group w-14 h-14 rounded-full bg-[#212121] dark:bg-white hover:bg-[#333333] dark:hover:bg-gray-100 text-white dark:text-[#212121] flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 focus:outline-none z-10 border border-transparent dark:border-gray-250"
+  >
+    <!-- Pulse Effect Background Rings -->
+    <span
+      class="absolute inset-0 rounded-full bg-[#212121] dark:bg-white opacity-20 animate-ping group-hover:animate-none scale-105 -z-10"
+    ></span>
+
+    <!-- Unread Notification Badge -->
+    <span
+      id="chatbot-badge"
+      class="absolute -top-1 -right-1 w-5.5 h-5.5 bg-rose-500 text-white border-2 border-white dark:border-gray-900 rounded-full text-[10px] font-bold flex items-center justify-center shadow-sm select-none animate-bounce"
+      >1</span
+    >
+
+    <!-- Chat Icon -->
+    <svg
+      id="icon-chat"
+      class="w-6 h-6 transition-all duration-300"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+      ></path>
+    </svg>
+
+    <!-- Close Icon -->
+    <svg
+      id="icon-close"
+      class="w-6 h-6 hidden transition-all duration-300 transform rotate-90"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="2.5"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+  </button>
+
+  <!-- 3. CHAT PANEL (Styled like website's contact card) -->
+  <div
+    id="chatbot-panel"
+    class="fixed bottom-24 right-6 w-[380px] max-w-[calc(100vw-32px)] h-[540px] max-h-[calc(100vh-120px)] flex flex-col bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/80 rounded-2xl shadow-2xl dark:shadow-[0_4px_24px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-350 transform scale-90 translate-y-8 opacity-0 pointer-events-none z-0"
+  >
+    <!-- PANEL HEADER: Minimalist charcoal / dark grey theme -->
+    <div
+      class="bg-[#212121] dark:bg-black text-white px-4 py-3 flex items-center justify-between shrink-0 shadow-md border-b border-transparent dark:border-gray-850"
+    >
+      <div class="flex items-center gap-3">
+        <!-- Avatar Container -->
+        <div
+          class="relative w-9 h-9 rounded-full bg-white/10 border border-white/20 overflow-hidden flex items-center justify-center shrink-0 shadow-inner"
+        >
+          <img
+            src="/profile.jpeg"
+            alt="Abhishekh Ojha"
+            class="w-full h-full object-cover error-fallback"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          />
+          <div
+            class="hidden w-full h-full items-center justify-center bg-gray-700 font-bold text-xs uppercase text-white"
+          >
+            AO
+          </div>
+
+          <!-- Online status dot -->
+          <span
+            class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border border-[#212121] dark:border-black rounded-full animate-pulse"
+          ></span>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold leading-tight tracking-wide">
+            Abhishekh's AI
+          </h3>
+          <p
+            class="text-[10px] text-gray-400 dark:text-gray-500 flex items-center gap-1 mt-0.5 font-medium"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Online &
+            ready to help
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-1.5">
+        <!-- Reset / Clear Conversation Button -->
+        <button
+          id="chatbot-reset-btn"
+          class="p-1.5 rounded-lg hover:bg-white/10 text-white/80 hover:text-white transition-colors"
+          title="Clear chat history"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><path d="M3 6h18"></path><path
+              d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path
+              d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path><line
+              x1="10"
+              y1="11"
+              x2="10"
+              y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg
+          >
+        </button>
+        <!-- Close Panel Button -->
+        <button
+          id="chatbot-close-btn"
+          class="p-1.5 rounded-lg hover:bg-white/10 text-white/80 hover:text-white transition-colors"
+          title="Minimize chat"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><line x1="18" y1="6" x2="6" y2="18"></line><line
+              x1="6"
+              y1="6"
+              x2="18"
+              y2="18"></line></svg
+          >
+        </button>
+      </div>
+    </div>
+
+    <!-- PANEL BODY: Scrollable conversation area -->
+    <div
+      id="chatbot-messages"
+      class="flex-1 overflow-y-auto p-4 space-y-4 scroll-smooth bg-gray-50/30 dark:bg-[#0c0c0c]/40 scrollbar-thin"
+    >
+      <!-- Chat history is injected here by Javascript -->
+    </div>
+
+    <!-- TYPING INDICATOR BUBBLE (Hidden by default) -->
+    <div
+      id="chatbot-typing"
+      class="hidden px-4 py-2 bg-gray-50/20 dark:bg-[#0c0c0c]/10 shrink-0"
+    >
+      <div class="flex items-start gap-2.5">
+        <div
+          class="w-6.5 h-6.5 rounded-full bg-[#212121] dark:bg-white dark:text-[#212121] flex items-center justify-center text-white text-[10px] shrink-0 font-bold shadow-sm"
+        >
+          🤖
+        </div>
+        <div
+          class="bg-[#f0f0f0] dark:bg-gray-800/80 rounded-2xl rounded-tl-none px-3.5 py-2 flex items-center gap-1 shadow-sm border border-gray-250/20 dark:border-gray-700/20"
+        >
+          <span
+            class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500 animate-bounce"
+            style="animation-delay: 0ms"></span>
+          <span
+            class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500 animate-bounce"
+            style="animation-delay: 150ms"></span>
+          <span
+            class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500 animate-bounce"
+            style="animation-delay: 300ms"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PERSISTENT SUGGESTIONS BAR (Horizontal scrolling FAQ list, matching website button styles) -->
+    <div
+      class="px-3 py-2 border-t border-gray-100 dark:border-gray-800/60 bg-gray-50/70 dark:bg-[#101010]/30 shrink-0"
+    >
+      <p
+        class="text-[10px] font-semibold text-gray-400 dark:text-gray-500 mb-1.5 px-1 uppercase tracking-wider"
+      >
+        Suggested Questions
+      </p>
+      <div
+        class="flex gap-2 overflow-x-auto pb-2.5 faq-scroll-container snap-x faq-scroll-mask"
+      >
+        <button
+          class="faq-pill shrink-0 snap-start text-[11px] font-semibold px-3 py-1.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-white/5 hover:bg-gray-50 dark:hover:bg-white/10 text-[#212121] dark:text-gray-200 transition-all duration-205 active:scale-95 shadow-sm"
+          data-question="About Me"
+        >
+          👋 About Me
+        </button>
+        <button
+          class="faq-pill shrink-0 snap-start text-[11px] font-semibold px-3 py-1.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-white/5 hover:bg-gray-50 dark:hover:bg-white/10 text-[#212121] dark:text-gray-200 transition-all duration-205 active:scale-95 shadow-sm"
+          data-question="Experience"
+        >
+          💼 Journey
+        </button>
+        <button
+          class="faq-pill shrink-0 snap-start text-[11px] font-semibold px-3 py-1.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-white/5 hover:bg-gray-50 dark:hover:bg-white/10 text-[#212121] dark:text-gray-200 transition-all duration-205 active:scale-95 shadow-sm"
+          data-question="Skills"
+        >
+          🛠️ Skills
+        </button>
+        <button
+          class="faq-pill shrink-0 snap-start text-[11px] font-semibold px-3 py-1.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-white/5 hover:bg-gray-50 dark:hover:bg-white/10 text-[#212121] dark:text-gray-200 transition-all duration-205 active:scale-95 shadow-sm"
+          data-question="Projects"
+        >
+          🚀 Projects
+        </button>
+        <button
+          class="faq-pill shrink-0 snap-start text-[11px] font-semibold px-3 py-1.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-white/5 hover:bg-gray-50 dark:hover:bg-white/10 text-[#212121] dark:text-gray-200 transition-all duration-205 active:scale-95 shadow-sm"
+          data-question="Contact"
+        >
+          📞 Contact
+        </button>
+      </div>
+    </div>
+
+    <!-- PANEL FOOTER: Input Box (Matching text form focus states) -->
+    <!-- <form
+      id="chatbot-form"
+      class="border-t border-gray-100 dark:border-gray-800/80 p-3 bg-white dark:bg-gray-900 flex gap-2 items-center shrink-0"
+    >
+      <input
+        type="text"
+        id="chatbot-input"
+        autocomplete="off"
+        placeholder="Type a question or message..."
+        class="flex-1 bg-gray-50 dark:bg-[#181818] border border-gray-200 dark:border-gray-800/80 rounded-xl px-4 py-2.5 text-xs text-gray-850 dark:text-gray-150 focus:outline-none focus:border-[#212121] focus:ring-1 focus:ring-[#212121] dark:focus:border-white dark:focus:ring-white transition-all duration-200"
+      />
+      <button
+        type="submit"
+        id="chatbot-submit"
+        class="w-9 h-9 rounded-xl bg-[#212121] dark:bg-white text-white dark:text-[#212121] hover:bg-[#333333] dark:hover:bg-gray-100 flex items-center justify-center shrink-0 shadow-md hover:shadow-lg transition-all duration-200 active:scale-95 disabled:opacity-40 disabled:pointer-events-none"
+        disabled
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="transform rotate-45 translate-x-[-1px] translate-y-[1px]"
+          ><line x1="22" y1="2" x2="11" y2="13"></line><polygon
+            points="22 2 15 22 11 13 2 9 22 2"></polygon></svg
+        >
+      </button>
+    </form> -->
+  </div>
+</div>
+
+<style>
+  /* Custom Scrollbar Styles for the Chat Container */
+  #chatbot-messages::-webkit-scrollbar {
+    width: 5px;
+  }
+  #chatbot-messages::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  #chatbot-messages::-webkit-scrollbar-thumb {
+    background: #e2e8f0;
+    border-radius: 9999px;
+  }
+  .dark #chatbot-messages::-webkit-scrollbar-thumb {
+    background: #1f2937;
+  }
+  #chatbot-messages::-webkit-scrollbar-thumb:hover {
+    background: #cbd5e1;
+  }
+  .dark #chatbot-messages::-webkit-scrollbar-thumb:hover {
+    background: #374151;
+  }
+
+  /* Custom Styles for styling dynamically inserted HTML messages (Minimalist link styling) */
+  :global(.chat-link) {
+    color: #212121;
+    text-decoration: underline;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+  }
+  :global(.dark .chat-link) {
+    color: #ffffff;
+  }
+  :global(.chat-link:hover) {
+    opacity: 0.8;
+  }
+  :global(.chat-li) {
+    margin-left: 1rem;
+    list-style-type: disc;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+  :global(.chat-bold) {
+    font-weight: 700;
+  }
+
+  /* Horizontal scrollbar styling for suggested questions container */
+  .faq-scroll-container::-webkit-scrollbar {
+    height: 4px;
+  }
+  .faq-scroll-container::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 9999px;
+  }
+  .dark .faq-scroll-container::-webkit-scrollbar-track {
+    background: #1e293b;
+  }
+  .faq-scroll-container::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+  }
+  .dark .faq-scroll-container::-webkit-scrollbar-thumb {
+    background: #475569;
+  }
+  .faq-scroll-container::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+  .dark .faq-scroll-container::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+  }
+
+  /* Fade out right edge visual mask indicator */
+  .faq-scroll-mask {
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+  }
+</style>
+
+<script is:inline>
+  // ── CLIENT SIDE CHATBOT SCRIPT ──────────────────────────────────────────
+  // Works dynamically even across client-side page navigation thanks to Astro Lifecycle.
+  (function () {
+    // 1. KNOWLEDGE BASE
+    const KNOWLEDGE_BASE = {
+      about: `Hi! I'm **Abhishekh Ojha**, a passionate **Software Engineer** and **AI Automation Expert** based in Indore, India. 🇮🇳
+
+I specialize in building highly scalable, responsive web applications and AI-driven automation workflows that solve real-world problems. I have **3+ years of professional experience** in full-stack development, working with startups, enterprises, and individual clients.
+
+Would you like to know more about my **work experience**, **projects**, or **tech stack**? Click any of the options below!`,
+
+      experience: `I've had the privilege of working with some great companies! Here is a summary of my journey:
+
+1. **Full-Stack Developer** @ **Westack.ai, Indore** *(July 2025 — Present)*
+   - Building and scaling robust full stack web applications.
+   - Engineering advanced implementations leveraging Google Gemini, LLMs, and AI integrations.
+2. **Freelance Full-Stack Developer** *(Jan 2024 — June 2025)*
+   - Delivered bespoke end-to-end web applications for ed-tech platforms (e.g. **We Won Academy**), e-commerce sites, and service-based businesses.
+   - Built modular backend setups using MERN stack and secure checkouts like **Razorpay**.
+3. **Web Developer** @ **IT GEEKS** *(Aug 2022 — July 2023)*
+   - Developed scalable web applications using **Node.js**, **React.js**, **PHP**, **Laravel**, and **Shopify**.
+   - Optimized system performances and scaled codebases.
+
+Would you like to look at the specific **projects** I've built?`,
+
+      skills: `I work across the full stack with a strong focus on modern web tech and AI. My technical toolkit includes:
+
+* **Frontend**: React.js, Next.js, HTML5, CSS3, Tailwind CSS, Astro, JavaScript, TypeScript
+* **Backend & DB**: Node.js, Express.js, Laravel, PHP, MongoDB, PostgreSQL, SQL, Prisma ORM
+* **AI & Automation**: n8n workflows, Google Gemini AI API, custom LLM integrations, Webhooks, automation sequences
+* **DevOps & Tools**: Vercel, Git/GitHub, Docker, WordPress, WooCommerce, Shopify
+
+I love picking the right tool for the job to build clean, fast, and maintainable systems!`,
+
+      projects: `Here are a few notable projects I've built:
+
+* **🎓 We Won Academy**: A college predictor & career counseling platform with AI prediction models that assists JOSAA/CSAB engineering aspirants.
+* **🤖 AI Listing Generator**: A tool that dynamically creates SEO-optimized product listings using Gemini AI (built with Next.js, hosted on Vercel).
+* **⚡ AI Lead Capture**: An automated workflow built using n8n that captures leads from webhooks and launches multi-channel follow-up sequences.
+* **💼 Ministry of Steel Portal**: Enhanced usability, organizational mapping, and compliance for the official Government of India portal.
+* **🛍️ Broyal**: Dynamic e-commerce storefront for handcrafted leather goods.
+
+You can inspect all of them in detail on the [Projects Page](/projects)!`,
+
+      contact: `I am currently **Open to Work** for remote roles or hybrid/on-site positions in India! 🚀
+
+Here's how you can connect with me directly:
+* **📧 Email**: [abhishekhojha45@gmail.com](mailto:abhishekhojha45@gmail.com)
+* **🔗 LinkedIn**: [linkedin.com/in/abhishekhojha](https://linkedin.com/in/abhishekhojha)
+* **📍 Location**: Indore, Madhya Pradesh, India
+* **📝 Form**: Fill out the **Contact Form** at the bottom of this page, and I will get back to you within 24 hours!
+
+I'd love to chat about how I can contribute to your team!`,
+    };
+
+    // 2. PARSING MARKDOWN TO RICH HTML
+    function formatMessage(text) {
+      if (!text) return "";
+
+      // Escape HTML to prevent XSS
+      let formatted = text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+      // Replace bold syntax: **text**
+      formatted = formatted.replace(
+        /\*\*(.*?)\*\*/g,
+        '<span class="chat-bold">$1</span>',
+      );
+
+      // Replace link syntax: [link text](url)
+      formatted = formatted.replace(
+        /\[(.*?)\]\((.*?)\)/g,
+        '<a href="$2" target="_blank" class="chat-link">$1</a>',
+      );
+
+      // Replace bullet list items: * text or - text
+      formatted = formatted.replace(
+        /(?:^|\n)[*\-]\s+(.*?)(?=\n|$)/g,
+        '<li class="chat-li">$1</li>',
+      );
+
+      // Replace newlines with <br />
+      formatted = formatted.replace(/\n/g, "<br />");
+
+      return formatted;
+    }
+
+    // 3. CORE CHAT STATE
+    let messages = [];
+    let isPanelOpen = false;
+    let welcomeTipTimeout = null;
+
+    // Helper: Scroll messages area to the bottom
+    function scrollToBottom() {
+      const msgsContainer = document.getElementById("chatbot-messages");
+      if (msgsContainer) {
+        msgsContainer.scrollTop = msgsContainer.scrollHeight;
+      }
+    }
+
+    // Render all messages from local state to DOM
+    function renderMessages() {
+      const container = document.getElementById("chatbot-messages");
+      if (!container) return;
+
+      container.innerHTML = "";
+
+      if (messages.length === 0) {
+        // Initial Greeting
+        const welcomeMessage = {
+          sender: "ai",
+          text: `Hi there! 👋 I am Abhishekh's AI assistant. 
+          
+I'm here to help answer your questions about Abhishekh's technical journey, projects, and availability. 
+          
+Feel free to ask me anything or click one of the suggested buttons below to get started!`,
+        };
+        messages.push(welcomeMessage);
+        saveState();
+      }
+
+      messages.forEach((msg) => {
+        const bubble = document.createElement("div");
+        bubble.className = `flex items-start gap-2.5 animate-[fadeIn_0.3s_ease_out] ${
+          msg.sender === "user" ? "justify-end" : "justify-start"
+        }`;
+
+        const isUser = msg.sender === "user";
+
+        const avatar = isUser
+          ? `<div class="w-6.5 h-6.5 rounded-full bg-gray-100 dark:bg-gray-805 flex items-center justify-center text-gray-600 dark:text-gray-400 text-[10px] font-bold shrink-0 shadow-sm border border-gray-200/40 dark:border-gray-700/40">👤</div>`
+          : `<div class="w-6.5 h-6.5 rounded-full bg-[#212121] dark:bg-white dark:text-[#212121] flex items-center justify-center text-white text-[10px] shrink-0 font-bold shadow-sm border border-transparent dark:border-gray-200">🤖</div>`;
+
+        const bubbleStyle = isUser
+          ? "bg-[#212121] dark:bg-white dark:text-[#212121] text-white rounded-2xl rounded-tr-none px-4 py-2.5 max-w-[85%] text-xs shadow-md border border-[#212121] dark:border-white leading-relaxed font-medium"
+          : "bg-[#f0f0f0] dark:bg-gray-900 text-gray-800 dark:text-gray-100 rounded-2xl rounded-tl-none px-4 py-2.5 max-w-[85%] text-xs shadow-sm border border-gray-200/50 dark:border-gray-800/80 leading-relaxed";
+
+        const textContent = formatMessage(msg.text);
+
+        bubble.innerHTML = `
+          ${!isUser ? avatar : ""}
+          <div class="${bubbleStyle}">${textContent}</div>
+          ${isUser ? avatar : ""}
+        `;
+
+        container.appendChild(bubble);
+      });
+
+      scrollToBottom();
+    }
+
+    // Persist state inside Session Storage
+    function saveState() {
+      sessionStorage.setItem("ai_chatbot_history", JSON.stringify(messages));
+      sessionStorage.setItem("ai_chatbot_open", JSON.stringify(isPanelOpen));
+    }
+
+    // Load state from Session Storage
+    function loadState() {
+      const storedHistory = sessionStorage.getItem("ai_chatbot_history");
+      const storedOpen = sessionStorage.getItem("ai_chatbot_open");
+      const isTipDismissed = localStorage.getItem("ai_chatbot_tip_dismissed");
+
+      if (storedHistory) {
+        messages = JSON.parse(storedHistory);
+      }
+
+      if (storedOpen) {
+        isPanelOpen = JSON.parse(storedOpen);
+        if (isPanelOpen) {
+          openPanel(false); // Open without animation trigger
+        }
+      }
+
+      // Hide badge if chat was already opened in this session
+      const badge = document.getElementById("chatbot-badge");
+      if (badge && (isPanelOpen || storedHistory)) {
+        badge.classList.add("hidden");
+      }
+
+      // Handle Welcome tooltip logic
+      const welcomeTip = document.getElementById("chatbot-welcome-tip");
+      if (welcomeTip && !isTipDismissed && !storedHistory && !isPanelOpen) {
+        clearTimeout(welcomeTipTimeout);
+        welcomeTipTimeout = setTimeout(() => {
+          welcomeTip.classList.remove(
+            "opacity-0",
+            "pointer-events-none",
+            "translate-y-4",
+          );
+          welcomeTip.classList.add(
+            "opacity-100",
+            "pointer-events-auto",
+            "translate-y-0",
+          );
+        }, 3500); // 3.5s delay
+      }
+    }
+
+    // 4. ANIMATION & TOGGLE LOGIC
+    function openPanel(animate = true) {
+      const panel = document.getElementById("chatbot-panel");
+      const toggleBtn = document.getElementById("chatbot-toggle-btn");
+      const iconChat = document.getElementById("icon-chat");
+      const iconClose = document.getElementById("icon-close");
+      const badge = document.getElementById("chatbot-badge");
+      const welcomeTip = document.getElementById("chatbot-welcome-tip");
+
+      if (!panel || !toggleBtn) return;
+
+      isPanelOpen = true;
+      saveState();
+
+      // Dismiss tooltip immediately
+      if (welcomeTip) {
+        welcomeTip.classList.add(
+          "opacity-0",
+          "pointer-events-none",
+          "translate-y-4",
+        );
+        welcomeTip.classList.remove(
+          "opacity-100",
+          "pointer-events-auto",
+          "translate-y-0",
+        );
+      }
+
+      // Hide badge
+      if (badge) {
+        badge.classList.add("hidden");
+      }
+
+      // Toggle icons
+      if (iconChat && iconClose) {
+        iconChat.classList.add("hidden");
+        iconClose.classList.remove("hidden");
+      }
+
+      // Open panel
+      panel.classList.remove(
+        "scale-90",
+        "translate-y-8",
+        "opacity-0",
+        "pointer-events-none",
+      );
+      panel.classList.add(
+        "scale-100",
+        "translate-y-0",
+        "opacity-100",
+        "pointer-events-auto",
+        "z-10",
+      );
+
+      if (animate) {
+        scrollToBottom();
+      }
+    }
+
+    function closePanel() {
+      const panel = document.getElementById("chatbot-panel");
+      const iconChat = document.getElementById("icon-chat");
+      const iconClose = document.getElementById("icon-close");
+
+      if (!panel) return;
+
+      isPanelOpen = false;
+      saveState();
+
+      // Toggle icons
+      if (iconChat && iconClose) {
+        iconChat.classList.remove("hidden");
+        iconClose.classList.add("hidden");
+      }
+
+      // Close panel
+      panel.classList.remove(
+        "scale-100",
+        "translate-y-0",
+        "opacity-100",
+        "pointer-events-auto",
+        "z-10",
+      );
+      panel.classList.add(
+        "scale-90",
+        "translate-y-8",
+        "opacity-0",
+        "pointer-events-none",
+      );
+    }
+
+    // 5. INTERACTION LOGIC
+    function showTypingIndicator(show) {
+      const typingEl = document.getElementById("chatbot-typing");
+      if (typingEl) {
+        if (show) {
+          typingEl.classList.remove("hidden");
+        } else {
+          typingEl.classList.add("hidden");
+        }
+      }
+      scrollToBottom();
+    }
+
+    // Main responder (Smart query matching)
+    function getAIResponse(userText) {
+      const text = userText.toLowerCase().trim();
+
+      // 1. GREETINGS
+      if (
+        text.match(
+          /\b(hello|hi|hey|heyy|greetings|welcome|good morning|good afternoon)\b/,
+        )
+      ) {
+        return `Hello! 😊 Great to connect with you. How can I help you today?
+        
+You can ask me about Abhishekh's **experience**, review his **projects**, check out his **skills**, or get his **contact information**!`;
+      }
+
+      // 2. EXPERIENCE
+      if (
+        text.includes("experience") ||
+        text.includes("work") ||
+        text.includes("job") ||
+        text.includes("career") ||
+        text.includes("history") ||
+        text.includes("timeline") ||
+        text.includes("company") ||
+        text.includes("westack") ||
+        text.includes("it geeks") ||
+        text.includes("freelancer")
+      ) {
+        return KNOWLEDGE_BASE.experience;
+      }
+
+      // 3. PROJECTS
+      if (
+        text.includes("project") ||
+        text.includes("build") ||
+        text.includes("apps") ||
+        text.includes("portfolio") ||
+        text.includes("website") ||
+        text.includes("we won") ||
+        text.includes("listing") ||
+        text.includes("steel")
+      ) {
+        return KNOWLEDGE_BASE.projects;
+      }
+
+      // 4. SKILLS
+      if (
+        text.includes("skill") ||
+        text.includes("tech") ||
+        text.includes("stack") ||
+        text.includes("language") ||
+        text.includes("technology") ||
+        text.includes("react") ||
+        text.includes("next") ||
+        text.includes("node") ||
+        text.includes("tailwind") ||
+        text.includes("database") ||
+        text.includes("mongodb") ||
+        text.includes("ai") ||
+        text.includes("automation") ||
+        text.includes("n8n") ||
+        text.includes("gemini")
+      ) {
+        return KNOWLEDGE_BASE.skills;
+      }
+
+      // 5. CONTACT
+      if (
+        text.includes("contact") ||
+        text.includes("hire") ||
+        text.includes("email") ||
+        text.includes("phone") ||
+        text.includes("linkedin") ||
+        text.includes("social") ||
+        text.includes("address") ||
+        text.includes("location") ||
+        text.includes("resume") ||
+        text.includes("cv")
+      ) {
+        return KNOWLEDGE_BASE.contact;
+      }
+
+      // 6. ABOUT
+      if (
+        text.includes("about") ||
+        text.includes("who are you") ||
+        text.includes("yourself") ||
+        text.includes("abhishekh") ||
+        text.includes("bio") ||
+        text.includes("developer")
+      ) {
+        return KNOWLEDGE_BASE.about;
+      }
+
+      // 7. FALLBACK RESPONDER
+      return `I'm still learning! 🧠 While I didn't quite catch that, I am fully trained on Abhishekh's skills, experience, and project work.
+
+Would you like to ask me about:
+* **👋 About Me**: Tell me about Abhishekh's background.
+* **💼 Journey**: Details on professional roles & experience.
+* **🛠️ Skills**: Frontend, backend, and AI toolkits.
+* **🚀 Projects**: Inspect custom builds & government portals.
+* **📞 Contact**: Direct routes to email or message him.
+
+Or you can directly reach out to him via **[abhishekhojha45@gmail.com](mailto:abhishekhojha45@gmail.com)**!`;
+    }
+
+    // Handle incoming user message
+    function handleMessageSubmission(text) {
+      if (!text || text.trim() === "") return;
+
+      // Add user message
+      messages.push({ sender: "user", text: text });
+      renderMessages();
+      saveState();
+
+      // Clear input
+      const input = document.getElementById("chatbot-input");
+      const submitBtn = document.getElementById("chatbot-submit");
+      if (input) input.value = "";
+      if (submitBtn) submitBtn.disabled = true;
+
+      // Typing animation delay
+      showTypingIndicator(true);
+
+      setTimeout(
+        () => {
+          showTypingIndicator(false);
+          const reply = getAIResponse(text);
+          messages.push({ sender: "ai", text: reply });
+          renderMessages();
+          saveState();
+        },
+        700 + Math.random() * 500,
+      ); // 0.7s - 1.2s delay for realism
+    }
+
+    // 6. EVENT BINDING ENGINE
+    // Run initial binds on document load / after Astro Page Load transitions
+    function initChatbot() {
+      const toggleBtn = document.getElementById("chatbot-toggle-btn");
+      const closeBtn = document.getElementById("chatbot-close-btn");
+      const panelCloseBtn = document.getElementById("chatbot-reset-btn");
+      const form = document.getElementById("chatbot-form");
+      const input = document.getElementById("chatbot-input");
+      const submitBtn = document.getElementById("chatbot-submit");
+      const welcomeTip = document.getElementById("chatbot-welcome-tip");
+      const closeTipBtn = document.getElementById("close-welcome-tip");
+
+      // Reset references
+      if (!toggleBtn) return;
+
+      // Load state
+      loadState();
+      renderMessages();
+
+      // Trigger Toggle Click
+      toggleBtn.onclick = (e) => {
+        e.preventDefault();
+        if (isPanelOpen) {
+          closePanel();
+        } else {
+          openPanel();
+        }
+      };
+
+      // Close Panel Button Click
+      if (closeBtn) {
+        closeBtn.onclick = (e) => {
+          e.preventDefault();
+          closePanel();
+        };
+      }
+
+      // Reset / Clear Conversation History
+      if (panelCloseBtn) {
+        panelCloseBtn.onclick = (e) => {
+          e.preventDefault();
+          if (confirm("Are you sure you want to clear your chat history?")) {
+            messages = [];
+            sessionStorage.removeItem("ai_chatbot_history");
+            renderMessages();
+          }
+        };
+      }
+
+      // Welcome tooltip dismiss button
+      if (closeTipBtn) {
+        closeTipBtn.onclick = (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          if (welcomeTip) {
+            welcomeTip.classList.add(
+              "opacity-0",
+              "pointer-events-none",
+              "translate-y-4",
+            );
+            welcomeTip.classList.remove(
+              "opacity-100",
+              "pointer-events-auto",
+              "translate-y-0",
+            );
+          }
+          localStorage.setItem("ai_chatbot_tip_dismissed", "true");
+        };
+      }
+
+      // Input dynamic text detection for enable/disable submit button
+      if (input && submitBtn) {
+        input.oninput = () => {
+          submitBtn.disabled = input.value.trim() === "";
+        };
+      }
+
+      // Submit Form
+      if (form) {
+        form.onsubmit = (e) => {
+          e.preventDefault();
+          if (input) {
+            handleMessageSubmission(input.value);
+          }
+        };
+      }
+
+      // Bind all FAQ Pills
+      const pills = document.querySelectorAll(".faq-pill");
+      pills.forEach((pill) => {
+        pill.onclick = (e) => {
+          e.preventDefault();
+          const question = pill.getAttribute("data-question");
+
+          let fullQuestion = "";
+          switch (question) {
+            case "About Me":
+              fullQuestion = "Tell me about yourself!";
+              break;
+            case "Experience":
+              fullQuestion = "What is your professional experience?";
+              break;
+            case "Skills":
+              fullQuestion = "What is your tech stack and key skills?";
+              break;
+            case "Projects":
+              fullQuestion = "Can you show me your top projects?";
+              break;
+            case "Contact":
+              fullQuestion = "How can I contact or hire you?";
+              break;
+            default:
+              fullQuestion = question;
+          }
+
+          handleMessageSubmission(fullQuestion);
+        };
+      });
+    }
+
+    // Astro specific: Handle page load and lifecycle hook
+    document.addEventListener("astro:page-load", initChatbot);
+
+    // Standard DOM Load Fallback (For standard refreshes)
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initChatbot);
+    } else {
+      initChatbot();
+    }
+  })();
+</script>

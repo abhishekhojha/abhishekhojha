@@ -49,15 +49,6 @@ export const projectsData: Project[] = [
     demoUrl: "https://roomieqindia.com",
   },
   {
-    slug: "builds-your-mind",
-    title: "Builds Your Mind",
-    description:
-      "An edtech platform offering skill development courses, practice tests, and blogs. Features a responsive layout with course sections and clear engagement CTAs.",
-    skills: ["MERN", "Razorpay", "Node.js", "React.js"],
-    imageUrl: "/projects/builds.png",
-    demoUrl: "https://buildsyourmind.in",
-  },
-  {
     slug: "broyal",
     title: "Broyal",
     description:
