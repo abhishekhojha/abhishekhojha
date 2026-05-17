@@ -43,9 +43,13 @@ const currentPath = Astro.url.pathname;
         ]}>Learnings</a
       >
       <a
-        href="/#contact"
-        class="relative px-2 sm:px-4 py-1.5 text-sm font-semibold text-gray-600 dark:text-gray-400 rounded-full transition-all duration-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-900/5 dark:hover:bg-white/10 whitespace-nowrap"
-        >Contact</a
+        href="/contact"
+        class:list={[
+          "relative px-2 sm:px-4 py-1.5 text-sm font-semibold rounded-full transition-all duration-300 whitespace-nowrap",
+          currentPath.startsWith("/contact")
+            ? "text-gray-900 dark:text-white bg-gray-900/5 dark:bg-white/10"
+            : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-900/5 dark:hover:bg-white/10",
+        ]}>Contact</a
       >
     </nav>
 

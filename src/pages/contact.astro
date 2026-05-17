@@ -1,0 +1,324 @@
+---
+export const prerender = true;
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+---
+
+<Layout
+  title="Contact & Booking | Abhishekh Ojha"
+  description="Book a session directly on Abhishekh Ojha's calendar or connect via email or LinkedIn."
+  url="https://www.abhishekhojha.com/contact"
+>
+  <main class="pt-24 sm:pt-28 md:pt-36">
+    <section class="container mx-auto px-4 sm:px-6 pb-16 md:pb-24">
+      {/* Header */}
+      <div class="mb-14 sm:mb-20 text-center lg:text-left">
+        <div
+          class="flex items-center gap-3 mb-5 sm:mb-8 justify-center lg:justify-start"
+        >
+          <div class="w-6 sm:w-8 h-px bg-gray-900 dark:bg-gray-400"></div>
+          <p
+            class="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500"
+          >
+            Get In Touch
+          </p>
+        </div>
+        <h1
+          class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 tracking-tight leading-[1.05] mb-4"
+        >
+          Let's Work Together
+        </h1>
+        <p
+          class="text-lg text-gray-500 dark:text-gray-400 max-w-xl leading-relaxed mx-auto lg:mx-0"
+        >
+          Book a call directly on my calendar or reach out via email or
+          LinkedIn. Let's create something remarkable.
+        </p>
+      </div>
+
+      <div
+        class="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-16 items-start"
+      >
+        {/* Left Side: Contact Cards & Business Card */}
+        <div
+          class="lg:col-span-4 space-y-8 flex flex-col items-center lg:items-stretch"
+        >
+          {/* Digital Business Card */}
+          <div
+            class="relative bg-white dark:bg-gray-900 w-full max-w-sm rounded-2xl shadow-sm dark:shadow-[0_4px_24px_rgba(0,0,0,0.5)] border border-gray-200 dark:border-gray-800 overflow-hidden hover:shadow-md transition-all duration-300"
+          >
+            <div class="h-24 bg-gray-900 dark:bg-gray-950"></div>
+
+            <div class="flex justify-center -mt-12 mb-4 relative z-10">
+              <div class="p-1.5 bg-white dark:bg-gray-900 rounded-full">
+                <Image
+                  src="/abhishekh.png"
+                  alt="Abhishekh Ojha"
+                  width={192}
+                  height={192}
+                  class="w-24 h-24 rounded-full object-cover border border-gray-100 bg-gray-50 dark:border-gray-800 dark:bg-gray-950"
+                />
+              </div>
+            </div>
+
+            <div class="text-center px-6 pb-8">
+              <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">
+                Abhishekh Ojha
+              </h3>
+              <p
+                class="text-sm text-gray-500 dark:text-gray-400 font-medium mb-5"
+              >
+                Software Engineer & AI Engineer
+              </p>
+
+              <div class="space-y-2">
+                <div
+                  class="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm justify-center bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 py-2 rounded-lg"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
+                    ></path><circle cx="12" cy="10" r="3"></circle></svg
+                  >
+                  <span>Available for work</span>
+                </div>
+                <div
+                  class="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm justify-center bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 py-2 rounded-lg"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><polyline points="16 18 22 12 16 6"></polyline><polyline
+                      points="8 6 2 12 8 18"></polyline></svg
+                  >
+                  <span>Based in India</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Contact Options */}
+          <div class="w-full max-w-sm space-y-4">
+            <a
+              href="mailto:abhishekhojha45@gmail.com"
+              class="group flex items-center gap-4 p-5 bg-white dark:bg-gray-900/50 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-gray-900 dark:hover:border-gray-700 transition-all duration-300 text-gray-600 dark:text-gray-400 font-medium"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="group-hover:text-gray-900 dark:group-hover:text-white transition-colors"
+                ><rect width="20" height="16" x="2" y="4" rx="2"></rect><path
+                  d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg
+              >
+              <span
+                class="group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors"
+                >abhishekhojha45@gmail.com</span
+              >
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/abhishekh-ojha-10802b215/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex items-center gap-4 p-5 bg-white dark:bg-gray-900/50 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-gray-900 dark:hover:border-gray-700 transition-all duration-300 text-gray-600 dark:text-gray-400 font-medium"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="group-hover:text-gray-900 dark:group-hover:text-white transition-colors"
+                ><path
+                  d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                ></path><rect width="4" height="12" x="2" y="9"></rect><circle
+                  cx="4"
+                  cy="4"
+                  r="2"></circle></svg
+              >
+              <span
+                class="group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors"
+                >LinkedIn Profile</span
+              >
+            </a>
+          </div>
+        </div>
+
+        {/* Right Side: Cal.com Calendar */}
+        <div class="lg:col-span-8">
+          <div
+            class="relative w-full min-h-[660px] rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 overflow-hidden shadow-sm dark:shadow-[0_4px_24px_rgba(0,0,0,0.5)] transition-all duration-300"
+          >
+            {/* Loading Spinner Placeholder */}
+            <!-- <div
+              id="cal-loading-spinner"
+              class="absolute inset-0 flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 bg-gray-50/20 dark:bg-gray-950/20 z-10 transition-opacity duration-500"
+            >
+              <svg class="animate-spin h-8 w-8 mb-4 text-gray-900 dark:text-gray-100" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              <span class="text-xs font-semibold uppercase tracking-wider">Loading Calendar...</span>
+            </div> -->
+
+            {/* Cal.com inline widget container */}
+            <div id="cal-booking-widget" class="w-full min-h-[660px]"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    interface CalApi {
+      (...args: unknown[]): void;
+      q: IArguments[];
+    }
+
+    interface CalGlobal {
+      loaded?: boolean;
+      ns?: Record<string, CalApi>;
+      q?: IArguments[];
+      (...args: unknown[]): void;
+    }
+
+    declare global {
+      interface Window {
+        Cal?: CalGlobal;
+      }
+    }
+
+    function initCalEmbed() {
+      const container = document.getElementById("cal-booking-widget");
+      if (!container || container.dataset.bound === "1") return;
+      container.dataset.bound = "1";
+
+      const p = function (a: CalApi | CalGlobal, ar: IArguments) {
+        a.q = a.q || [];
+        a.q.push(ar);
+      };
+
+      // Cal.com standard loading snippet
+      (function (C: Window & typeof globalThis, A: string, L: string) {
+        let d = C.document;
+        C.Cal =
+          C.Cal ||
+          (function () {
+            let cal = C.Cal as CalGlobal;
+            let ar = arguments;
+            if (!cal.loaded) {
+              cal.ns = {};
+              cal.q = [];
+              d.head.appendChild(d.createElement("script")).src = A;
+              cal.loaded = true;
+            }
+            if (ar[0] === L) {
+              const api = function () {
+                p(api as CalApi, arguments);
+              } as CalApi;
+              const namespace = ar[1];
+              api.q = api.q || [];
+              if (typeof namespace === "string") {
+                cal.ns = cal.ns || {};
+                cal.ns[namespace] = cal.ns[namespace] || api;
+                p(cal.ns[namespace], ar);
+                p(cal, ar);
+              } else p(cal, ar);
+              return;
+            }
+            p(cal, ar);
+          } as CalGlobal);
+      })(window, "https://app.cal.com/embed/embed.js", "init");
+
+      const cal = window.Cal;
+      if (cal) {
+        cal("init", { origin: "https://app.cal.com" });
+
+        const isDark = document.documentElement.classList.contains("dark");
+
+        cal("inline", {
+          elementOrSelector: "#cal-booking-widget",
+          calLink: "abhishekh-ojha",
+          layout: "month_view",
+          config: {
+            theme: isDark ? "dark" : "light",
+          },
+        });
+
+        cal("ui", {
+          styles: {
+            branding: {
+              brandColor: "#0f172a",
+            },
+          },
+          hideEventTypeDetails: false,
+          layout: "month_view",
+        });
+
+        // Function to hide the spinner smoothly
+        const hideSpinner = () => {
+          const spinner = document.getElementById("cal-loading-spinner");
+          if (spinner) {
+            spinner.classList.add("opacity-0", "pointer-events-none");
+            setTimeout(() => spinner.remove(), 500);
+          }
+        };
+
+        // Hide spinner when Cal.com says the calendar link is ready
+        cal("on", {
+          action: "bookerReady",
+          callback: hideSpinner,
+        });
+
+        // Fallback: in case of slower connection/blocked APIs, fade out after 4 seconds anyway
+        setTimeout(hideSpinner, 4000);
+
+        // Observe theme changes to dynamically sync calendar theme with site theme
+        const observer = new MutationObserver(() => {
+          // Safe check: If the booking widget is no longer in the DOM (e.g. client-side page transition),
+          // disconnect the observer to prevent memory leaks and runtime errors.
+          if (!document.getElementById("cal-booking-widget")) {
+            observer.disconnect();
+            return;
+          }
+          const isCurrentlyDark =
+            document.documentElement.classList.contains("dark");
+          cal("ui", { theme: isCurrentlyDark ? "dark" : "light" });
+        });
+
+        observer.observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ["class"],
+        });
+      }
+    }
+
+    // Bind to Astro lifecycle loads (initial + page transitions)
+    document.addEventListener("astro:page-load", initCalEmbed);
+  </script>
+</Layout>
