@@ -42,8 +42,12 @@ const allCategories = rawCategories.map((cat) => {
   url={`https://www.abhishekhojha.com/learnings/${slug}`}
   image={post.coverImage}
   type="article"
-  publishedTime={post.pubDate ? new Date(post.pubDate).toISOString() : undefined}
-  updatedTime={post.updatedAt ? new Date(post.updatedAt).toISOString() : undefined}
+  publishedTime={post.pubDate
+    ? new Date(post.pubDate).toISOString()
+    : undefined}
+  updatedTime={post.updatedAt
+    ? new Date(post.updatedAt).toISOString()
+    : undefined}
   tags={post.tags}
 >
   <main class="pt-24 sm:pt-28 md:pt-36">
@@ -232,7 +236,7 @@ const allCategories = rawCategories.map((cat) => {
           </a>
         </div>
       </div>
-      <Contact />
+      <!-- <Contact /> -->
     </div>
   </main>
 </Layout>
