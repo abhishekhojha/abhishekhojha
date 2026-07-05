@@ -2,6 +2,9 @@
 export const prerender = true;
 import AboutUs from "../components/AboutUs.astro";
 import HeroSection from "../components/HeroSection.astro";
+import SocialProof from "../components/SocialProof.astro";
+import TrustedBy from "../components/TrustedBy.astro";
+import Testimonials from "../components/Testimonials.astro";
 import Projects from "../components/Projects.astro";
 import Layout from "../layouts/Layout.astro";
 import Experience from "../components/Experience.astro";
@@ -10,10 +13,16 @@ import Contact from "../components/Contact.astro";
 ---
 
 <Layout
-  title="Abhishekh Ojha | Software Engineer | MERN Stack Developer | AI Engineer | AI Automation Expert"
+  title="Abhishekh Ojha | Full Stack & AI Engineer | SaaS, Backend & Web App Development"
+  description="I help startups and businesses go from idea to production by building fast, scalable SaaS products, backend systems, and AI-powered web applications. Available for freelance and contract work."
+  keywords="Abhishekh Ojha, Full Stack Developer, AI Engineer, SaaS Developer, Next.js Developer, Node.js Developer, Backend Engineer, TypeScript, AWS, Hire Developer Indore, Freelance Web Developer India"
+  url="https://www.abhishekhojha.com/"
 >
   <main>
     <HeroSection />
+    <SocialProof />
+    <TrustedBy />
+    <Testimonials />
     <AboutUs />
     <Projects />
     <Skills />

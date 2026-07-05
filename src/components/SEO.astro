@@ -32,6 +32,70 @@ const fullImageUrl = image
     ? image
     : `https://www.abhishekhojha.com${image}`
   : "https://www.abhishekhojha.com/abhishekh.png";
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Abhishekh Ojha",
+  url: "https://www.abhishekhojha.com",
+  image: "https://www.abhishekhojha.com/abhishekh.png",
+  jobTitle: "Full Stack Engineer & AI Engineer",
+  description:
+    "I help startups and businesses go from idea to production by building fast, scalable SaaS products, backend systems, and AI-powered web applications.",
+  worksFor: {
+    "@type": "Organization",
+    name: "Westack.ai",
+  },
+  knowsAbout: [
+    "Next.js",
+    "TypeScript",
+    "Node.js",
+    "React",
+    "AI Integration",
+    "AWS",
+    "SaaS Development",
+    "Backend Engineering",
+    "REST APIs",
+    "MongoDB",
+    "PostgreSQL",
+    "n8n",
+    "LLMs",
+  ],
+  sameAs: [
+    "https://www.linkedin.com/in/abhishekh-ojha-10802b215/",
+    "https://github.com/abhishekhojha",
+  ],
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Abhishekh Ojha — Full Stack & AI Engineer",
+  url: "https://www.abhishekhojha.com",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://www.abhishekhojha.com/?s={search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
+};
+
+const articleSchema =
+  type === "article"
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: title,
+        description: description,
+        image: fullImageUrl,
+        datePublished: publishedTime,
+        dateModified: updatedTime,
+        author: {
+          "@type": "Person",
+          name: "Abhishekh Ojha",
+          url: "https://www.abhishekhojha.com",
+        },
+      }
+    : null;
 ---
 
 {/* Basic SEO */}
@@ -39,14 +103,20 @@ const fullImageUrl = image
 <meta name="description" content={description} />
 <meta name="keywords" content={finalKeywords} />
 <meta name="author" content="Abhishekh Ojha" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <link rel="canonical" href={url} />
 
 {/* Open Graph / Facebook */}
 <meta property="og:type" content={type} />
+<meta property="og:site_name" content="Abhishekh Ojha" />
 <meta property="og:url" content={url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={fullImageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Abhishekh Ojha — Full Stack & AI Engineer" />
+<meta property="og:locale" content="en_IN" />
 
 {
   type === "article" && publishedTime && (
@@ -60,45 +130,24 @@ const fullImageUrl = image
 }
 {type === "article" && tags.map((tag) => <meta property="article:tag" content={tag} />)}
 
-{/* Twitter */}
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={fullImageUrl} />
+{/* Twitter / X */}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@abhishekhojha_" />
+<meta name="twitter:creator" content="@abhishekhojha_" />
+<meta name="twitter:url" content={url} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={fullImageUrl} />
+<meta name="twitter:image:alt" content="Abhishekh Ojha — Full Stack & AI Engineer" />
 
-{/* Structured Data (JSON-LD) for SEO */}
-<script
-  type="application/ld+json"
-  set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": type === "article" ? "BlogPosting" : "Person",
-    ...(type === "article"
-      ? {
-          headline: title,
-          description: description,
-          image: fullImageUrl,
-          datePublished: publishedTime,
-          dateModified: updatedTime,
-          author: {
-            "@type": "Person",
-            name: "Abhishekh Ojha",
-            url: "https://www.abhishekhojha.com",
-          },
-        }
-      : {
-          name: "Abhishekh Ojha",
-          url: "https://www.abhishekhojha.com",
-          image: "https://www.abhishekhojha.com/abhishekh.png",
-          jobTitle: "Software Engineer & AI Engineer",
-          worksFor: {
-            "@type": "Organization",
-            name: "Westack.ai",
-          },
-          sameAs: [
-            "https://www.linkedin.com/in/abhishekh-ojha-10802b215/",
-            "https://github.com/abhishekhojha",
-          ],
-        }),
-  })}
-/>
+{/* Structured Data: Person */}
+<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+
+{/* Structured Data: WebSite */}
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+
+{/* Structured Data: Article (only on article pages) */}
+{articleSchema && (
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+)}
+

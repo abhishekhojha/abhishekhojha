@@ -1,0 +1,107 @@
+---
+// Testimonials.astro
+const testimonials = [
+  {
+    quote:
+      "Abhishekh built our entire platform from scratch — clean architecture, fast APIs, and a polished frontend. He delivered exactly what we envisioned, on time and without hand-holding.",
+    name: "Broyal Team",
+    title: "Broyal",
+    logo: null,
+    logoText: "BROYAL",
+    useFontStyle: true,
+  },
+  {
+    quote:
+      "Working with Abhishekh was one of the best decisions for WeWon Academy. He understood our product goals deeply and built a robust, scalable backend that handles thousands of users seamlessly.",
+    name: "Aman Mishra",
+    title: "Founder, WeWon Academy",
+    logo: "/workedwith/wewon.svg",
+    logoText: null,
+    useFontStyle: false,
+  },
+  {
+    quote:
+      "Abhishekh transformed our idea into a fully functional web product. His expertise in full-stack development and attention to detail made the whole process smooth and the result truly impressive.",
+    name: "Aashish Shriwastav",
+    title: "Founder, Sahiraste",
+    logo: "/workedwith/sahiraste.webp",
+    logoText: null,
+    useFontStyle: false,
+  },
+  {
+    quote:
+      "Reliable, professional, and highly skilled. Abhishekh developed our facility management system with great precision. The application has drastically improved our internal operations.",
+    name: "Uttam Facility Team",
+    title: "Uttam Facility",
+    logo: "/workedwith/uttamfacility.webp",
+    logoText: null,
+    useFontStyle: false,
+  },
+];
+---
+
+<section
+  id="testimonials"
+  class="container mx-auto px-4 sm:px-6 py-16 md:py-24 border-t border-gray-400 dark:border-gray-800"
+>
+  <div class="text-center mb-12">
+    <div class="flex items-center justify-center gap-3 mb-4">
+      <div class="w-6 h-px bg-gray-900 dark:bg-gray-400"></div>
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500">
+        Testimonials
+      </p>
+      <div class="w-6 h-px bg-gray-900 dark:bg-gray-400"></div>
+    </div>
+    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 tracking-tight">
+      What clients say
+    </h2>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
+    {
+      testimonials.map((t) => (
+        <div class="bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 rounded-2xl p-6 flex flex-col gap-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+          {/* Quote mark */}
+          <svg
+            class="w-7 h-7 text-gray-200 dark:text-gray-700 flex-shrink-0"
+            fill="currentColor"
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M10 8C5.6 8 2 11.6 2 16v8h8v-8H6c0-2.2 1.8-4 4-4V8zm16 0c-4.4 0-8 3.6-8 8v8h8v-8h-4c0-2.2 1.8-4 4-4V8z" />
+          </svg>
+
+          {/* Quote text */}
+          <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed flex-1">
+            {t.quote}
+          </p>
+
+          {/* Author row */}
+          <div class="flex items-center gap-3 pt-3 border-t border-gray-100 dark:border-gray-700/50">
+            {/* Logo badge */}
+            <div class="h-10 w-10 rounded-full bg-gray-100 dark:bg-white/90 flex items-center justify-center flex-shrink-0 overflow-hidden">
+              {t.useFontStyle ? (
+                <span
+                  style="font-family: 'IBM Plex Serif', serif; font-weight: 700; font-size: 0.6rem; letter-spacing: -0.01em; line-height: 1;"
+                  class="text-gray-900 text-center px-0.5"
+                >
+                  BROYAL
+                </span>
+              ) : (
+                <img
+                  src={t.logo!}
+                  alt={t.title}
+                  class="h-7 w-7 object-contain"
+                />
+              )}
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-gray-900 dark:text-gray-100">{t.name}</p>
+              <p class="text-xs text-gray-400 dark:text-gray-500">{t.title}</p>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
