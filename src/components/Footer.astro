@@ -1,223 +1,213 @@
 ---
-import { Github, Mail, Download, ArrowUpRight } from "lucide-react";
-
 const currentYear = new Date().getFullYear();
 
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/projects", label: "Projects" },
   { href: "/learnings", label: "Learnings" },
-  { href: "/contact", label: "Contact" },
-  { href: "/abhishekh-ojha", label: "About" },
+  { href: "/contact", label: "Book a Call" },
+  { href: "/ABHISHEKH_OJHA.pdf", label: "Resume", download: "ABHISHEKH_OJHA.pdf" },
 ];
 
-const socialLinks = [
-  {
-    href: "https://github.com/abhishekhojha",
-    label: "GitHub",
-    icon: "github",
-    external: true,
-  },
-  {
-    href: "mailto:oabhishekh8@gmail.com",
-    label: "Email",
-    icon: "mail",
-    external: false,
-  },
-  {
-    href: "https://www.linkedin.com/in/abhishekhojha/",
-    label: "LinkedIn",
-    icon: "linkedin",
-    external: true,
-  },
+const noteLines = [
+  { text: "Thanks for stopping by." },
+  { text: "I build scalable SaaS MVPs & AI agents (0 → scale)." },
+  { text: "Have an ambitious product in mind?" },
+  { prefix: "Say hello at ", email: "oabhishekh8@gmail.com", suffix: "!" },
 ];
+const stickerBase =
+  "group flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-2xl sm:rounded-3xl bg-[#18181b] dark:bg-[#1e2230] border-[4px] sm:border-[5px] border-white dark:border-[#f6f6f6] shadow-[0_12px_30px_rgba(0,0,0,0.16)] dark:shadow-xl hover:-translate-y-3 hover:rotate-0 hover:z-30 transition-all duration-300";
 ---
 
 <footer
-  class="relative border-t border-gray-200 dark:border-gray-800 bg-[#f6f6f6] dark:bg-[#0f0f0f] overflow-hidden"
+  class="relative overflow-hidden bg-[#f6f6f6] dark:bg-[#0b0c10] text-gray-900 dark:text-white border-t border-gray-200 dark:border-gray-800"
 >
-  {/* Gradient accent line at top */}
+  {/* Subtle ambient depth */}
   <div
-    class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent"
+    class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(0,0,0,0.03),transparent_70%)] dark:bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(99,102,241,0.08),transparent_70%)]"
   >
   </div>
 
-  {/* Subtle radial glow in background */}
-  <div
-    class="pointer-events-none absolute inset-0 flex items-center justify-center"
-  >
+  <div class="container mx-auto px-4 sm:px-6 pt-10 sm:pt-14 pb-8 relative z-10">
+    {/* Top metadata row: Availability & Direct Booking */}
     <div
-      class="w-[600px] h-[300px] rounded-full bg-indigo-500/5 dark:bg-indigo-500/10 blur-3xl"
+      class="flex flex-wrap items-start justify-between gap-4 text-xs sm:text-sm mb-10 sm:mb-12"
     >
-    </div>
-  </div>
-
-  <div class="container mx-auto px-4 sm:px-6 py-12 md:py-16 relative z-10">
-    {/* Top section */}
-    <div
-      class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 pb-10 border-b border-gray-200 dark:border-gray-800"
-    >
-      {/* Brand column */}
-      <div class="flex flex-col gap-4">
-        <div class="flex items-center gap-2">
-          <span
-            class="inline-flex items-center gap-1.5 text-xs font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-full px-2.5 py-1"
-          >
-            <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"
-            ></span>
-            Open to opportunities
-          </span>
-        </div>
-        <h2
-          class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100 tracking-tight leading-tight"
-        >
-          Abhishekh Ojha
-        </h2>
-        <p
-          class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed max-w-xs"
-        >
-          Software Engineer crafting scalable web apps & AI automation
-          workflows. Based in Indore, India.
+      <div>
+        <p class="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.18em] text-gray-400 dark:text-zinc-400">
+          Availability
         </p>
-        {/* CTA */}
+        <p class="font-medium text-gray-900 dark:text-zinc-100 mt-1 inline-flex items-center gap-2">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          Open for SaaS &amp; AI builds
+        </p>
+      </div>
+
+      <div class="text-right">
+        <p class="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.18em] text-gray-400 dark:text-zinc-400">
+          Let&rsquo;s Build
+        </p>
         <a
-          href="mailto:oabhishekh8@gmail.com"
-          class="inline-flex items-center gap-2 w-fit text-sm font-semibold text-gray-900 dark:text-gray-100 bg-gray-900/5 dark:bg-white/10 hover:bg-gray-900/10 dark:hover:bg-white/15 border border-gray-200 dark:border-gray-700 rounded-full px-4 py-2 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md group"
+          href="/contact"
+          class="font-medium text-gray-900 hover:text-black dark:text-zinc-100 dark:hover:text-white mt-1 inline-flex items-center gap-1 group transition-colors"
         >
-          <Mail className="w-3.5 h-3.5 text-indigo-500" strokeWidth={2} />
-          Let's work together
-          <ArrowUpRight
-            className="w-3 h-3 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"
-            strokeWidth={2}
-          />
+          <span>Book a discovery call</span>
+          <svg
+            class="w-3.5 h-3.5 text-gray-400 group-hover:text-gray-900 dark:text-zinc-400 dark:group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M7 17 17 7"></path>
+            <path d="M7 7h10v10"></path>
+          </svg>
         </a>
       </div>
+    </div>
 
-      {/* Navigation column */}
-      <div class="flex flex-col gap-4">
+    {/* Center tilted ruled note card + oversized sticker icons */}
+    <div class="flex flex-col items-center">
+      {/* Note card */}
+      <div
+        class="w-full max-w-[540px] bg-white dark:bg-[#14161d] border border-gray-200/90 dark:border-white/10 rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:shadow-[0_24px_60px_rgba(0,0,0,0.45)] px-6 sm:px-8 pt-6 pb-10 sm:pb-12 -rotate-[1.25deg] transition-transform duration-300 hover:rotate-0"
+      >
         <p
-          class="text-xs font-semibold uppercase tracking-[0.15em] text-gray-400 dark:text-gray-500"
+          class="text-[11px] font-mono uppercase tracking-[0.18em] text-gray-400 dark:text-zinc-500 pb-3 border-b border-gray-100 dark:border-white/10"
         >
-          Navigation
+          Note from Abhishekh
         </p>
-        <nav class="flex flex-col gap-2">
+
+        <div class="divide-y divide-gray-100 dark:divide-white/10">
           {
-            navLinks.map((link) => (
-              <a
-                href={link.href}
-                class="group flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200 w-fit"
-              >
-                <span class="w-0 h-px bg-gradient-to-r from-indigo-500 to-purple-500 group-hover:w-4 transition-all duration-300 rounded-full" />
-                {link.label}
-              </a>
+            noteLines.map((line) => (
+              <p class="py-3 sm:py-3.5 text-sm sm:text-base font-normal text-gray-800 dark:text-zinc-100 leading-snug">
+                {line.email ? (
+                  <>
+                    {line.prefix}
+                    <a
+                      href={`mailto:${line.email}`}
+                      class="underline decoration-gray-300 dark:decoration-zinc-500 underline-offset-4 hover:text-black hover:decoration-black dark:hover:text-white dark:hover:decoration-white transition-colors"
+                    >
+                      {line.email}
+                    </a>
+                    {line.suffix}
+                  </>
+                ) : (
+                  line.text
+                )}
+              </p>
             ))
           }
-        </nav>
+        </div>
       </div>
 
-      {/* Connect column */}
-      <div class="flex flex-col gap-4">
-        <p
-          class="text-xs font-semibold uppercase tracking-[0.15em] text-gray-400 dark:text-gray-500"
+      {/* 4 oversized tilted sticker tiles overlapping bottom of note card */}
+      <div
+        class="relative z-20 -mt-7 sm:-mt-9 flex items-end justify-center -space-x-2 sm:-space-x-3"
+      >
+        {/* Email */}
+        <a
+          href="mailto:oabhishekh8@gmail.com"
+          aria-label="Send Email"
+          class={`${stickerBase} -rotate-[8deg] hover:bg-zinc-800 dark:hover:bg-zinc-700`}
         >
-          Connect
-        </p>
-        <div class="flex flex-col gap-3">
-          {/* GitHub */}
-          <a
-            href="https://github.com/abhishekhojha"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200 w-fit"
+          <svg
+            class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 text-white"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
           >
-            <span
-              class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors duration-200"
-            >
-              <Github className="w-3.5 h-3.5" strokeWidth={2} />
-            </span>
-            GitHub
-            <ArrowUpRight
-              className="w-3 h-3 opacity-0 group-hover:opacity-60 transition-opacity duration-200"
-              strokeWidth={2}
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z" />
+          </svg>
+        </a>
+
+        {/* LinkedIn */}
+        <a
+          href="https://www.linkedin.com/in/abhishekhojha/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+          class={`${stickerBase} rotate-[4deg] translate-y-1 hover:bg-[#0a66c2]`}
+        >
+          <span class="text-4xl sm:text-5xl md:text-[54px] font-extrabold tracking-tighter text-white leading-none select-none">
+            in
+          </span>
+        </a>
+
+        {/* GitHub */}
+        <a
+          href="https://github.com/abhishekhojha"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+          class={`${stickerBase} -rotate-[5deg] hover:bg-zinc-800 dark:hover:bg-zinc-700`}
+        >
+          <svg
+            class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 text-white"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z"
             />
-          </a>
+          </svg>
+        </a>
 
-          {/* LinkedIn */}
-          <a
-            href="https://www.linkedin.com/in/abhishekhojha/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200 w-fit"
+        {/* X */}
+        <a
+          href="https://x.com/abhishekhojha_"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="X"
+          class={`${stickerBase} rotate-[7deg] translate-y-0.5 hover:bg-zinc-800 dark:hover:bg-zinc-700`}
+        >
+          <svg
+            class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 text-white"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
           >
-            <span
-              class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors duration-200"
-            >
-              {/* LinkedIn icon */}
-              <svg
-                class="w-3.5 h-3.5"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-                ></path>
-              </svg>
-            </span>
-            LinkedIn
-            <ArrowUpRight
-              className="w-3 h-3 opacity-0 group-hover:opacity-60 transition-opacity duration-200"
-              strokeWidth={2}
-            />
-          </a>
-
-          {/* Email */}
-          <a
-            href="mailto:oabhishekh8@gmail.com"
-            class="group flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200 w-fit"
-          >
-            <span
-              class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors duration-200"
-            >
-              <Mail className="w-3.5 h-3.5" strokeWidth={2} />
-            </span>
-            oabhishekh8@gmail.com
-          </a>
-
-          {/* Resume */}
-          <a
-            href="/ABHISHEKH_OJHA.pdf"
-            download="ABHISHEKH_OJHA.pdf"
-            class="group flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200 w-fit"
-          >
-            <span
-              class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors duration-200"
-            >
-              <Download className="w-3.5 h-3.5" strokeWidth={2} />
-            </span>
-            Download Resume
-          </a>
-        </div>
+            <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+            <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+          </svg>
+        </a>
       </div>
     </div>
 
-    {/* Bottom bar */}
+    {/* Bottom quick links + copyright */}
     <div
-      class="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4"
+      class="mt-10 sm:mt-12 pt-6 border-t border-gray-200 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500 dark:text-zinc-400"
     >
-      <p class="text-xs text-gray-400 dark:text-gray-500">
+      <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              download={link.download}
+              class="hover:text-gray-900 dark:hover:text-white transition-colors duration-150"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+      <p class="text-gray-400 dark:text-zinc-500">
         &copy; {currentYear} Abhishekh Ojha. All rights reserved.
       </p>
-      <!-- <p class="text-xs text-gray-400 dark:text-gray-500 flex items-center gap-1">
-        Built with
-        <span
-          class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent font-semibold"
-          >Astro</span
-        > &amp;
-        <span class="text-gray-900 dark:text-white font-semibold"
-          >passion</span
-        >
-      </p> -->
     </div>
   </div>
 </footer>
