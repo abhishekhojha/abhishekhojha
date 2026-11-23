@@ -1,4 +1,11 @@
 {
   "version": 2,
-  "regions": ["bom1"]
+  "regions": ["bom1"],
+  "redirects": [
+    {
+      "source": "/llm.txt",
+      "destination": "/llms.txt",
+      "permanent": true
+    }
+  ]
 }

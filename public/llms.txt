@@ -1,0 +1,36 @@
+# Abhishekh Ojha
+
+> Full-Stack & AI Systems Architect building production SaaS MVPs, scalable backend architectures, and AI agents for founders (0 → scale) using Next.js, Node.js, LangChain, TypeScript, and AWS.
+
+Abhishekh Ojha is a Full-Stack & AI Engineer based in Indore, India with 3+ years of experience shipping end-to-end web products, secure payment and RBAC/ABAC systems, high-throughput data pipelines, and LLM-powered workflows.
+
+## Key Pages
+
+- [Home](https://www.abhishekhojha.com/): Overview of services, client testimonials, featured projects, tech stack, and professional experience.
+- [Projects](https://www.abhishekhojha.com/projects): Portfolio of SaaS platforms, AI automation tools, e-commerce storefronts, and public-sector work.
+- [Learnings](https://www.abhishekhojha.com/learnings): Technical articles and engineering notes on full-stack architecture, AI workflows, and web performance.
+- [About Abhishekh Ojha](https://www.abhishekhojha.com/abhishekh-ojha): Detailed biography, core expertise, and technology toolkit.
+- [Book a Call / Contact](https://www.abhishekhojha.com/contact): Schedule a discovery call on Cal.com or reach out via email or LinkedIn.
+- [Resume (PDF)](https://www.abhishekhojha.com/ABHISHEKH_OJHA.pdf): Downloadable full resume.
+
+## Selected Projects
+
+- [We Won Academy](https://www.abhishekhojha.com/projects/we-won-academy): AI-driven college admission predictor and career guidance platform built with Next.js, Node.js, and MongoDB.
+- [AI Listing Generator](https://www.abhishekhojha.com/projects/ai-listing-generator): Automated SEO product listing generator powered by Next.js, TypeScript, and generative AI.
+- [AI Lead Capture](https://www.abhishekhojha.com/projects/ai-lead-capture): Multi-channel automated lead capture and follow-up pipeline using n8n and webhooks.
+- [RoomieQ](https://www.abhishekhojha.com/projects/roomieq): Full-stack MERN property and roommate discovery portal with location-based search.
+- [Ministry of Steel](https://www.abhishekhojha.com/projects/ministry-of-steel): Accessibility, navigation, and web standards enhancements for the official Government of India portal.
+
+## Core Stack & Specializations
+
+- **Frontend:** Next.js, React.js, TypeScript, JavaScript, Tailwind CSS, Astro, HTML5, CSS3
+- **Backend & Databases:** Node.js, Express.js, Python, PHP, Laravel, MongoDB, MySQL, REST APIs, RBAC/ABAC Security
+- **AI & Automation:** LangChain, AI Agents, Generative AI, OpenRouter API, n8n, Webhooks
+- **Cloud & Integrations:** AWS (S3), Vercel, Docker, Git, Razorpay API
+
+## Contact
+
+- Email: oabhishekh8@gmail.com
+- GitHub: https://github.com/abhishekhojha
+- LinkedIn: https://www.linkedin.com/in/abhishekhojha/
+- X: https://x.com/abhishekhojha_
