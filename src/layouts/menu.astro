@@ -2,60 +2,49 @@
 // src/layouts/menu.astro
 import { Github, Moon, Sun, Download } from "lucide-react";
 const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: "/", label: "Home", exact: true },
+  { href: "/projects", label: "Projects" },
+  { href: "/learnings", label: "Learnings" },
+  { href: "/contact", label: "Contact" },
+];
 ---
 
 {/* ── Top bar ─────────────────────────────────────────────────────── */}
 <div
-  class="fixed w-full top-0 z-50 px-3 sm:px-4 py-4 md:py-6 pointer-events-none"
+  class="fixed w-full top-0 z-50 px-0 sm:px-4 py-4 md:py-6 pointer-events-none"
 >
   <div
-    class="container mx-auto flex justify-center md:justify-between items-center"
+    class="container mx-auto flex justify-center sm:justify-between items-center gap-2 relative"
   >
     {/* Main Navigation */}
     <nav
-      class="pointer-events-auto flex items-center gap-1 sm:gap-4 rounded-full px-2 sm:px-3 py-1.5 sm:py-2 bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl border border-white/40 dark:border-gray-700/40 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] ring-1 ring-gray-900/5 dark:ring-white/5 transition-all duration-500"
+      class="pointer-events-auto flex items-center h-10 sm:h-auto gap-0.5 sm:gap-4 rounded-full px-1.5 sm:px-3 py-1 sm:py-2 bg-white/75 dark:bg-gray-900/75 backdrop-blur-xl border border-white/40 dark:border-gray-700/40 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] ring-1 ring-gray-900/5 dark:ring-white/5 transition-all duration-500"
     >
-      <a
-        href="/"
-        class:list={[
-          "relative px-2 sm:px-4 py-1.5 text-sm font-semibold rounded-full transition-all duration-300 whitespace-nowrap",
-          currentPath === "/"
-            ? "text-gray-900 dark:text-white bg-gray-900/5 dark:bg-white/10"
-            : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-900/5 dark:hover:bg-white/10",
-        ]}>Home</a
-      >
-      <a
-        href="/projects"
-        class:list={[
-          "relative px-2 sm:px-4 py-1.5 text-sm font-semibold rounded-full transition-all duration-300 whitespace-nowrap",
-          currentPath.startsWith("/projects")
-            ? "text-gray-900 dark:text-white bg-gray-900/5 dark:bg-white/10"
-            : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-900/5 dark:hover:bg-white/10",
-        ]}>Projects</a
-      >
-      <a
-        href="/learnings"
-        class:list={[
-          "relative px-2 sm:px-4 py-1.5 text-sm font-semibold rounded-full transition-all duration-300 whitespace-nowrap",
-          currentPath.startsWith("/learnings")
-            ? "text-gray-900 dark:text-white bg-gray-900/5 dark:bg-white/10"
-            : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-900/5 dark:hover:bg-white/10",
-        ]}>Learnings</a
-      >
-      <a
-        href="/contact"
-        class:list={[
-          "relative px-2 sm:px-4 py-1.5 text-sm font-semibold rounded-full transition-all duration-300 whitespace-nowrap",
-          currentPath.startsWith("/contact")
-            ? "text-gray-900 dark:text-white bg-gray-900/5 dark:bg-white/10"
-            : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-900/5 dark:hover:bg-white/10",
-        ]}>Contact</a
-      >
+      {
+        navLinks.map((link) => {
+          const isActive = link.exact
+            ? currentPath === link.href
+            : currentPath.startsWith(link.href);
+          return (
+            <a
+              href={link.href}
+              class:list={[
+                "relative px-2.5 sm:px-4 py-1 sm:py-1.5 text-xs sm:text-sm font-semibold rounded-full transition-all duration-300 whitespace-nowrap leading-none flex items-center h-8 sm:h-auto",
+                isActive
+                  ? "text-gray-900 dark:text-white bg-gray-900/5 dark:bg-white/10"
+                  : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-900/5 dark:hover:bg-white/10",
+              ]}
+            >
+              {link.label}
+            </a>
+          );
+        })
+      }
     </nav>
 
-    {
-      /* Right section — visible on sm+ only (hidden on mobile, shown in bottom bar instead) */
-    }
+    {/* Desktop actions (sm+) */}
     <div class="pointer-events-auto hidden sm:flex items-center gap-2">
       <a
         href="https://github.com/abhishekhojha"
@@ -67,7 +56,8 @@ const currentPath = Astro.url.pathname;
         <Github className="w-[15px] h-[15px]" strokeWidth={2} />
       </a>
       <button
-        id="theme-toggle"
+        type="button"
+        data-theme-toggle
         aria-label="Toggle dark mode"
         class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/70 dark:bg-gray-900/70 border border-white/40 dark:border-gray-700/40 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all duration-300"
       >
@@ -83,53 +73,108 @@ const currentPath = Astro.url.pathname;
         <span class="tracking-wide">Resume</span>
       </a>
     </div>
-  </div>
-</div>
 
-{/* ── Mobile bottom bar — visible only on mobile (hidden sm+) ─────── */}
-<div
-  class="sm:hidden fixed bottom-0 left-0 right-0 z-50 px-4 pb-3 pointer-events-none"
->
-  <div
-    class="pointer-events-auto flex items-center justify-around rounded-2xl px-4 py-2 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border border-white/40 dark:border-gray-700/40 shadow-[0_-4px_24px_rgba(0,0,0,0.07)] dark:shadow-[0_-4px_24px_rgba(0,0,0,0.35)]"
-  >
-    {/* GitHub */}
-    <a
-      href="https://github.com/abhishekhojha"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="GitHub profile"
-      class="inline-flex items-center justify-center w-9 h-9 rounded-full text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
-    >
-      <Github className="w-[18px] h-[18px]" strokeWidth={2} />
-    </a>
+    {/* Mobile toggle button (< sm) — replaces bottom bar so it never overlaps the chatbot */}
+    <div class="pointer-events-auto sm:hidden relative">
+      <button
+        id="mobile-actions-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-actions-menu"
+        aria-label="Open quick actions menu"
+        class="inline-flex items-center justify-center w-10 h-10 shrink-0 rounded-full bg-white/75 dark:bg-gray-900/75 border border-white/40 dark:border-gray-700/40 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] ring-1 ring-gray-900/5 dark:ring-white/5 text-gray-700 dark:text-gray-200 transition-all duration-200 active:scale-95"
+      >
+        <svg
+          id="mobile-toggle-open-icon"
+          class="w-4 h-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="1"></circle>
+          <circle cx="19" cy="12" r="1"></circle>
+          <circle cx="5" cy="12" r="1"></circle>
+        </svg>
+        <svg
+          id="mobile-toggle-close-icon"
+          class="w-4 h-4 hidden"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
 
-    {/* Theme toggle */}
-    <button
-      id="theme-toggle"
-      aria-label="Toggle dark mode"
-      class="inline-flex items-center justify-center w-9 h-9 rounded-full text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
-    >
-      <Sun className="hidden dark:block w-[18px] h-[18px]" strokeWidth={2} />
-      <Moon className="block dark:hidden w-[18px] h-[18px]" strokeWidth={2} />
-    </button>
+      {/* Dropdown popover */}
+      <div
+        id="mobile-actions-menu"
+        class="hidden absolute right-0 top-12 w-48 rounded-2xl p-1.5 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border border-gray-200/80 dark:border-gray-700/70 shadow-xl ring-1 ring-black/5 dark:ring-white/5"
+      >
+        <a
+          href="https://github.com/abhishekhojha"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        >
+          <Github className="w-4 h-4 text-gray-500 dark:text-gray-400" strokeWidth={2} />
+          <span>GitHub</span>
+        </a>
 
-    {/* Resume download */}
-    <a
-      href="/ABHISHEKH_OJHA.pdf"
-      download="ABHISHEKH_OJHA.pdf"
-      aria-label="Download Resume"
-      class="inline-flex items-center justify-center w-9 h-9 rounded-full text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
-    >
-      <Download className="w-[18px] h-[18px]" strokeWidth={2} />
-    </a>
+        <button
+          type="button"
+          data-theme-toggle
+          class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-left"
+        >
+          <Sun className="hidden dark:block w-4 h-4 text-amber-400" strokeWidth={2} />
+          <Moon className="block dark:hidden w-4 h-4 text-gray-500" strokeWidth={2} />
+          <span class="dark:hidden">Dark Mode</span>
+          <span class="hidden dark:inline">Light Mode</span>
+        </button>
+
+        <a
+          href="/ABHISHEKH_OJHA.pdf"
+          download="ABHISHEKH_OJHA.pdf"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        >
+          <Download className="w-4 h-4 text-gray-500 dark:text-gray-400" strokeWidth={2} />
+          <span>Resume</span>
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 
 <script>
-  function initThemeToggle() {
-    // There can be two toggles (top bar desktop + bottom bar mobile) — handle both
-    document.querySelectorAll("#theme-toggle").forEach((btn) => {
+  function getMenuEls() {
+    return {
+      toggleBtn: document.getElementById("mobile-actions-toggle"),
+      menu: document.getElementById("mobile-actions-menu"),
+      openIcon: document.getElementById("mobile-toggle-open-icon"),
+      closeIcon: document.getElementById("mobile-toggle-close-icon"),
+    };
+  }
+
+  function setMobileMenuOpen(open: boolean) {
+    const { toggleBtn, menu, openIcon, closeIcon } = getMenuEls();
+    if (!toggleBtn || !menu) return;
+    menu.classList.toggle("hidden", !open);
+    toggleBtn.setAttribute("aria-expanded", String(open));
+    openIcon?.classList.toggle("hidden", open);
+    closeIcon?.classList.toggle("hidden", !open);
+  }
+
+  function initMenuControls() {
+    document.querySelectorAll("[data-theme-toggle]").forEach((btn) => {
       const fresh = btn.cloneNode(true) as HTMLElement;
       btn.replaceWith(fresh);
       fresh.addEventListener("click", () => {
@@ -137,6 +182,39 @@ const currentPath = Astro.url.pathname;
         localStorage.setItem("theme", isDark ? "dark" : "light");
       });
     });
+
+    const toggleBtn = document.getElementById("mobile-actions-toggle");
+    if (toggleBtn) {
+      const freshToggle = toggleBtn.cloneNode(true) as HTMLElement;
+      toggleBtn.replaceWith(freshToggle);
+      freshToggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const menu = document.getElementById("mobile-actions-menu");
+        if (!menu) return;
+        setMobileMenuOpen(menu.classList.contains("hidden"));
+      });
+    }
+
+    setMobileMenuOpen(false);
   }
-  document.addEventListener("astro:page-load", initThemeToggle);
+
+  if (!(window as any).__menuDocListenersBound) {
+    (window as any).__menuDocListenersBound = true;
+    document.addEventListener("click", (e) => {
+      const { toggleBtn, menu } = getMenuEls();
+      if (
+        menu &&
+        !menu.classList.contains("hidden") &&
+        !menu.contains(e.target as Node) &&
+        !toggleBtn?.contains(e.target as Node)
+      ) {
+        setMobileMenuOpen(false);
+      }
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setMobileMenuOpen(false);
+    });
+  }
+
+  document.addEventListener("astro:page-load", initMenuControls);
 </script>
